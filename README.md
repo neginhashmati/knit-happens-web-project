@@ -61,16 +61,22 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-2-5 sentences describing what the system does
+A website that helps users organize and plan future craft projects, specifically by cataloguing materials and their costs. Users create an account and then they have the option to create, delete, or update a project and add, delete, or update materials or they can simply add materials to their materials stash. The user must include the price of the materials they do not own yet and they have the option to add photos or links. 
 
 ### Pages
 
-* Home: 1-3 sentences describing what the page displays and what a user can do
-* Shopping cart: ...
+* Homepage: displays a welcome message. This is where the user can login or create an account.
+* Account settings page: this is where the user can handle the settings for their profile such as name, email, password, etc.
+* Profile page: displays the user's profile picture, the list of projects, and list of materials. 
+* Projects page: displays the list of all the user's projects, also features the option to create a new project.
+* Selected project page: where it displays the picture of the finished project, link to inspiration, and the total price for the project. 
+* Materials page: where it displays the list of all the user's materials with an option to add new materials.
+* Selected material page: where it displays a picture of the selected material, link to where to buy it, its price, and if user owns it or not. 
+
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](./images/er_diagram.png)
+![ER Diagram](https://imgur.com/4w8bh3C)
 
 ## Teaser (MS3)
 
