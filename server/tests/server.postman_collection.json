@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f7ee95b5-9cb9-442f-a6a9-42de46138872",
+		"_postman_id": "46d9c8d2-8401-4804-92b0-4c520b5bd925",
 		"name": "server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "b58d92ec-5214-450c-adb0-28e068aa71b9",
+						"id": "94df0321-80ff-49cc-ad57-7d65e88f15ed",
 						"exec": [
 							""
 						],
@@ -29,12 +29,166 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}/api",
+					"raw": "{{host}}/api/",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"api"
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e6500826-078f-4930-8d34-b937773f0cba",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var userID = jsonData._id;\r",
+							"pm.environment.set(\"user_id\", userID);\r",
+							"\r",
+							"pm.test(\"Correct status codet\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct user response\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Dominique\");\r",
+							"    pm.expect(jsonData.email).to.eql(\"sds@gmail.com\")\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"sds@gmail.com\",\r\n    \"name\": \"Dominique\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a62e3729-a14a-4733-bf0e-9aeb2f402aa8",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// TODO: more assertions..."
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a specific user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aed86b77-8cd0-4690-8648-d04e626dc0a4",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct user response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Dominique\");\r",
+							"    pm.expect(jsonData.email).to.eql(\"sds@gmail.com\")\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/users/{{user_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{user_id}}"
 					]
 				}
 			},
@@ -45,7 +199,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "05864cff-5cba-4070-bac3-a59328954ebf",
+				"id": "f45ab9e0-8b2a-4251-98d1-7e7cf942b6eb",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -55,7 +209,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "e9c319be-3306-4fc5-ba34-fcf64391213a",
+				"id": "aa7bb14a-2259-4a73-98a4-d520b46ea465",
 				"type": "text/javascript",
 				"exec": [
 					""
