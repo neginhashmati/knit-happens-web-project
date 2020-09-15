@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 // Set schema for Images
 var imageSchema = new Schema({
-	user_id: {type: Schema.Types.ObjectId, ref ‘User’},
+	user_id: {type: Schema.Types.ObjectId, ref: 'User'},
 	img: {
         data: Buffer,
         contentType: String

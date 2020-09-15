@@ -8,8 +8,8 @@ var materialSchema  = new Schema({
 	source_name: {type: String},
 	cost: {type: double},
 	owned: {type: boolean},
-	note_id: {type: Schema.Types.ObjectId, ref ‘Note’},
-	image_id: {type: Schema.Types.ObjectId, ref ‘Image’}
+	note_id: {type: Schema.Types.ObjectId, ref: 'Note'},
+	image_id: {type: Schema.Types.ObjectId, ref: 'Image'}
 });
 
 module.exports = mongoose.model('materials', materialSchema);
