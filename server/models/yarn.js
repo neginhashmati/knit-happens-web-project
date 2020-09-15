@@ -8,4 +8,4 @@ var yarnSchema = new Schema({
     fiber: {type: String}
 });    
 
-module.exports = mongoose.model('notes', noteSchema); 
+module.exports = mongoose.model('yarns', yarnSchema); 

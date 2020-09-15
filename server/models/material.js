@@ -10,7 +10,7 @@ var materialSchema  = new Schema({
 	owned: {type: Boolean},
 	needle: {type: Schema.Types.ObjectId, ref: 'Needle'},
     yarn: {type: Schema.Types.ObjectId, ref: 'Yarn'},
-    note: {type: Schema.Types.ObjectId, ref: 'Note'},
+    note: {type: String},
     image: {type: Schema.Types.ObjectId, ref: 'Image'},
     projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
 });
