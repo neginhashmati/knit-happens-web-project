@@ -5,8 +5,7 @@ var yarnSchema = new Schema({
     brand: {type: String},
     color: {type: String},
     weight: {type: String},
-    fiber: {type: String},
-    material_id: {type: Schema.Types.ObjectId, ref: 'Material'}
+    fiber: {type: String}
 });    
 
 module.exports = mongoose.model('notes', noteSchema); 
