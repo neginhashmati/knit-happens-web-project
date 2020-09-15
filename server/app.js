@@ -8,6 +8,11 @@ var history = require('connect-history-api-fallback');
 
 var usersController = require('./controllers/users');
 var projectsController = require('./controllers/projects');
+var imagesController = require('./controllers/images');
+var materialsController = require('./controllers/materials');
+var notesController = require('./controllers/notes');
+var yarnsController = require('./controllers/yarns');
+var needlesController = require('./controllers/needles'); 
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
@@ -38,6 +43,118 @@ app.get('/api', function(req, res, next) {
     res.json({'message': 'Welcome to your DIT341 backend ExpressJS project!'});
 });
 
+/* Negin's contribution
+//POST (create)
+var notes = [];
+app.post('/notes', function(req, res) {
+    var new_note = {
+        "_id": notes.length, 
+        "date_added": req.body.date_added,
+        "content": req.body.content,
+        "project_id": req.body.project_id
+    }
+    notes.push(new_note);
+    res.json(new_note);
+});
+
+var yarns = [];
+app.post('/yarns', function(req, res) {
+    var new_yarn = {
+        "_id": yarns.length, 
+        "brand": req.body.brand,
+        "color": req.body.color,
+        "weight": req.body.weight,
+        "fiber": req.body.fiber,
+        "material_id": req.body.material_id
+    }
+    notes.push(new_yarn);
+    res.json(new_yarn);
+});
+
+var needles = [];
+app.post('/needles', function(req, res) {
+    var new_needle = {
+        "_id": needles.length, 
+        "size": req.body.size,
+        "material_id": req.body.material_id
+    }
+    notes.push(new_needle);
+    res.json(new_needle);
+});
+
+//GET (read)
+app.get('api/notes/:id', function(req, res) {
+    res.json(notes[req.params.id]);
+});
+
+app.get('api/yarns/:id', function(req, res) {
+    res.json(yarns[req.params.id]);
+});
+
+app.get('api/needles/:id', function(req, res) {
+    res.json(needles[req.params.id]);
+});
+
+//PUT (update)
+app.put('/notes/:id', function(req, res) {
+    var id = req.params.id;
+    var updated_note = {
+        "_id": id, 
+        "date_added": req.body.date_added,
+        "content": req.body.content,
+        "project_id": req.body.project_id
+    }
+    notes[id] = updated_note;
+    res.json(updated_note);
+});
+
+app.put('/yarns/:id', function(req, res) {
+    var id = req.params.id;
+    var updated_yarn = {
+        "_id": id, 
+        "brand": req.body.brand,
+        "color": req.body.color,
+        "weight": req.body.weight,
+        "fiber": req.body.fiber,
+        "material_id": req.body.material_id
+    }
+    yarns[id] = updated_yarn;
+    res.json(updated_yarn);
+});
+
+app.put('/needles/:id', function(req, res) {
+    var id = req.params.id;
+    var updated_needle = {
+        "_id": id, 
+        "size": req.body.size,
+        "material_id": req.body.material_id
+    }
+    needles[id] = updated_needle;
+    res.json(updated_needle);
+});
+
+//DELETE (delete)
+app.delete('/notes/:id', function(req, res) {
+    var id = req.params.id;
+    var notes = notes[id];
+    delete notes[id];
+    res.json(note);
+});
+
+app.delete('/yarns/:id', function(req, res) {
+    var id = req.params.id;
+    var yarns = yarns[id];
+    delete yarns[id];
+    res.json(yarn);
+});
+
+app.delete('/needles/:id', function(req, res) {
+    var id = req.params.id;
+    var needles = needles[id];
+    delete needles[id];
+    res.json(needle);
+}); */
+
 //test from supervision
 //app.get('/api/abc', function(req, res, next) {
     //console.log('FIRST abc BEFORE next');
@@ -51,8 +168,13 @@ app.get('/api', function(req, res, next) {
    // res.json({'message': 'SECOND abc response'});
 //});
 
+app.delete;
+
 app.use(usersController);
 app.use(projectsController);
+app.use(notesController);
+app.use(yarnsController);
+app.use(needlesController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
