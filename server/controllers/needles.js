@@ -12,26 +12,7 @@ router.post('api/needles', function(req, res, next) {
         if (err) { return next(err); }
         res.status(201).json(needle)
     });
-});
-
-// READ
-router.get('/api/needles', function(req, res, next) {
-    Needle.find(function(err, needles) {
-        if (err) { return next(err); }
-        res.json({'needles': needle });
-    })
-});
-
-router.get('/api/needles/:id', function(req, res, next) { // :id is a placeholder for a parameter
-    var id = req.params.id;
-    Needle.findById(id, function(err, needle) {
-        if (err) {return next(err); }
-        if (needle === null) {
-            return res.status(404).json({'message': 'Needle not found.'});
-        }
-        res.json(needle);
-    });
-});  
+}); 
 
 //UPDATE
 router.put('api/needles/:id', function(req, res) {
@@ -44,9 +25,9 @@ router.put('api/needles/:id', function(req, res) {
     res.json(updated_needles);
 });
 
-router.patch('/needles/:id', function(req, res) {
+router.patch('api/needles/:id', function(req, res) {
     var id = req.params.id;
-    var needle = needles[id]:
+    var needle = needles[id];
     var updated_needle = {
         "_id": id,
         "size": (req.params.size || needle.size)
@@ -56,6 +37,13 @@ router.patch('/needles/:id', function(req, res) {
 });
 
 // DELETE
+router.delete('api/needles', function(req, res) {
+    var id = req.params.id;
+    var needle = needles[id];
+    delete needles[id];
+    res.json(needle);
+});
+
 router.delete('api/needles/:id', function(req, res) {
     var id = req.params.id;
     var needle = needles[id];

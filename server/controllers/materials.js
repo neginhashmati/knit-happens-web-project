@@ -1,6 +1,8 @@
 var express = require ('express');
+//var bodyParser = require ('bodyParser');
+var mongoose = require ('mongoose');
+var morgan = require ('morgan');
 var router = express.Router();
-
 var Material = require('../models/material');
 const material = require('../models/material');
 
@@ -19,7 +21,7 @@ router.get('/api/users/:user_id/materials', function(req, res, next) {
 	var id = req.params.id;
 	Material.findById(req.params.id, function(err, material) {
 		if (err) { return next(err); }
-		if (material == null) {
+		if (material === null) {
 			return res.status(404).json({"message": "Material not found"});
 		}
 		res.json(material);
@@ -31,7 +33,7 @@ router.get('/api/users/:user_id/materials/:material_id', function(req, res, next
 	var material_id = req.params.material_id;
 	Materials.findById(req.params.material_id, function(err, material) {
 		if (err) { return next(err); }
-		if (user == null) {
+		if (user === null) {
 			return res.status(404).json(
 					{"message": "Material not found"});
 		}
@@ -44,7 +46,7 @@ router.get('/api/users/:user_id/materials/:owned', function(req, res, next) {
 	var owned = req.params.owned;
 	Material.findById(req.params.owned, function(err, material) {
 		if (err) { return next(err); }
-		if (material == null) {
+		if (material === null) {
 			return res.status(404).json({"message": "Material not found"});
 		}
 		res.json(material);
@@ -56,7 +58,7 @@ router.get('/api/users/:id/materials/:source_name', function(req, res, next) {
 	var id = req.params.source_name;
 	Material.findBySourceName(req.params.source_name, function(err, material) {
 		if (err) { return next(err); }
-		if (material == null) {
+		if (material === null) {
 			return res.status(404).json({"message": "Material not found"});
 		}
 		res.json(material);
@@ -68,7 +70,7 @@ router.put('/api/api/users/:id/materials/:_id', function(req, res, next) {
 	var _id = req.params._id;
 	Material.findById(_id, function(err, material) {
 		if (err) { return next(err); }
-		if (material == null) {
+		if (material === null) {
 			return res.status(404).json({"message": "Material not found"});
 		}
 		material._id = req.body._id;
@@ -90,7 +92,7 @@ router.patch('/api/users/:id/materials/:_id', function(req, res, next) {
 	var _id = req.params._id;
 	Material.findById(_id, function(err, material) {
 		if (err) { return next(err); }
-		if (material == null) {
+		if (material === null) {
 			return res.status(404).json({"message": "Material not found"});
 		}
 
@@ -114,7 +116,7 @@ router.delete('/api/users/:user_id/materials/:material_id', function(req, res, n
 	var _id = req.params._id;
 	Material.findOneAndDelete({_id: _id}, function(err, material) {
 		if (err) { return next(err); }
-		if (material == null) {
+		if (material === null) {
 			return res.status(404).json(
 					{"message": "Material not found"});
 		}

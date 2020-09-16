@@ -1,3 +1,4 @@
+/*
 var express = require ('express');
 var bodyParser = require ('bodyParser');
 var mongoose = require ('mongoose');
@@ -54,3 +55,4 @@ router.delete('/images/:_id', function(req, res, next) {
 		res.json(image);
 	});
 });
+*/
