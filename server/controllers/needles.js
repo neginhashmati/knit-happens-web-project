@@ -37,6 +37,13 @@ router.patch('api/needles/:id', function(req, res) {
 });
 
 // DELETE
+router.delete('api/needles', function(req, res) {
+    var id = req.params.id;
+    var needle = needles[id];
+    delete needles[id];
+    res.json(needle);
+});
+
 router.delete('api/needles/:id', function(req, res) {
     var id = req.params.id;
     var needle = needles[id];
