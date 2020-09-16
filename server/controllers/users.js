@@ -4,7 +4,7 @@ var router = express.Router();
 
 var User = require('../models/user.js');
 
-// CREATE users collection in database
+// CREATE a user document
 router.post('/api/users', function(req, res) {
     var user = new User ( req.body);
     user.save(function(err, user) {
@@ -13,7 +13,7 @@ router.post('/api/users', function(req, res) {
     });   
 });       
 
-// READ all users in database
+// READ all users in the user collection
 router.get('/api/users', function (req, res, next) {
     User.find(function(err, users) {
         if (err) { return next(err); }
