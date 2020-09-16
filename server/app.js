@@ -1,5 +1,4 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var morgan = require('morgan');
 var path = require('path');
@@ -8,7 +7,6 @@ var history = require('connect-history-api-fallback');
 
 var usersController = require('./controllers/users');
 var projectsController = require('./controllers/projects');
-//var imagesController = require('./controllers/images');
 var materialsController = require('./controllers/materials');
 var yarnsController = require('./controllers/yarns');
 var needlesController = require('./controllers/needles'); 
@@ -62,7 +60,6 @@ app.use(usersController);
 app.use(projectsController);
 app.use(yarnsController);
 app.use(needlesController);
-//app.use(imagesController);
 app.use(materialsController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)

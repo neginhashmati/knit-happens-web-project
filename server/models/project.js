@@ -6,8 +6,7 @@ var projectSchema = new Schema( {
    date: { type: Date },
    status: { type: String, enum: ['Not started', 'In progress', 'Completed']},
    priority: { type: String, enum: ['Low', 'High', 'Medium']},
-   note: { type: String },
-   image: { type: Schema.Types.ObjectId, ref: 'Image' }
+   note: { type: String }
 });
 
 //module.exports = mongoose.model('projects', projectSchema);

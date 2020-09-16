@@ -11,7 +11,6 @@ var materialSchema  = new Schema({
 	needle: {type: Schema.Types.ObjectId, ref: 'Needle'},
     yarn: {type: Schema.Types.ObjectId, ref: 'Yarn'},
     note: {type: String},
-    image: {type: Schema.Types.ObjectId, ref: 'Image'},
     projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
 });
 
