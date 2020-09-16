@@ -3,7 +3,7 @@ var router = express.Router();
 
 var Project = require('../models/Project.js');
 
-//create a project
+//create a project CREATE 
 router.post('/api/projects', function(req, res) {
     var project = new Project ( req.body);
     project.save(function(err, project) {
@@ -12,7 +12,7 @@ router.post('/api/projects', function(req, res) {
     });   
 });
 
-// retrieve all projects
+// retrieve all projects READ
 router.get('/api/projects', function (req, res, next) {
     Project.find(function(err, projects) {
         if (err) { return next(err); }

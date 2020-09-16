@@ -10,7 +10,6 @@ var usersController = require('./controllers/users');
 var projectsController = require('./controllers/projects');
 var imagesController = require('./controllers/images');
 var materialsController = require('./controllers/materials');
-var notesController = require('./controllers/notes');
 var yarnsController = require('./controllers/yarns');
 var needlesController = require('./controllers/needles'); 
 
@@ -61,9 +60,10 @@ app.delete;
 
 app.use(usersController);
 app.use(projectsController);
-app.use(notesController);
 app.use(yarnsController);
 app.use(needlesController);
+app.use(imagesController);
+app.use(materialsController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
