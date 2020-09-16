@@ -1,0 +1,572 @@
+{
+	"info": {
+		"_postman_id": "39c5d8eb-0e48-4877-bda2-be51d5ce33f5",
+		"name": "DIT341",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "materials-post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82b0dc8a-fee0-4ec2-b34d-e498e54339e5",
+						"exec": [
+							"pm.test(\"Correct status code\",\r",
+							"    function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct material response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Gradient yarn\");\r",
+							"    pm.expect(jsonData.cost).to.eql(249);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Gradient yarn\", \n\"source_name\": \"Hobbii.com\", \n\"cost\": 249,\t\n\"owned\": false, \n\"needle\": 12345678,\n\"yarn\": 24621482,\n\"note\": \"Yup, this sure is nice gradient yarn!\",\n\"image\": 173,\n\"projects\": 1478966325, 489212486\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/materials",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"materials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "materials-getall",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "58d7a7b8-cae6-4eaf-9ead-6a4f1d64923e",
+						"exec": [
+							"pm.test(\"Correct status code\",\r",
+							"    function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// TODO: more assertions ..."
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/materials",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"materials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "materials-getspecific",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a0609c8a-6e5e-45db-94a2-a9b8b5df9e40",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"//var user_id = jsonData.users/\r",
+							"var material_id = jsonData._id;\r",
+							"\r",
+							"pm.environment.set(\"material_id\", material_id);\r",
+							"\r",
+							"pm.test(\"Correct status code\",\r",
+							"    function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct material response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Gradient yarn\");\r",
+							"    pm.expect(jsonData.cost).to.eql(249);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users/{{user_id}}/materials/{{material_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"{{user_id}}",
+						"materials",
+						"{{material_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "materials-getnonexistant",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f3ae779b-1d11-48f3-87bd-5d52414e2bad",
+						"exec": [
+							"pm.test(\"Correct status code\",\r",
+							"    function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"\r",
+							"// TODO: assert certain error message"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users/{{user_id}}/materials/{{material_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"{{user_id}}",
+						"materials",
+						"{{material_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "images-post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/images",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"images"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "yarns-post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cff1fdc-8eac-49b9-b06a-938a66dfa5d0",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct yarn response\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.brand).to.eql(\"name\");\r",
+							"    pm.expect(jsonData.color).to.eql(\"purple\");\r",
+							"    pm.expect(jsonData.weight).to.eql(\"20\");\r",
+							"    pm.expect(jsonData.fiber).to.eql(\"wool\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brand\": \"name\",\r\n    \"color\": \"purple\",\r\n    \"weight\": \"20\",\r\n    \"fiber\": \"wool\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/yarns",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"yarns"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "yarns-update-put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8b9493b-807f-4900-92df-708eda8b4a13",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct yarn response\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.brand).to.eql(\"brandname\");\r",
+							"    pm.expect(jsonData.color).to.eql(\"blue\");\r",
+							"    pm.expect(jsonData.weight).to.eql(\"15\");\r",
+							"    pm.expect(jsonData.fiber).to.eql(\"cashmere\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brand\": \"brandname\",\r\n    \"color\": \"blue\",\r\n    \"weight\": \"15\",\r\n    \"fiber\": \"cashmere\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/yarns/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"yarns",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "",
+							"type": "string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "yarns-update-patch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b025ca3-ba00-4e6f-a2aa-35115312c0b7",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct yarn response\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.brand).to.eql(\"anotherbrand\");\r",
+							"    pm.expect(jsonData.color).to.eql(\"yellow\");\r",
+							"    pm.expect(jsonData.weight).to.eql(\"40\");\r",
+							"    pm.expect(jsonData.fiber).to.eql(\"cotton\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brand\": \"anotherbrand\",\r\n    \"color\": \"yellow\",\r\n    \"weight\": \"40\",\r\n    \"fiber\": \"cotton\"\r\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/yarns/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"yarns",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "",
+							"type": "string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "yarns-delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "needles-post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d91a4c8a-11f9-4592-b8f6-9e76391be3fd",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct yarn response\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.brand).to.eql(\"2\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"size\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/needles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"needles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "needles-update-put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b4441249-eb81-4a37-b33e-72de1e91b18c",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct yarn response\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.brand).to.eql(\"3\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"size\": \"3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/needles/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"needles",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "",
+							"type": "string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "needles-update-patch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2dda3fb5-ae9c-43a3-bb78-7564afc1cea1",
+						"exec": [
+							"pm.test(\"Correct status code\", function() {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct yarn response\", function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.brand).to.eql(\"8\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"size\": \"8\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/needles/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"needles",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "",
+							"type": "string"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "needles-delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
