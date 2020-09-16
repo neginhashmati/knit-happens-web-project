@@ -6,9 +6,9 @@ var Needle = require('../models/needle');
 const needle = require('../models/needle');
 
 // CREATE
-router.post('api/needles', function(req, res, next) {
+router.post('api/materials/needles', function(req, res, next) {
     var needle = new Needle(req.body); //contains request body sent with the postman request
-    needle.save(function(err, needle) {
+    needle.save(function(err) {
         if (err) { return next(err); }
         res.status(201).json(needle)
     });

@@ -3,12 +3,12 @@ const app = require('../app');
 var router = express.Router();
 
 var Yarn = require('../models/yarn');
-const yarn = require('../models/yarn');
+// const yarn = require('../models/yarn');
 
 // CREATE
-router.post('api/yarns', function(req, res, next) {
+router.post('api/materials/yarns', function(req, res, next) {
     var yarn = new Yarn(req.body); //contains request body sent with the postman request
-    yarn.save(function(err, yarn) {
+    yarn.save(function(err) {
         if (err) { return next(err); }
         res.status(201).json(yarn)
     });
