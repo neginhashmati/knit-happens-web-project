@@ -43,6 +43,13 @@ router.patch('api/yarns/:id', function(req, res) {
 });
 
 // DELETE
+router.delete('api/yarns', function(req, res) {
+    var id = req.params.id;
+    var yarn = yarns[id];
+    delete yarns[id];
+    res.json(yarn);
+});
+
 router.delete('api/yarns/:id', function(req, res) {
     var id = req.params.id;
     var yarn = yarns[id];
