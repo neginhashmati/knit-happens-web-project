@@ -25,7 +25,7 @@ router.put('api/needles/:id', function(req, res) {
     res.json(updated_needles);
 });
 
-router.patch('/needles/:id', function(req, res) {
+router.patch('api/needles/:id', function(req, res) {
     var id = req.params.id;
     var needle = needles[id];
     var updated_needle = {

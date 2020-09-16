@@ -28,12 +28,12 @@ router.put('api/yarns/:id', function(req, res) {
     res.json(updated_yarn);
 });
 
-router.patch('/yarns/:id', function(req, res) {
+router.patch('api/yarns/:id', function(req, res) {
     var id = req.params.id;
     var yarn = yarns[id];
     var updated_yarn = {
         "_id": id,
-        "brand": req.body.brand,
+        "brand": (req.body.brand || yarn.brand),
         "color": (req.body.color || yarn.color),
         "weight": (req.body.weight || yarn.weight),
         "fiber": (req.body.fiber || yarn.fiber)
