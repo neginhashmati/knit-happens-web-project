@@ -84,11 +84,17 @@ router.patch('/api/projects/:id', function(req, res) {
 });
 
 // DELETE a specific project by id
-router.delete('/api/users/:user_id/projects/:id', function(req, res) {
+router.delete('/api/projects/:id', function(req, res) {
     var id = req.params.id;
-    var project = projects[id];
-    delete projects[id];
-    res.json(project);
+
+    Project.findOneAndDelete( {_id: id}, function (err, user) {
+        if (err) { return next(err); }
+        if (user == null) {
+            return res.status(404).json(
+                    {"message": "Project not found"});
+        }
+        res.json(user);
+    });
 });
 
 module.exports = router;

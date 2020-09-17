@@ -88,17 +88,17 @@ router.delete('/api/users/:id', function(req, res) {
 });
 
 // DELETE all users
-router.delete('/api/users', function(req, res) {
-    var id = req.params.id;
+// router.delete('/api/users', function(req, res) {
+//     var id = req.params.id;
 
-    User.deleteMany( {_id: id}, function (err, user) {
-        if (err) { return next(err); }
-        if (user == null) {
-            return res.status(404).json(
-                    {"message": "User not found"});
-        }
-        res.json(user);
-    });
-});
+//     User.deleteMany( {_id: id}, function (err, user) {
+//         if (err) { return next(err); }
+//         if (user == null) {
+//             return res.status(404).json(
+//                     {"message": "User not found"});
+//         }
+//         res.json(user);
+//     });
+// });
 
 module.exports = router;
