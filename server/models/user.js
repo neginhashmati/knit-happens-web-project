@@ -10,10 +10,6 @@ var userSchema = new Schema( {
    materials: [{ type: Schema.Types.ObjectId, ref: 'Material' }],
 });
 
-//module.exports = mongoose.model('users', userSchema);
-
-//var user = mongoose.model('user', userSchema);
-
 module.exports = mongoose.model('users', userSchema);
 
 

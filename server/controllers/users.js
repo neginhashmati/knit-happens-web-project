@@ -2,6 +2,10 @@ var express = require('express');
 const user = require('../models/user.js');
 var router = express.Router();
 
+// import * as jsonpatch from 'fast-json-patch/index.mjs';
+// import { applyPatch } from 'fast-json-patch/index.mjs';
+// import { update } from '../models/Project.js';
+
 var User = require('../models/user.js');
 
 // CREATE a user document
@@ -49,16 +53,14 @@ router.put('api/users/:id', function(req, res) {
     res.json(updated_user);
 });
 
-// router.patch('api/users/:id'), function(req, res) {
-//     User.findByIdAndUpdate(req.params.id, req.body)
-//     User.save()
-//     res.send(users)
-// });
-
 // UPDATE selected attributes of a specific user by id
 router.patch('/users/:id', function(req, res) {
     var id = req.params.id;
     var user = users[id];
+
+    // console.log(user); 
+    // jsonpatch.applyPatch(user.)
+
     var updated_user = {
         "_id": id,
         "email": (req.body.email || user.email),

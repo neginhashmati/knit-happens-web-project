@@ -4,7 +4,7 @@ var router = express.Router();
 var Project = require('../models/Project.js');
 
 // CREATE a project document
-router.post('/api/users/:user_id/projects', function(req, res) {
+router.post('/api/projects', function(req, res) {
     var project = new Project ( req.body);
     project.save(function(err, project) {
         if (err) { return console.error(err); }
@@ -13,7 +13,7 @@ router.post('/api/users/:user_id/projects', function(req, res) {
 });
 
 // READ all projects in database
-router.get('/api/users/:user_id/projects', function (req, res, next) {
+router.get('/api/projects', function (req, res, next) {
     Project.find(function(err, projects) {
         if (err) { return next(err); }
         res.json( {'projects': projects });
@@ -22,7 +22,7 @@ router.get('/api/users/:user_id/projects', function (req, res, next) {
 });
 
 // READ a specific project by id
-router.get('api/users/:user_id/projects/:id', function(req, res, next) {
+router.get('api/projects/:id', function(req, res, next) {
     var id = req.params.id;
     Project.findById(id, function(err, project){
         if (err) { return next(err); }
@@ -53,6 +53,7 @@ router.put('api/projects/:id', function(req, res) {
 router.patch('/projects/:id', function(req, res) {
     var id = req.params.id;
     var project = projects[id];
+
     var updated_project = {
         "_id": id,
         "name": (req.body.name || project.name), 
