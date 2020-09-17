@@ -5,7 +5,7 @@ var router = express.Router();
 var Needle = require('../models/needle');
 
 // CREATE
-router.post('/api/materials/:material_id/needles', function(req, res, next) {
+router.post('/api/projects/:project_id/needles', function(req, res, next) {
     var needle = new Needle(req.body); //contains request body sent with the postman request
     needle.save(function(err) {
         if (err) { return next(err); }
@@ -14,7 +14,7 @@ router.post('/api/materials/:material_id/needles', function(req, res, next) {
 }); 
 
 //UPDATE
-router.put('/api/materials/:material_id/needles/:id', function(req, res) {
+router.put('/api/projects/:project_id/needles/:id', function(req, res) {
     var id = req.params.id;
     var updated_needles = {
         "_id": id,
@@ -24,7 +24,7 @@ router.put('/api/materials/:material_id/needles/:id', function(req, res) {
     res.json(updated_needles);
 });
 
-router.patch('/api/materials/:material_id/needles/:id', function(req, res) {
+router.patch('/api/projects/:project_id/needles/:id', function(req, res) {
     var id = req.params.id;
     var needle = needles[id];
     var updated_needle = {
@@ -36,14 +36,14 @@ router.patch('/api/materials/:material_id/needles/:id', function(req, res) {
 });
 
 // DELETE
-router.delete('/api/materials/:material_id/needles', function(req, res) {
+router.delete('/api/projects/:project_id/needles', function(req, res) {
     var id = req.params.id;
     var needle = needles[id];
     delete needles[id];
     res.json(needle);
 });
 
-router.delete('/api/materials/:material_id/needles/:id', function(req, res) {
+router.delete('/api/projects/:project_id/needles/:id', function(req, res) {
     var id = req.params.id;
     var needle = needles[id];
     delete needles[id];

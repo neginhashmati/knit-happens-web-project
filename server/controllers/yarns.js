@@ -5,7 +5,7 @@ var router = express.Router();
 var Yarn = require('../models/yarn');
 
 // CREATE
-router.post('/api/materials/:material_id/yarns', function(req, res, next) {
+router.post('/api/projects/:project_id/yarns', function(req, res, next) {
     var yarn = new Yarn(req.body); //contains request body sent with the postman request
     yarn.save(function(err) {
         if (err) { return next(err); }
@@ -14,7 +14,7 @@ router.post('/api/materials/:material_id/yarns', function(req, res, next) {
 });
 
 //UPDATE
-router.put('/api/users/:user_id/materials/:material_id/yarns/:id', function(req, res) {
+router.put('/api/users/:user_id/projects/:project_id/yarns/:id', function(req, res) {
     var id = req.params.id;
     var updated_yarn = {
         "_id": id,
@@ -27,7 +27,7 @@ router.put('/api/users/:user_id/materials/:material_id/yarns/:id', function(req,
     res.json(updated_yarn);
 });
 
-/* router.put('/api/users/:user_id/materials/:material_id/yarns/:yarn_id', function(req, res, next) {
+/* router.put('/api/users/:user_id/projects/:project_id/yarns/:yarn_id', function(req, res, next) {
     var id = req.params.id;
     Yarn.findById(id, function(err, yarn) {
         if (err) { return next(err); }
@@ -43,7 +43,7 @@ router.put('/api/users/:user_id/materials/:material_id/yarns/:id', function(req,
     });
 }); */
 
-router.patch('/api/users/:user_id/materials/:material_id/yarns/:id', function(req, res) {
+router.patch('/api/users/:user_id/projects/:project_id/yarns/:id', function(req, res) {
     var id = req.params.id;
     var yarn = yarns[id];
     var updated_yarn = {
@@ -57,7 +57,7 @@ router.patch('/api/users/:user_id/materials/:material_id/yarns/:id', function(re
     res.json(updated_yarn);
 });
 
-/* router.patch('/api/users/:user_id/materials/:material_id/yarns/:id', function(req, res, next) {
+/* router.patch('/api/users/:user_id/projects/:project_id/yarns/:id', function(req, res, next) {
     var id = req.params.id;
     Yarn.findById(id, function(err, yarn) {
         if (err) { return next(err); }

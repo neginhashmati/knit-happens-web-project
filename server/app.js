@@ -8,7 +8,6 @@ var history = require('connect-history-api-fallback');
 
 var usersController = require('./controllers/users');
 var projectsController = require('./controllers/projects');
-var materialsController = require('./controllers/materials');
 var yarnsController = require('./controllers/yarns');
 var needlesController = require('./controllers/needles'); 
 
@@ -61,7 +60,6 @@ app.use(usersController);
 app.use(projectsController);
 app.use(yarnsController);
 app.use(needlesController);
-app.use(materialsController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
