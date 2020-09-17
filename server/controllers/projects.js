@@ -1,10 +1,26 @@
 var express = require('express');
 var router = express.Router();
 
-var Project = require('../models/Project.js');
+var Project = require('../models/project.js');
+var User = require('../models/user.js');
 
 // CREATE a project document
+router.post('/api/projects', function(req, res) {
+    var project = new Project ( req.body);
+    project.save(function(err, project) {
+        if (err) { return console.error(err); }
+        res.status(201).json(project);
+    });   
+});
+
+// 
 router.post('/api/users/:user_id/projects', function(req, res) {
+    var user_id = req.params.user_id;
+    var user = User.findById(user_id);
+    
+    console.log(user_id);
+    console.log(user.first);
+   
     var project = new Project ( req.body);
     project.save(function(err, project) {
         if (err) { return console.error(err); }
@@ -13,7 +29,7 @@ router.post('/api/users/:user_id/projects', function(req, res) {
 });
 
 // READ all projects in database
-router.get('/api/users/:user_id/projects', function (req, res, next) {
+router.get('/api/projects', function (req, res, next) {
     Project.find(function(err, projects) {
         if (err) { return next(err); }
         res.json( {'projects': projects });
@@ -22,7 +38,7 @@ router.get('/api/users/:user_id/projects', function (req, res, next) {
 });
 
 // READ a specific project by id
-router.get('api/users/:user_id/projects/:id', function(req, res, next) {
+router.get('/api/projects/:id', function(req, res, next) {
     var id = req.params.id;
     Project.findById(id, function(err, project){
         if (err) { return next(err); }
@@ -34,7 +50,7 @@ router.get('api/users/:user_id/projects/:id', function(req, res, next) {
 });
 
 // UPDATE all attributes of a specific project by id
-router.put('api/projects/:id', function(req, res) {
+router.put('/api/projects/:id', function(req, res) {
     var id = req.params.id;
     var updated_project = {
         "_id": id,
@@ -50,9 +66,10 @@ router.put('api/projects/:id', function(req, res) {
 });
 
 // UPDATE selected attributes of a specific project by id
-router.patch('/projects/:id', function(req, res) {
+router.patch('/api/projects/:id', function(req, res) {
     var id = req.params.id;
     var project = projects[id];
+
     var updated_project = {
         "_id": id,
         "name": (req.body.name || project.name), 
@@ -67,7 +84,7 @@ router.patch('/projects/:id', function(req, res) {
 });
 
 // DELETE a specific project by id
-router.delete('api/users/:user_id/projects/:id', function(req, res) {
+router.delete('/api/users/:user_id/projects/:id', function(req, res) {
     var id = req.params.id;
     var project = projects[id];
     delete projects[id];
