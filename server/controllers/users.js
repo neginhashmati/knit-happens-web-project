@@ -74,11 +74,31 @@ router.patch('/users/:id', function(req, res) {
 });
 
 // DELETE a specific user by id
-router.delete('api/users/:id', function(req, res) {
+router.delete('/api/users/:id', function(req, res) {
     var id = req.params.id;
-    var user = users[id];
-    delete users[id];
-    res.json(user);
+
+    User.findOneAndDelete( {_id: id}, function (err, user) {
+        if (err) { return next(err); }
+        if (user == null) {
+            return res.status(404).json(
+                    {"message": "User not found"});
+        }
+        res.json(user);
+    });
+});
+
+// DELETE all users
+router.delete('/api/users', function(req, res) {
+    var id = req.params.id;
+
+    User.deleteMany( {_id: id}, function (err, user) {
+        if (err) { return next(err); }
+        if (user == null) {
+            return res.status(404).json(
+                    {"message": "User not found"});
+        }
+        res.json(user);
+    });
 });
 
 module.exports = router;
