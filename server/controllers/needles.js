@@ -3,7 +3,6 @@ const app = require('../app');
 var router = express.Router();
 
 var Needle = require('../models/needle');
-const needle = require('../models/needle');
 
 // CREATE
 router.post('/api/materials/:material_id/needles', function(req, res, next) {
