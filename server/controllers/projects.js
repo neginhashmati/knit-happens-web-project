@@ -13,7 +13,7 @@ router.post('/api/projects', function(req, res) {
     });   
 });
 
-// 
+// CREATE a project for a user
 router.post('/api/users/:user_id/projects', function(req, res) {
     var user_id = req.params.user_id;
     var user = User.findById(user_id);
