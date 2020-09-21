@@ -6,251 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "Yarn requests",
-			"item": [
-				{
-					"name": "yarns-post",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "beef5332-7860-48a8-a2cc-31db548f2356",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var yarnID = jsonData._id;\r",
-									"pm.environment.set(\"yarn_id\", yarnID);\r",
-									"\r",
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct yarn response\", function() {\r",
-									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
-									"    pm.expect(jsonData.color).to.eql(\"purple\");\r",
-									"    pm.expect(jsonData.weight).to.eql(\"20\");\r",
-									"    pm.expect(jsonData.fiber).to.eql(\"wool\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"purple\",\r\n    \"weight\": \"20\",\r\n    \"fiber\": \"wool\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/projects/{{project_id}}/yarns",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"projects",
-								"{{project_id}}",
-								"yarns"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create yarn for user&project",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "b0c701c8-d562-4df8-9d04-d2244b0271d2",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var yarnID = jsonData._id;\r",
-									"pm.environment.set(\"yarn_id\", yarnID);\r",
-									"\r",
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct yarn response\", function() {\r",
-									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
-									"    pm.expect(jsonData.color).to.eql(\"purple\");\r",
-									"    pm.expect(jsonData.weight).to.eql(\"20\");\r",
-									"    pm.expect(jsonData.fiber).to.eql(\"wool\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"purple\",\r\n    \"weight\": \"20\",\r\n    \"fiber\": \"wool\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}/projects/{{project_id}}/yarns",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"{{user_id}}",
-								"projects",
-								"{{project_id}}",
-								"yarns"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "yarns-update-put",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c8b9493b-807f-4900-92df-708eda8b4a13",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var yarnID = jsonData._id;\r",
-									"pm.environment.set(\"yarn_id\", yarnID);\r",
-									"\r",
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct yarn response\", function() {\r",
-									"    pm.expect(jsonData.brand).to.eql(\"brandname\");\r",
-									"    pm.expect(jsonData.color).to.eql(\"white\");\r",
-									"    pm.expect(jsonData.weight).to.eql(\"34\");\r",
-									"    pm.expect(jsonData.fiber).to.eql(\"cotton\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"brand\": \"brandname\",\r\n    \"color\": \"white\",\r\n    \"weight\": \"34\",\r\n    \"fiber\": \"cotton\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}/materials/{{material_id}}/yarns/{{yarn_id}}",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"{{user_id}}",
-								"materials",
-								"{{material_id}}",
-								"yarns",
-								"{{yarn_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "yarns-update-patch",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2b025ca3-ba00-4e6f-a2aa-35115312c0b7",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var yarnID = jsonData._id;\r",
-									"pm.environment.set(\"yarn_id\", yarnID);\r",
-									"\r",
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct yarn response\", function() {\r",
-									"    pm.expect(jsonData.color).to.eql(\"yellow\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"color\": \"yellow\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}/materials/{{material_id}}/yarns",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"{{user_id}}",
-								"materials",
-								"{{material_id}}",
-								"yarns"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "yarns-delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
 			"name": "User requests",
 			"item": [
 				{
@@ -378,9 +133,9 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Correct user response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"Seonag\");\r",
-									"    pm.expect(jsonData.email).to.eql(\"spamabot@gmail.com\");\r",
-									"    pm.expect(jsonData.password).to.eql(\"roosibroos\")\r",
+									"    pm.expect(jsonData.name).to.eql(\"Dominique\");\r",
+									"    pm.expect(jsonData.email).to.eql(\"dominique@gmail.com\");\r",
+									"    pm.expect(jsonData.password).to.eql(\"cake\")\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -748,60 +503,6 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/api/projects",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "491d2b46-8e00-43c5-87c7-d7e1365a16fd",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var projectID = jsonData._id;\r",
-									"pm.environment.set(\"project_id\", projectID);\r",
-									"\r",
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct project response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"Dominique\");\r",
-									"    pm.expect(jsonData.status).to.eql(\"Not started\"),\r",
-									"    pm.expect(jsonData.priority).to.eql(\"Low\"),\r",
-									"    pm.expect(jsonData.note).to.eql(\"For Dominique's birthday\")\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Dominique's scarf\",\r\n    \"$date\": \"2018-11-10 22:26:12.111Z\",\r\n    \"status\": \"Not Started\",\r\n    \"priority\": \"Low\",\r\n    \"note\": \"For Dominique's birthday\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/projects",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"projects"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get non-existent project",
 					"event": [
 						{
@@ -1045,147 +746,29 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Needle requests",
+			"name": "Yarn requests",
 			"item": [
 				{
-					"name": "needles-update-put",
+					"name": "yarns-post",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "b4441249-eb81-4a37-b33e-72de1e91b18c",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct yarn response\", function() {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.brand).to.eql(\"3\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"size\": \"3\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/needles/:id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"needles",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "",
-									"type": "string"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "needles-update-patch",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2dda3fb5-ae9c-43a3-bb78-7564afc1cea1",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct yarn response\", function() {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.brand).to.eql(\"8\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"size\": \"8\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/needles/:id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"needles",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "",
-									"type": "string"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "needles-delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "needles-post",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d91a4c8a-11f9-4592-b8f6-9e76391be3fd",
+								"id": "beef5332-7860-48a8-a2cc-31db548f2356",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
-									"var needleID = jsonData._id;\r",
-									"pm.environment.set(\"needle_id\", needleID);\r",
+									"var yarnID = jsonData._id;\r",
+									"pm.environment.set(\"yarn_id\", yarnID);\r",
 									"\r",
 									"pm.test(\"Correct status code\", function() {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Correct needle response\", function() {\r",
-									"    pm.expect(jsonData.size).to.eql(\"2\");\r",
+									"pm.test(\"Correct yarn response\", function() {\r",
+									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
+									"    pm.expect(jsonData.color).to.eql(\"purple\");\r",
+									"    pm.expect(jsonData.weight).to.eql(\"20\");\r",
+									"    pm.expect(jsonData.fiber).to.eql(\"wool\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1197,7 +780,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"size\": \"2\"\r\n}",
+							"raw": "{\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"purple\",\r\n    \"weight\": \"20\",\r\n    \"fiber\": \"wool\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1205,7 +788,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/projects/{{project_id}}/needles",
+							"raw": "http://localhost:3000/api/projects/{{project_id}}/yarns",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1215,7 +798,589 @@
 								"api",
 								"projects",
 								"{{project_id}}",
+								"yarns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create yarn for user&project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b0c701c8-d562-4df8-9d04-d2244b0271d2",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var yarnID = jsonData._id;\r",
+									"pm.environment.set(\"yarn_id\", yarnID);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct yarn response\", function() {\r",
+									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
+									"    pm.expect(jsonData.color).to.eql(\"purple\");\r",
+									"    pm.expect(jsonData.weight).to.eql(\"20\");\r",
+									"    pm.expect(jsonData.fiber).to.eql(\"wool\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"purple\",\r\n    \"weight\": \"20\",\r\n    \"fiber\": \"wool\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{{user_id}}/projects/{{project_id}}/yarns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}",
+								"projects",
+								"{{project_id}}",
+								"yarns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "yarns-update-put",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c8b9493b-807f-4900-92df-708eda8b4a13",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var yarnID = jsonData._id;\r",
+									"pm.environment.set(\"yarn_id\", yarnID);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct yarn response\", function() {\r",
+									"    pm.expect(jsonData.brand).to.eql(\"brandname\");\r",
+									"    pm.expect(jsonData.color).to.eql(\"white\");\r",
+									"    pm.expect(jsonData.weight).to.eql(\"34\");\r",
+									"    pm.expect(jsonData.fiber).to.eql(\"cotton\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brand\": \"brandname\",\r\n    \"color\": \"white\",\r\n    \"weight\": \"34\",\r\n    \"fiber\": \"cotton\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{{user_id}}/materials/{{material_id}}/yarns/{{yarn_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}",
+								"materials",
+								"{{material_id}}",
+								"yarns",
+								"{{yarn_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "yarns-update-patch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2b025ca3-ba00-4e6f-a2aa-35115312c0b7",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var yarnID = jsonData._id;\r",
+									"pm.environment.set(\"yarn_id\", yarnID);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct yarn response\", function() {\r",
+									"    pm.expect(jsonData.color).to.eql(\"yellow\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\": \"yellow\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{{user_id}}/materials/{{material_id}}/yarns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}",
+								"materials",
+								"{{material_id}}",
+								"yarns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "yarns-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Needle requests",
+			"item": [
+				{
+					"name": "Create new needle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d91a4c8a-11f9-4592-b8f6-9e76391be3fd",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var needleID = jsonData._id;\r",
+									"pm.environment.set(\"needle_id\", needleID);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct needle response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Dymondwood double tips\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Dymondwood double tips\",\r\n\"source_name\": \"Hobbii.se\",\r\n\"cost\": 35.00,\r\n\"owned\": false,\r\n\"size\": \"3mm\",\r\n\"note\": \"zOMG, I need these!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/needles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
 								"needles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all needles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cc54b126-22f8-43e2-943b-b6c006a9ad6f",
+								"exec": [
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/needles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"needles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a needle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa4efad6-b989-419a-8c56-c91b94f06109",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct needle response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Dymondwood double tips\");\r",
+									"    pm.expect(jsonData.cost).to.eql(35.00);\r",
+									"    pm.expect(jsonData.owned).to.eql(false);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/needles/{{needle_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"needles",
+								"{{needle_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a non-existent needle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee75a4e4-10ca-467c-ae6c-174958cbfcd3",
+								"exec": [
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"// TODO: assert certain error message"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/needles/5f5b219557601403d8e68953",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"needles",
+								"5f5b219557601403d8e68953"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Full update needle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b4441249-eb81-4a37-b33e-72de1e91b18c",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct needle response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Square carbonz\");\r",
+									"    pm.expect(jsonData.cost).to.eql(42.00);\r",
+									"    pm.expect(jsonData.owned).to.eql(true)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Square carbonz\",\r\n\"source_name\": \"Hobbii.se\",\r\n\"cost\": 42.00,\r\n\"owned\": true,\r\n\"size\": \"3.5mm\",\r\n\"note\": \"Awsome needles\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/needles/{{needle_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"needles",
+								"{{needle_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Part update needle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2dda3fb5-ae9c-43a3-bb78-7564afc1cea1",
+								"exec": [
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct yarn response\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.owned).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"owned\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/needles/{{needle_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"needles",
+								"{{needle_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a needle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "966d2a54-41f5-494e-80b4-680c2d789388",
+								"exec": [
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/needles/{{needle_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"needles",
+								"{{needle_id}}"
 							]
 						}
 					},
