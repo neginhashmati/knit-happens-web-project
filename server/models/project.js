@@ -9,7 +9,5 @@ var projectSchema = new Schema( {
    note: { type: String }
 });
 
-//module.exports = mongoose.model('projects', projectSchema);
-
 module.exports  = mongoose.model('projects', projectSchema);
 

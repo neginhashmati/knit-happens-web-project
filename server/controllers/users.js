@@ -9,20 +9,19 @@ var router = express.Router();
 var User = require('../models/user.js');
 
 // CREATE a user document
-router.post('/api/users', function(req, res) {
-    var user = new User ( req.body);
+router.post('/api/users', function(req, res, next) {
+    var user = new User(req.body);
     user.save(function(err, user) {
-        if (err) { return console.error(err); }
-        res.status(201).json(user);
+        if (err) { return next(err); }
+        return res.status(201).json(user);
     });   
 });       
 
 // READ all users in the user collection
-router.get('/api/users', function (req, res, next) {
+router.get('/api/users', function(req, res, next) {
     User.find(function(err, users) {
         if (err) { return next(err); }
-        res.json( {'users': users });
-
+        return res.json({'users': users });
     })
 });
 
@@ -34,71 +33,45 @@ router.get('/api/users/:id', function(req, res, next) {
         if (user === null) {
             return res.status(404).json({'message': 'User not found'});
         }
-        res.json(user);
+        return res.json(user);
     });
 });
 
 // UPDATE all attributes of a specific user by id
-router.put('api/users/:id', function(req, res) {
+router.put('/api/users/:id', function(req, res, next) {
     var id = req.params.id;
-    var updated_user = {
-        "_id": id,
-        "email": req.body.email,
-        "password": req.body.password,
-        "name": req.body.name,
-        "projects": req.body.projects,
-	    "materials": req.body.material
-    }
-    users[id] = updated_user;
-    res.json(updated_user);
+    User.findOneAndUpdate({_id: id}, req.body, {new: true}, function(err, user){
+        if (err) { return next(err); }
+        if (user === null) {
+            return res.status(404).json({'message': 'User not found'});
+        }
+        return res.json(user);
+    });
 });
 
 // UPDATE selected attributes of a specific user by id
-router.patch('/users/:id', function(req, res) {
+router.patch('/api/users/:id', function(req, res, next) {
     var id = req.params.id;
-    var user = users[id];
-
-    // console.log(user); 
-    // jsonpatch.applyPatch(user.)
-
-    var updated_user = {
-        "_id": id,
-        "email": (req.body.email || user.email),
-        "password": (req.body.password || user.password),
-        "name": (req.body.name || user.name),
-        "projects": (req.body.projects || user.projects),
-        "materials": (req.body.material || user.material)
-    }
-    users[id] = updated_user;
-    res.json(updated_user);
+    User.findOneAndUpdate({_id: id}, req.body, {new: true}, function(err, user){
+        if (err) { return next(err); }
+        if (user === null) {
+            return res.status(404).json({'message': 'User not found'});
+        }
+        return res.json(user);
+    });
 });
 
 // DELETE a specific user by id
-router.delete('/api/users/:id', function(req, res) {
+router.delete('/api/users/:id', function(req, res, next) {
     var id = req.params.id;
 
     User.findOneAndDelete( {_id: id}, function (err, user) {
         if (err) { return next(err); }
         if (user == null) {
-            return res.status(404).json(
-                    {"message": "User not found"});
+            return res.status(404).json({"message": "User not found"});
         }
-        res.json(user);
+       return res.status(200).json(user);
     });
 });
-
-// DELETE all users
-// router.delete('/api/users', function(req, res) {
-//     var id = req.params.id;
-
-//     User.deleteMany( {_id: id}, function (err, user) {
-//         if (err) { return next(err); }
-//         if (user == null) {
-//             return res.status(404).json(
-//                     {"message": "User not found"});
-//         }
-//         res.json(user);
-//     });
-// });
 
 module.exports = router;

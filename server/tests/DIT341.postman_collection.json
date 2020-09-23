@@ -174,25 +174,94 @@
 					"response": []
 				},
 				{
-					"name": "Get non-existent user",
+					"name": "Update a user",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "47a16084-a1ca-44e8-8edc-90bd1ab85c25",
+								"id": "55c9e38a-b69f-4863-9015-a717ec301320",
 								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(404);\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"// TODO: assert certain error message"
+									"pm.test(\"Correct user response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Shog\");\r",
+									"    pm.expect(jsonData.email).to.eql(\"sploot@gmail.com\");\r",
+									"    pm.expect(jsonData.password).to.eql(\"shuggie\")\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "GET",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"st@gmil.com\",\r\n    \"password\": \"gie\",\r\n    \"name\": \"Shog\",\r\n    \"projects\": [],\r\n    \"materials\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{{user_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9d9eff8d-5f25-4051-8505-0b972bdaf87a",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct user response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Shog\");\r",
+									"    pm.expect(jsonData.email).to.eql(\"sploot@gmail.com\");\r",
+									"    pm.expect(jsonData.password).to.eql(\"shuggie\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
 						"header": [
 							{
 								"key": "Accept",
@@ -202,12 +271,20 @@
 							{
 								"key": "Content-Type",
 								"type": "text",
-								"value": "application/json",
-								"disabled": true
+								"value": "application/json"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sploot@gil.com\",\r\n    \"$push\": {\"projects\": \"{{project_id}}\"}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/5f5b219557601403d8e68957",
+							"raw": "http://localhost:3000/api/users/{{user_id}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -216,7 +293,7 @@
 							"path": [
 								"api",
 								"users",
-								"5f5b219557601403d8e68957"
+								"{{user_id}}"
 							]
 						}
 					},
@@ -244,7 +321,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}",
+							"raw": "http://localhost:3000/api/users/{{user_id}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -253,121 +330,7 @@
 							"path": [
 								"api",
 								"users",
-								"{{user_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Patch user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3054ea5d-3fb8-4227-bb12-0020685d8efa",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct user response\", function () {\r",
-									"    pm.expect(jsonData.password).to.eql(\"hullabub\")\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"password\": \"hullabub\",\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/users/:id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"users",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "",
-									"type": "string"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Patch user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "55c9e38a-b69f-4863-9015-a717ec301320",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct user response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"Shog\");\r",
-									"    pm.expect(jsonData.email).to.eql(\"sploot@gmail.com\");\r",
-									"    pm.expect(jsonData.password).to.eql(\"shuggie\")\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"sploot@gmail.com\",\r\n    \"password\": \"shuggie\",\r\n    \"name\": \"Shog\",\r\n    \"projects\": [],\r\n    \"materials\": []\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/users/:id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"users",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "",
-									"type": "string"
-								}
+								"{{user_id}"
 							]
 						}
 					},
@@ -656,7 +619,7 @@
 					"response": []
 				},
 				{
-					"name": "Get all projects from specific user",
+					"name": "Get all projects for a user",
 					"event": [
 						{
 							"listen": "test",
@@ -749,7 +712,7 @@
 			"name": "Yarn requests",
 			"item": [
 				{
-					"name": "yarns-post",
+					"name": "Create new yarn",
 					"event": [
 						{
 							"listen": "test",
@@ -760,14 +723,14 @@
 									"var yarnID = jsonData._id;\r",
 									"pm.environment.set(\"yarn_id\", yarnID);\r",
 									"\r",
-									"pm.test(\"Correct status code\", function() {\r",
+									"pm.test(\"Correct status code\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Correct yarn response\", function() {\r",
+									"pm.test(\"Correct yarn response\", function () {\r",
 									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
-									"    pm.expect(jsonData.color).to.eql(\"purple\");\r",
-									"    pm.expect(jsonData.weight).to.eql(\"20\");\r",
+									"    pm.expect(jsonData.color).to.eql(\"natural\");\r",
+									"    pm.expect(jsonData.weight).to.eql(\"lace\");\r",
 									"    pm.expect(jsonData.fiber).to.eql(\"wool\");\r",
 									"});"
 								],
@@ -777,10 +740,21 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"purple\",\r\n    \"weight\": \"20\",\r\n    \"fiber\": \"wool\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"Pure merino\",\r\n\t\"source_name\": \"Adlibris\",\r\n\t\"cost\": 68.00,\r\n\t\"owned\": false,\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"natural\",\r\n    \"weight\": \"lace\",\r\n    \"fiber\": \"wool\",\r\n    \"note\": \"To be dyed purple\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -788,7 +762,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/projects/{{project_id}}/yarns",
+							"raw": "http://localhost:3000/api/yarns",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -796,8 +770,6 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"projects",
-								"{{project_id}}",
 								"yarns"
 							]
 						}
@@ -805,38 +777,38 @@
 					"response": []
 				},
 				{
-					"name": "Create yarn for user&project",
+					"name": "Get all yarns",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "b0c701c8-d562-4df8-9d04-d2244b0271d2",
+								"id": "37266fb6-f9e2-400d-a72f-5e8428086fdd",
 								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var yarnID = jsonData._id;\r",
-									"pm.environment.set(\"yarn_id\", yarnID);\r",
-									"\r",
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(201);\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Correct yarn response\", function() {\r",
-									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
-									"    pm.expect(jsonData.color).to.eql(\"purple\");\r",
-									"    pm.expect(jsonData.weight).to.eql(\"20\");\r",
-									"    pm.expect(jsonData.fiber).to.eql(\"wool\");\r",
-									"});"
+									"// TODO: more assertions..."
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
-						"header": [],
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"purple\",\r\n    \"weight\": \"20\",\r\n    \"fiber\": \"wool\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -844,7 +816,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}/projects/{{project_id}}/yarns",
+							"raw": "http://localhost:3000/api/yarns",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -852,10 +824,6 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"users",
-								"{{user_id}}",
-								"projects",
-								"{{project_id}}",
 								"yarns"
 							]
 						}
@@ -863,7 +831,124 @@
 					"response": []
 				},
 				{
-					"name": "yarns-update-put",
+					"name": "Get a yarn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "90cdacde-b721-477f-816c-a6bdc38f6343",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct needle response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Pure merino\");\r",
+									"    pm.expect(jsonData.cost).to.eql(68.00);\r",
+									"    pm.expect(jsonData.owned).to.eql(false);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/yarns/{{yarn_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"yarns",
+								"{{yarn_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a non-existent yarn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1893a09d-58a7-403c-bd54-8f54206848c8",
+								"exec": [
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"// TODO: assert certain error message"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/yarns/5f5b219557601403d8e68953",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"yarns",
+								"5f5b219557601403d8e68953"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fully update a yarn",
 					"event": [
 						{
 							"listen": "test",
@@ -871,17 +956,15 @@
 								"id": "c8b9493b-807f-4900-92df-708eda8b4a13",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
-									"var yarnID = jsonData._id;\r",
-									"pm.environment.set(\"yarn_id\", yarnID);\r",
 									"\r",
-									"pm.test(\"Correct status code\", function() {\r",
+									"pm.test(\"Correct status code\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Correct yarn response\", function() {\r",
-									"    pm.expect(jsonData.brand).to.eql(\"brandname\");\r",
+									"pm.test(\"Correct yarn response\", function () {\r",
+									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
 									"    pm.expect(jsonData.color).to.eql(\"white\");\r",
-									"    pm.expect(jsonData.weight).to.eql(\"34\");\r",
+									"    pm.expect(jsonData.weight).to.eql(\"fingering\");\r",
 									"    pm.expect(jsonData.fiber).to.eql(\"cotton\");\r",
 									"});"
 								],
@@ -891,10 +974,21 @@
 					],
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"brand\": \"brandname\",\r\n    \"color\": \"white\",\r\n    \"weight\": \"34\",\r\n    \"fiber\": \"cotton\"\r\n}",
+							"raw": "{\r\n\t\"name\": \"Pure cotton\",\r\n\t\"source_name\": \"Adlibris\",\r\n\t\"cost\": 55.00,\r\n\t\"owned\": false,\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"white\",\r\n    \"weight\": \"fingering\",\r\n    \"fiber\": \"cotton\",\r\n    \"note\": \"To be dyed pink\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -902,7 +996,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}/materials/{{material_id}}/yarns/{{yarn_id}}",
+							"raw": "http://localhost:3000/api/yarns/{{yarn_id}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -910,10 +1004,6 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"users",
-								"{{user_id}}",
-								"materials",
-								"{{material_id}}",
 								"yarns",
 								"{{yarn_id}}"
 							]
@@ -922,7 +1012,7 @@
 					"response": []
 				},
 				{
-					"name": "yarns-update-patch",
+					"name": "Partly update a yarn",
 					"event": [
 						{
 							"listen": "test",
@@ -930,15 +1020,15 @@
 								"id": "2b025ca3-ba00-4e6f-a2aa-35115312c0b7",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
-									"var yarnID = jsonData._id;\r",
-									"pm.environment.set(\"yarn_id\", yarnID);\r",
 									"\r",
-									"pm.test(\"Correct status code\", function() {\r",
+									"pm.test(\"Correct status code\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Correct yarn response\", function() {\r",
-									"    pm.expect(jsonData.color).to.eql(\"yellow\");\r",
+									"pm.test(\"Correct yarn response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Pure cotton\"); \r",
+									"    pm.expect(jsonData.color).to.eql(\"cream\"); \r",
+									"    pm.expect(jsonData.owned).to.eql(true);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -947,10 +1037,21 @@
 					],
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/ecmascript",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"color\": \"yellow\"\r\n}",
+							"raw": "{\r\n    \"color\": \"cream\",\r\n    \"owned\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -958,7 +1059,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}/materials/{{material_id}}/yarns",
+							"raw": "http://localhost:3000/api/yarns/{{yarn_id}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -966,23 +1067,46 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"users",
-								"{{user_id}}",
-								"materials",
-								"{{material_id}}",
-								"yarns"
+								"yarns",
+								"{{yarn_id}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "yarns-delete",
+					"name": "Delete a yarn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0d7f1989-895f-4a7b-b0d8-5012d3e5ee9b",
+								"exec": [
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:3000/api/yarns/{{yarn_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"yarns",
+								"{{yarn_id}}"
+							]
 						}
 					},
 					"response": []
@@ -1227,7 +1351,7 @@
 					"response": []
 				},
 				{
-					"name": "Full update needle",
+					"name": "Fully update a needle",
 					"event": [
 						{
 							"listen": "test",
@@ -1290,7 +1414,7 @@
 					"response": []
 				},
 				{
-					"name": "Part update needle",
+					"name": "Partly update a needle",
 					"event": [
 						{
 							"listen": "test",
