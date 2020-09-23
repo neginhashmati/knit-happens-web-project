@@ -87,6 +87,24 @@ router.patch('/api/needles/:id', function(req, res) {
     });
 });
 
+/*
+// DELETE - remove all needles
+
+router.delete('/api/needles/:id', function(req, res, next) {
+    var id = req.params.id;
+    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+        return res.status(404).json({  "message": "Illegal ID format" });
+      }
+    Needle.findOneAndDelete({_id: id}, function(err, needle) {
+        if (err) { return next(err); }
+        if (needle === null) {
+            return  res.status(404).json(    {"message": "Needle not found"});
+        }
+        res.json(needle);
+    });
+});
+*/
+
 // DELETE - remove a particular needle
 
 router.delete('/api/needles/:id', function(req, res, next) {
