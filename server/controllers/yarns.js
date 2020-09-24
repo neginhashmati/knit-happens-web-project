@@ -14,8 +14,24 @@ router.post('/api/yarns', function(req, res, next) {
     });
 });
 
-// READ/GET - Retrieve all yarns
+// CREATE/POST - create a new yarn for a project
+router.post('/api/yarns/:project_id/yarns', function(req, res) {
 
+    var yarn = new Yarn(req.body);   
+    yarn.save();
+
+    var project_id = req.params.project_id;
+    const update = {$push: { yarns: yarn._id }}; 
+    Yarn.findOneAndUpdate({_id: project_id}, update, {new: true}, function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        return res.json(yarn);
+    });
+}); 
+
+// READ/GET - Retrieve all yarns
 router.get('/api/yarns', function(req, res, next) {
     Yarn.find(function(err, yarns) {
     if (err) { return next(err); }
@@ -24,7 +40,6 @@ router.get('/api/yarns', function(req, res, next) {
 });
 
 // READ/GET - Retrieve a specific yarn
-
 router.get('/api/yarns/:id', function(req, res, next) {
     var id = req.params.id;
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -36,6 +51,21 @@ router.get('/api/yarns/:id', function(req, res, next) {
             return res.status(404).json({ "message": "yarn not found"});
         }
         res.json(yarn);
+    });
+});
+
+// READ/GET - get yarns for a project
+router.get('/api/projects/:project_id/yarns', function(req, res, next) {
+    var project_id = req.params.project_id;
+    Project.findById(project_id).populate('yarns').exec(function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        var yarns = project.yarns;
+        return res.json({'yarns': yarns});
+
+       // return res.json(yarns);
     });
 });
 

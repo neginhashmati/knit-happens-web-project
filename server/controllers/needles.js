@@ -15,8 +15,24 @@ router.post('/api/needles', function(req, res, next) {
     });
 }); 
 
-// READ/GET - Retrieve all needles
+// CREATE/POST - create a new needle for a project
+router.post('/api/needles/:project_id/needles', function(req, res) {
 
+    var needle = new Needle(req.body);   
+    needle.save();
+
+    var project_id = req.params.project_id;
+    const update = {$push: { needles: needle._id }}; 
+    Needle.findOneAndUpdate({_id: project_id}, update, {new: true}, function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        return res.json(needle);
+    });
+}); 
+
+// READ/GET - Retrieve all needles
 router.get('/api/needles', function(req, res, next) {
     Needle.find(function(err, needles) {
     if (err) { return next(err); }
@@ -25,7 +41,6 @@ router.get('/api/needles', function(req, res, next) {
 });
 
 // READ/GET - Retrieve a specific needle
-
 router.get('/api/needles/:id', function(req, res, next) {
     var id = req.params.id;
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -37,6 +52,21 @@ router.get('/api/needles/:id', function(req, res, next) {
             return res.status(404).json({ "message": "Needle not found"});
         }
         res.json(needle);
+    });
+});
+
+// READ/GET - get needles for a project
+router.get('/api/projects/:project_id/needles', function(req, res, next) {
+    var project_id = req.params.project_id;
+    Project.findById(project_id).populate('needles').exec(function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        var needles = project.needles;
+        return res.json({'needles': needles});
+
+       // return res.json(needles);
     });
 });
 
