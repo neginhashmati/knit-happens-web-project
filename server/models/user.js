@@ -9,7 +9,7 @@ var userSchema = new Schema( {
    projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
 });
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('User', userSchema);
 
 
 

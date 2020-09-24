@@ -2,11 +2,35 @@ var express = require('express');
 const user = require('../models/user.js');
 var router = express.Router();
 
-// import * as jsonpatch from 'fast-json-patch/index.mjs';
-// import { applyPatch } from 'fast-json-patch/index.mjs';
-// import { update } from '../models/Project.js';
-
 var User = require('../models/user.js');
+
+// // READ get all documents in a collection
+// function getAllDocuments(Type,label) {
+//     return function (req, res, next) {
+//         Type.find(function(err, documents) {
+//             if (err) { return next(err); }
+//             var arrayLabel = label;
+//             return res.json({arrayLabel: documents });
+//         });
+//     }
+// }
+
+// UPDATE all attributes of a specific document by id 
+function putDocument(Type) {
+    return function (req, res, next) {
+        var id = req.params.id;
+        Type.findOneAndUpdate({ _id: id }, req.body, { new: true }, function (err, document) {
+            if (err) { return next(err); }
+            if (document === null) {
+                return res.status(404).json({ 'message': 'Document not found' });
+            }
+            return res.json(document);
+        });
+    };
+}
+
+//router.get('/api/v2/users', getAllDocuments(User, "users"));
+router.put('/api/v2/users/:id', putDocument(User));
 
 // CREATE a user document
 router.post('/api/users', function(req, res, next) {
@@ -19,7 +43,8 @@ router.post('/api/users', function(req, res, next) {
 
 // READ all users in the user collection
 router.get('/api/users', function(req, res, next) {
-    User.find(function(err, users) {
+    //User.find(function(err, users) {
+        User.find().populate('projects').exec(function(err, users) {
         if (err) { return next(err); }
         return res.json({'users': users });
     })
@@ -28,7 +53,8 @@ router.get('/api/users', function(req, res, next) {
 // READ a specific user by id
 router.get('/api/users/:id', function(req, res, next) {
     var id = req.params.id;
-    User.findById(id, function(err, user){
+    //User.findById(id, function(err, user){
+    User.findById(id).populate('projects').exec(function(err, user){
         if (err) { return next(err); }
         if (user === null) {
             return res.status(404).json({'message': 'User not found'});
@@ -74,4 +100,15 @@ router.delete('/api/users/:id', function(req, res, next) {
     });
 });
 
+//DELETE all users in collection
+router.delete('/api/users', function (req, res, next) {
+
+    User.deleteMany(function (err, user) {
+        if (err) { return next(err); }
+        return res.status(200).json(user);
+    });
+});
+
 module.exports = router;
+
+
