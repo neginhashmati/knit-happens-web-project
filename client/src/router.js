@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import LandingPage from './views/LandingPage.vue'
+import Account from './views/Account.vue'
+import CreateAccount from './views/CreateAccount.vue'
+import Login from './views/Login.vue'
+import Projects from './views/Projects.vue'
+import SpecificProject from './views/SpecificProject.vue'
 
 Vue.use(Router)
 
@@ -10,8 +15,33 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'landingpage',
+      component: LandingPage
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: Account
+    },
+    {
+      path: '/createaccount',
+      name: 'createaccount',
+      component: CreateAccount
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/projects',
+      name: 'projects',
+      component: Projects
+    },
+    {
+      path: '/specificproject/:id',
+      name: 'specificproject',
+      component: SpecificProject
     }
   ]
 })

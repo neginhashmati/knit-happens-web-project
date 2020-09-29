@@ -13,7 +13,7 @@
 import { Api } from '@/Api'
 
 export default {
-  name: 'home',
+  name: 'login',
   data() {
     return {
       message: 'none'
