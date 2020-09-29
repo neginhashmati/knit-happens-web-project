@@ -3,8 +3,9 @@ const app = require('../app');
 var router = express.Router();
 
 var Needle = require('../models/needle');
+var Project = require('../models/project');
 const needle = require('../models/needle');
-const user = require('../models/user');
+const project = require('../models/project');
 
 // CREATE/POST - create a new needle
 router.post('/api/needles', function(req, res, next) {
@@ -15,17 +16,37 @@ router.post('/api/needles', function(req, res, next) {
     });
 }); 
 
-// READ/GET - Retrieve all needles
+// CREATE/POST - create a new needle for a project
+router.post('/api/needles/:project_id/needles', function(req, res) {
 
-router.get('/api/needles', function(req, res, next) {
-    Needle.find(function(err, needles) {
-    if (err) { return next(err); }
-    res.json({"needles": needles});
+    var needle = new Needle(req.body);   
+    needle.save();
+
+    var project_id = req.params.project_id;
+    const update = {$push: { needles: needle._id }}; 
+    Project.findOneAndUpdate({_id: project_id}, update, {new: true}, function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        return res.json(needle);
+    });
+}); 
+
+// READ/GET - Retrieve all needles for a user
+router.get('/api/projects/needles', function(req, res, next) {
+    var project_id = req.params.project_id;
+    Project.findById(project_id).populate('needles').exec(function(err, project){
+        if (err) {  return next(err);}
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        var needles = projects.needles;
+        return res.json({'needles': needles });
     });
 });
 
 // READ/GET - Retrieve a specific needle
-
 router.get('/api/needles/:id', function(req, res, next) {
     var id = req.params.id;
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -40,6 +61,24 @@ router.get('/api/needles/:id', function(req, res, next) {
     });
 });
 
+// READ/GET - get needles for a project
+router.get('/api/projects/:project_id/needles', function(req, res, next) {
+    var project_id = req.params.project_id;
+    if (!project_id.match(/^[0-9a-fA-F]{24}$/)) {
+        return res.status(404).json({  "message": "Illegal ID format" });
+      }
+    Project.findById(project_id).populate('needles').exec(function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        var needles = project.needles;
+        return res.json({'needles': needles});
+
+       // return res.json(needles);
+    });
+});
+
 // UPDATE/PUT - update all of the information for a particular 2needle
 router.put('/api/needles/:id', function(req, res) {
     var id = req.params.id;
@@ -51,14 +90,17 @@ router.put('/api/needles/:id', function(req, res) {
         if (needle === null) {
             return res.status(404).json({"message": "Needle not found"});
         }
-        needle.name = req.body.name;
-        needle.source_name = req.body.source_name;
-        needle.cost = req.body.cost;
-        needle.owned = req.body.owned;
-        needle.size = req.body.size;
-        needle.note = req.body.note;
-        needle.save();
-        res.json(needle);
+        else {
+            needle.name = req.body.name;
+            needle.source_name = req.body.source_name;
+            needle.cost = req.body.cost;
+            needle.owned = req.body.owned;
+            needle.size = req.body.size;
+            needle.note = req.body.note;
+            needle.save();
+            res.json(needle);
+        }
+        
     });
 });
 
@@ -73,17 +115,20 @@ router.patch('/api/needles/:id', function(req, res) {
         if (needle === null) {
             return res.status(404).json({"message": "Needle not found"});
         }
+        else {
+            // LANGUAGE CONSTRUCT (STATEMENt ? TRUE : FALSE)
+            // ( IF THIS IS TRUE ? DO THIS : OTHERWISE DO THIS)
+            needle.name = ((typeof req.body.name === 'undefined') ? needle.name : req.body.name);
+            needle.source_name = ((typeof req.body.source_name === 'undefined') ? needle.source_name : req.body.source_name);
+            needle.cost = ((typeof req.body.cost === 'undefined') ? needle.cost : req.body.cost);
+            needle.note = ((typeof req.body.note === 'undefined') ? needle.note : req.body.note);
+            needle.size = ((typeof req.body.size === 'undefined') ? needle.size : req.body.size);
+            needle.owned = ((typeof req.body.owned === 'undefined') ? needle.owned : req.body.owned);
+            needle.save();
+            res.json(needle);  
+        }
 
-        // LANGUAGE CONSTRUCT (STATEMENt ? TRUE : FALSE)
-        /// ( IF THIS IS TRUE ? DO THIS : OTHERWISE DO THIS)
-        needle.name = ((typeof req.body.name === 'undefined') ? needle.name : req.body.name);
-        needle.source_name = ((typeof req.body.source_name === 'undefined') ? needle.source_name : req.body.source_name);
-        needle.cost = ((typeof req.body.cost === 'undefined') ? needle.cost : req.body.cost);
-        needle.note = ((typeof req.body.note === 'undefined') ? needle.note : req.body.note);
-        needle.size = ((typeof req.body.size === 'undefined') ? needle.size : req.body.size);
-        needle.owned = ((typeof req.body.owned === 'undefined') ? needle.owned : req.body.owned);
-        needle.save();
-        res.json(needle);
+        
     });
 });
 
@@ -104,6 +149,23 @@ router.delete('/api/needles/:id', function(req, res, next) {
     });
 });
 */
+
+//DELETE - remove all needles for a project
+
+router.delete('/api/projects/:project_id/needles', function(req, res, next) {
+    var project_id = req.params.project_id;
+    if (!project_id.match(/^[0-9a-fA-F]{24}$/)) {
+        return res.status(404).json({  "message": "Illegal ID format" });
+      }
+    Project.findByIdAndDelete(project_id).populate('needles').exec(function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        var needles = projects.needles;
+        return res.json({'needles': needles });
+    });
+});
 
 // DELETE - remove a particular needle
 

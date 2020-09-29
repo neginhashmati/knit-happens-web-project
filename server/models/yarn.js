@@ -13,4 +13,4 @@ var yarnSchema = new Schema({
     note: {type: String}
 });    
 
-module.exports = mongoose.model('yarns', yarnSchema); 
+module.exports = mongoose.model('Yarn', yarnSchema); 

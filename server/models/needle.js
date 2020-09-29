@@ -10,4 +10,4 @@ var needleSchema = new Schema({
     note: {type: String}
 });
 
-module.exports = mongoose.model('needles', needleSchema);
+module.exports = mongoose.model('Needle', needleSchema);
