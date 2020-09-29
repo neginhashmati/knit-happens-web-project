@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">LandingPage</router-link>
+      <router-link to="/">Landing Page</router-link> |
+      <router-link to="projects">Projects</router-link>
     </div>
     <!-- Render the content of the current page view -->
     <router-view/>
@@ -15,5 +16,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+p {
+  background-color: orange;
 }
 </style>
