@@ -37,7 +37,7 @@ app.use(cors());
 
 // Import routes
 app.get('/api', function(req, res, next) {
-    res.json({'message': 'Welcome to your DIT341 backend ExpressJS project!'});
+    res.json({'message': 'Time to make Knit Happen!'});
 });
 
 
