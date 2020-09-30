@@ -12,7 +12,8 @@ var yarnsController = require('./controllers/yarns');
 var needlesController = require('./controllers/needles'); 
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb+srv://gusdoush:LetMeIn@cluster0.qvi3w.mongodb.net/knit_happens?retryWrites=true&w=majority';
+// Remember to paste link to MongoAtlas in here!
+var mongoURI = process.env.MONGODB_URI || '';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
