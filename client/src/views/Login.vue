@@ -54,17 +54,6 @@ export default {
     }
   },
 
-  /*
-  data: {
-      registerActive: false,
-      emailLogin: "",
-      passwordLogin: "",
-      emailReg: "",
-      passwordReg: "",
-      confirmReg: "",
-      emptyFields: false
-  },
-  */
   methods: {
     doLogin() {
       if (this.emailLogin === '' || this.passwordLogin === '') {
@@ -96,7 +85,6 @@ export default {
             localStorage.userName = this.user.name
             localStorage.userID = this.user._id
             alert('WELCOME ' + localStorage.userName + '. IT\'S TIME TO MAKE KNIT HAPPEN!! :D')
-            //   This code is always executed at the end. After success or failure.
             document.location.href = '/projects'
           })
       }
@@ -106,7 +94,18 @@ export default {
       if (this.emailReg === '' || this.passwordReg === '' || this.confirmReg === '') {
         this.emptyFields = true
       } else {
-        // This should point to the create user endpoint somehow
+        if (this.confirmReg !== this.passwordReg) {
+        alert ('Your passwords do not match')
+        }
+        else {
+          api.post('/users', {
+          "email": this.emailReg,
+          "password": this.passwordReg,
+          "name": this.nameReg,
+          "projects": [],
+          "materials": []
+          })
+          }       
         alert('You are now registered')
       }
     }
