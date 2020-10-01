@@ -33,6 +33,12 @@ export default {
         Api.patch('/users/' + localStorage.userID, {
           password: this.passwordNew
         })
+          .then((response) => {
+            console.log(response)
+            alert('PASSWORD IS NOW CHANGED. DON\'T YOU FORGET IT!')
+          }, (error) => {
+            console.log(error)
+          })
       }
     }
   }
@@ -51,7 +57,7 @@ export default {
 
   .shy-box {
     background: #8CBDB9;
-    display: flex;
+   /* display: flex;*/
     justify-content: center;
     align-items: center;
     padding: 4em 4em 4em 4em;

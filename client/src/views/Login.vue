@@ -50,7 +50,11 @@ export default {
     return {
       user: null,
       registerActive: false,
-      emptyFields: false
+      emptyFields: false,
+      nameReg: '',
+      passwordReg: '',
+      confirmReg: '',
+      emailReg: ''
     }
   },
 
@@ -95,18 +99,24 @@ export default {
         this.emptyFields = true
       } else {
         if (this.confirmReg !== this.passwordReg) {
-        alert ('Your passwords do not match')
-        }
-        else {
-          api.post('/users', {
-          "email": this.emailReg,
-          "password": this.passwordReg,
-          "name": this.nameReg,
-          "projects": [],
-          "materials": []
+          alert('Your passwords do not match')
+        } else {
+          Api.post('/users', {
+            email: this.emailReg,
+            password: this.passwordReg,
+            name: this.nameReg,
+            projects: [],
+            materials: []
           })
-          }       
-        alert('You are now registered')
+          .then((response) => {
+            localStorage.userName = response.data.name
+            localStorage.userID = response.data._id
+            alert('You are now registered ' + localStorage.userName + '. IT\'S TIME TO MAKE KNIT HAPPEN!! :D')
+            document.location.href = '/projects'
+          }, (error) => {
+            console.log(error);
+          });
+        }       
       }
     }
   }
