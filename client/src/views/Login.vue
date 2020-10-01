@@ -78,7 +78,7 @@ export default {
             this.message = error.message
             console.error(error)
             this.project = []
-            // TODO: display error message
+            // TODO: display error messages
           })
           .then(() => {
             console.log('AND THEN')

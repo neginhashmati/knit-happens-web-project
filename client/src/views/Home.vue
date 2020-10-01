@@ -37,9 +37,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 * {
-  background-color: #E8ECEB;
+  background-color: purple;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .button {
