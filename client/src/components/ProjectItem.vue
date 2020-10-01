@@ -1,7 +1,11 @@
 <template>
     <div>
-        <p>The {{project.name}} project is {{project.priority}} priority</p>
-        <b-button variant="danger" v-on:click="$emit('del-project', project._id)">X</b-button>
+        <b-button-close v-on:click="$emit('del-project', project._id)" >&times;</b-button-close>
+        <p>Name: Winter Hat{{project.name}}</p>
+        <div class="detail">Status: {{project.name}}</div>
+        <div class="detail">Status: In Progress {{project.status}}</div>
+        <div class="detail">Priority: High {{project.priority}}</div>
+        <div class="more-info">PROJECT SUMMARY</div>
     </div>
 </template>
 
@@ -10,9 +14,9 @@ export default {
   name: 'project-item',
   props: ['project'],
   methods: {
-    // deleteCamel() {
-    //   this.$emit('del-camel', this.camel._id)
-    //   console.log('del-camel with id:' + this.camel._id)
+    // deleteProject() {
+    //   this.$emit('del-project', this.project._id)
+    //   console.log('del-project with id:' + this.project._id)
     // }
   }
 }
@@ -22,4 +26,19 @@ export default {
 p {
     background-color: aqua;
 }
+@media (max-width: 600px) {
+  .detail {
+    color: red;
+    font-size: 16pt;
+    font-weight: bold;
+    /* display: none; */
+  }
+}
+
+@media (min-width: 600px) {
+  .more-info {
+    display: none;
+  }
+}
+
 </style>
