@@ -1,10 +1,16 @@
 <template>
-  <div>
-    <b-jumbotron header="Knit Happens" lead="Welcome to Knit Happens!">
-      <b-button class="btn_message" variant="primary" v-on:click="getMessage()" >Get Message from Server</b-button>
-      <p>Message from the server:<br/>
-      {{ message }}</p>
-    </b-jumbotron>
+  <div class="shy-box">
+    <img src="../assets/cat-with-yarn.png"><br/>
+    <div><p><h2>Welcome to your account page</h2>
+    </div>
+
+  <p>Change your password here:</p>
+  <form class="form-group">
+      <input v-model="passwordNew" type="password" class="form-control" placeholder="New Password" required>
+      <input v-model="confirmNew" type="password" class="form-control" placeholder="Confirm Password" required>
+      <input type="submit" class="btn btn-info" @click="changePass">
+  </form>
+
   </div>
 </template>
 
@@ -20,21 +26,35 @@ export default {
     }
   },
   methods: {
-    getMessage() {
-      Api.get('/')
-        .then(response => {
-          this.message = response.data.message
+    changePass() {
+      if (this.confirmNew !== this.passwordNew) {
+        alert('Your passwords do not match')
+      } else {
+        Api.patch('/users/' + localStorage.userID, {
+          password: this.passwordNew
         })
-        .catch(error => {
-          this.message = error
-        })
+      }
     }
   }
 }
 </script>
 
 <style>
-.btn_message {
-  margin-bottom: 1em;
-}
+
+  h2 {
+    color: #2D3E4E;
+  }
+
+  .bold-box {
+    color: #2D3E4E;
+  }
+
+  .shy-box {
+    background: #8CBDB9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4em 4em 4em 4em;
+    margin: 4em 4em 4em 4em;
+  }
 </style>
