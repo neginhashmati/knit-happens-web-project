@@ -38,6 +38,18 @@ router.get('/api/projects', function(req, res, next) {
     })
 });
 
+// READ all projects in the project collection and return them sorted
+router.get('/api/projects?sort=name[asc]', function(req, res, next) {
+    Project.find(function(err, projects) {
+        if (err) { return next(err); }
+
+        if(req.query.sort != undefined) {
+            projects.sort();
+        }
+        return res.json({'projects': projects });
+    })
+});
+
 // READ a specific project by id
 router.get('/api/projects/:id', function(req, res, next) {
     var id = req.params.id;

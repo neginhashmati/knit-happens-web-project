@@ -1,11 +1,15 @@
 <template>
-  <div>
-    <b-jumbotron header="Knit Happens" lead="Welcome to Knit Happens!">
-      <b-button class="btn_message" variant="primary" v-on:click="getMessage()" >Get Message from Server</b-button>
-      <p>Message from the server:<br/>
-      {{ message }}</p>
-    </b-jumbotron>
-  </div>
+  <div class="home">
+    <h1>Welcome to Knit Happens!</h1>
+    <p>Knit Happens is your new favorite website for keeping track of and organizing your knitting projects.</p>
+    <p>Create a new project, add the yarns and needles you need to it, track your progress.</p>
+    <p>Create anything you can imagine.</p>
+    <br>
+    <b-button pill b-link v-bind:to="'projects'">See your projects</b-button>
+    <br>
+    <br>
+    <b-button pill b-link v-bind:to="'account'">Go to your account</b-button>
+</div>
 </template>
 
 <script>
@@ -13,7 +17,7 @@
 import { Api } from '@/Api'
 
 export default {
-  name: 'landingpage',
+  name: 'home',
   data() {
     return {
       message: 'none'
@@ -34,7 +38,11 @@ export default {
 </script>
 
 <style>
-.btn_message {
-  margin-bottom: 1em;
+* {
+  background-color: #E8ECEB;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.button {
+  color: #8CBDB9;
 }
 </style>

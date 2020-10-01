@@ -5,6 +5,7 @@ import Account from './views/Account.vue'
 import Login from './views/Login.vue'
 import Projects from './views/Projects.vue'
 import SpecificProject from './views/SpecificProject.vue'
+import About from './views/About'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
       path: '/specificproject/:id',
       name: 'specificproject',
       component: SpecificProject
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
     }
   ]
 })
