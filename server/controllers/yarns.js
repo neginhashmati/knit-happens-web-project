@@ -151,6 +151,24 @@ router.delete('/api/yarns', function(req, res, next) {
     });
 });
 */
+//DELETE - remove all needles for a project
+
+router.delete('/api/projects/:project_id/needles', function(req, res, next) {
+    var project_id = req.params.project_id;
+    if (!project_id.match(/^[0-9a-fA-F]{24}$/)) {
+        return res.status(404).json({  "message": "Illegal ID format" });
+    }
+    Project.findById(project_id).populate('needles').exec(function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        projects.needles.forEach(element => {
+            needles.findOneAndDelete(element._id)
+        });
+        return res.json({'needles': needles });
+    });
+});
 
 //DELETE - remove all yarns for a project
 
@@ -158,13 +176,15 @@ router.delete('/api/projects/:project_id/yarns', function(req, res, next) {
     var project_id = req.params.project_id;
     if (!project_id.match(/^[0-9a-fA-F]{24}$/)) {
         return res.status(404).json({  "message": "Illegal ID format" });
-      }
-    Project.findByIdAndDelete(project_id).populate('yarns').exec(function(err, project){
+    }
+    Project.findById(project_id).populate('yarns').exec(function(err, project){
         if (err) { return next(err); }
         if (project === null) {
             return res.status(404).json({'message': 'Project not found'});
         }
-        var yarns = projects.yarns;
+        projects.yarns.forEach(element => {
+            yarns.findOneAndDelete(element._id)
+        });
         return res.json({'yarns': yarns });
     });
 });
