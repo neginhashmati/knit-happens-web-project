@@ -108,15 +108,15 @@ export default {
             projects: [],
             materials: []
           })
-          .then((response) => {
-            localStorage.userName = response.data.name
-            localStorage.userID = response.data._id
-            alert('You are now registered ' + localStorage.userName + '. IT\'S TIME TO MAKE KNIT HAPPEN!! :D')
-            document.location.href = '/projects'
-          }, (error) => {
-            console.log(error);
-          });
-        }       
+            .then((response) => {
+              localStorage.userName = response.data.name
+              localStorage.userID = response.data._id
+              alert('You are now registered ' + localStorage.userName + '. IT\'S TIME TO MAKE KNIT HAPPEN!! :D')
+              document.location.href = '/projects'
+            }, (error) => {
+              console.log(error)
+            })
+        }
       }
     }
   }
