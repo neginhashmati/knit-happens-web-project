@@ -40,8 +40,9 @@ export default {
 <style>
 * {
   background-color: #E8ECEB;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.b-button {
+.button {
   color: #8CBDB9;
 }
 </style>
