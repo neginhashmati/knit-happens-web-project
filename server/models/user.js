@@ -6,11 +6,10 @@ var userSchema = new Schema( {
    email: { type: String },
    password: { type: String },
    name: { type: String},
-   projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
-   materials: [{ type: Schema.Types.ObjectId, ref: 'Material' }],
+   projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
 });
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('User', userSchema);
 
 
 

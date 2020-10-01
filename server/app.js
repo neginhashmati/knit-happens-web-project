@@ -12,7 +12,8 @@ var yarnsController = require('./controllers/yarns');
 var needlesController = require('./controllers/needles'); 
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animalDevelopmentDB';
+// Remember to paste link to MongoAtlas in here!
+var mongoURI = process.env.MONGODB_URI || '';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
@@ -37,7 +38,7 @@ app.use(cors());
 
 // Import routes
 app.get('/api', function(req, res, next) {
-    res.json({'message': 'Welcome to your DIT341 backend ExpressJS project!'});
+    res.json({'message': 'Time to make Knit Happen!'});
 });
 
 
@@ -63,7 +64,7 @@ app.use(needlesController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
-    res.status(404).json({ 'message': 'Not Found' });
+    res.status(404).json({ 'message': 'Incorrect URI' });
 });
 
 

@@ -7,8 +7,7 @@ var needleSchema = new Schema({
 	cost: {type: Number},
 	owned: {type: Boolean},
 	size: {type: String},
-    note: {type: String},
-    projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
+    note: {type: String}
 });
 
-module.exports = mongoose.model('needles', needleSchema);
+module.exports = mongoose.model('Needle', needleSchema);

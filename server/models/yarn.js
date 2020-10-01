@@ -10,8 +10,7 @@ var yarnSchema = new Schema({
     color: {type: String},
     weight: {type: String},
     fiber: {type: String},
-    note: {type: String},  
-    projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
+    note: {type: String}
 });    
 
-module.exports = mongoose.model('yarns', yarnSchema); 
+module.exports = mongoose.model('Yarn', yarnSchema); 
