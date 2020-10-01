@@ -157,12 +157,14 @@ router.delete('/api/projects/:project_id/needles', function(req, res, next) {
     if (!project_id.match(/^[0-9a-fA-F]{24}$/)) {
         return res.status(404).json({  "message": "Illegal ID format" });
       }
-    Project.findByIdAndDelete(project_id).populate('needles').exec(function(err, project){
+    Project.findById(project_id).populate('needles').exec(function(err, project){
         if (err) { return next(err); }
         if (project === null) {
             return res.status(404).json({'message': 'Project not found'});
         }
-        var needles = projects.needles;
+        projects.needles.forEach(element => {
+            needles.findOneAndDelete(element._id)
+        });
         return res.json({'needles': needles });
     });
 });
