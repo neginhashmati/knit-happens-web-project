@@ -1,40 +1,46 @@
 <template>
-  <div>
-    <b-jumbotron header="Knit Happens" lead="Welcome to Knit Happens!">
-      <b-button class="btn_message" variant="primary" v-on:click="getMessage()" >Get Message from Server</b-button>
-      <p>Message from the server:<br/>
-      {{ message }}</p>
-    </b-jumbotron>
-  </div>
+  <b-container class="coll-12 col-md-10 col-xl-8 shy-box">
+    <img src="../assets/cat-with-yarn.png">
+    <h2>Welcome to your projects page, {{localStorage.userName}}!</h2>
+  <b-row>
+  </b-row>
+  <b-row>
+  </b-row>
+  </b-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import { Api } from '@/Api'
+// import { Api } from '@/Api'
 
 export default {
-  name: 'specificproject',
+  name: 'account',
   data() {
     return {
       message: 'none'
     }
   },
   methods: {
-    getMessage() {
-      Api.get('/')
-        .then(response => {
-          this.message = response.data.message
-        })
-        .catch(error => {
-          this.message = error
-        })
-    }
+
   }
 }
 </script>
 
 <style>
-.btn_message {
-  margin-bottom: 1em;
-}
+  h2 {
+    color: #2D3E4E;
+  }
+
+  .bold-box {
+    color: #2D3E4E;
+  }
+
+  .shy-box {
+    background: #8CBDB9;
+   /* display: flex;*/
+    justify-content: center;
+    align-items: center;
+    padding: 4em 4em 4em 4em;
+    margin: 4em 4em 4em 4em;
+  }
 </style>
