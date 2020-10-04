@@ -1,12 +1,11 @@
 <template>
     <div>
-        <b-button-close v-on:click="$emit('del-project', project._id)" >&times;</b-button-close>
-        <b-button v-on:click="$emit('load-project', project._id)">O</b-button>
-        <p>Name: Winter Hat{{project.name}}</p>
-        <div class="detail">Status: {{project.name}}</div>
-        <div class="detail">Status: In Progress {{project.status}}</div>
-        <div class="detail">Priority: High {{project.priority}}</div>
-        <div class="more-info">PROJECT SUMMARY</div>
+        <b-button-close v-on:click="$emit('delete-project', project._id)" >&times;</b-button-close>
+        <b-button v-on:click="$emit('load-project', project._id)">Edit</b-button>
+        <p>Name: {{project.name}}</p>
+        <div class="detail">Notes: {{project.note}}</div>
+        <div class="detail">Status: {{project.statusOptions}}</div>
+        <div class="detail">Priority: {{project.priorityOptions}}</div>
     </div>
 </template>
 

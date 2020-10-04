@@ -6,7 +6,7 @@
           <b-form-input v-model="text" placeholder="Enter your name"></b-form-input>
         </b-col> -->
         <b-col cols="15">
-          <b-button v-on:click="createProject">Create New Project</b-button>
+          <project-form v-on:create-project="createProject"/>
         </b-col>
         <b-col cols="4">
           <b-button v-on:click="deleteAllProjects">Delete All Projects</b-button>
@@ -15,7 +15,7 @@
       <h1>My projects:</h1>
       <b-row align-h="center">
         <b-col cols="12" sm="6" md="4" v-for="project in projects" v-bind:key="project._id">
-            <project-item v-bind:project="project" v-on:del-project="deleteProject" v-on:load-project="loadProject"/>
+            <project-item v-bind:project="project" v-on:delete-project="deleteProject" v-on:load-project="loadProject"/>
         </b-col>
       </b-row>
     </b-container>
@@ -24,11 +24,13 @@
 <script>
 import { Api } from '@/Api'
 import ProjectItem from '@/components/ProjectItem.vue'
+import ProjectForm from '@/components/ProjectForm.vue'
 
 export default {
   name: 'projects',
   components: {
-    ProjectItem
+    ProjectItem,
+    ProjectForm
   },
   mounted() {
     console.log('PAGE is loaded')
@@ -48,13 +50,15 @@ export default {
         //   This code is always executed at the end. After success or failure.
       })
   },
+
   data() {
     return {
-      projects: [],
       message: '',
+      projects: [],
       text: ''
     }
   },
+
   methods: {
     deleteProject(id) {
       Api.delete(`/projects/${id}`)
@@ -62,9 +66,10 @@ export default {
           console.error(error)
         })
     },
-    createProject() {
-      console.log(this.text)
-      Api.post('/projects')
+    createProject(input) {
+      console.log('hello')
+      console.log(input)
+      Api.post('/projects', input)
         .catch(error => {
           console.error(error)
         })
