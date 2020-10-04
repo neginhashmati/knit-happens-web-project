@@ -1,34 +1,21 @@
 <template>
     <b-container>
       <p class="red">{{message}}</p>
-      <b-row>
-        <!-- <b-col cols="7" offset="1" offset-md="2">
-          <b-form-input v-model="text" placeholder="Enter your name"></b-form-input>
-        </b-col> -->
-        <b-col cols="15">
-          <b-button v-on:click="createUser">Create New Project</b-button>
-        </b-col>
-        <b-col cols="4">
-          <b-button v-on:click="deleteAllUsers">Delete All Projects</b-button>
-        </b-col>
-      </b-row>
-      <h1>My projects:</h1>
-      <b-row align-h="center">
-        <b-col cols="12" sm="6" md="4" v-for="user in users" v-bind:key="user._id">
-            <project-item v-bind:project="users" v-on:del-project="deleteUser"/>
-        </b-col>
+      <h1>See what the community is up to!</h1>
+      <b-row align-h="center" v-for="user in users" v-bind:key="user._id" class="useritem">
+        <b-col cols="12" sm="6" md="4" ><a :href="'/users/' + user._id">{{ user.name }}: {{ user.projects }}</a></b-col>
+           <user-item v-bind:user="users" v-on:display-user="displayUser"/>
       </b-row>
     </b-container>
 </template>
 
 <script>
 import { Api } from '@/Api'
-import UserItem from '@/components/UserItem.vue'
 
 export default {
   name: 'users',
   components: {
-    UserItem
+
   },
   mounted() {
     console.log('PAGE is loaded')
@@ -56,26 +43,7 @@ export default {
     }
   },
   methods: {
-    deleteUser(id) {
-      Api.delete(`/users/${id}`)
-        .catch(error => {
-          console.error(error)
-        })
-    },
-    createUser() {
-      console.log(this.text)
-      Api.post('/users')
-        .catch(error => {
-          console.error(error)
-        })
-    },
-    deleteAllUsers() {
-      console.log(this.text)
-      Api.delete('/users')
-        .catch(error => {
-          console.error(error)
-        })
-    }
+
   }
 }
 </script>
