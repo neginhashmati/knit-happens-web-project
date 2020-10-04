@@ -2,9 +2,10 @@
     <b-container>
       <p class="red">{{message}}</p>
       <h1>See what the community is up to!</h1>
-      <b-row align-h="center" v-for="user in users" v-bind:key="user._id" class="useritem">
-        <b-col cols="12" sm="6" md="4" ><a :href="'/users/' + user._id">{{ user.name }}: {{ user.projects }}</a></b-col>
-           <user-item v-bind:user="users" v-on:display-user="displayUser"/>
+      <b-row v-for="user in users" v-bind:key="user._id" class="useritem">
+        <b-col cols="12" sm="6" md="4">
+          <a :href="'/users/' + user._id">{{ user.name }}: {{ user.projects }}</a>
+        </b-col>
       </b-row>
     </b-container>
 </template>
@@ -51,5 +52,8 @@ export default {
 <style scoped>
 .red {
     color: red;
+}
+.useritem  {
+  align-self: auto;
 }
 </style>
