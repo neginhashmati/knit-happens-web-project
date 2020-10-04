@@ -62,6 +62,90 @@ router.get('/api/projects/:id', function(req, res, next) {
     });
 });
 
+// READ a specific project by id and retrieve just the NAME
+router.get('/api/projects/:id?fields=name', function(req, res, next) {
+    var id = req.params.id;
+    Project.findById(id, function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        return res.json(project);
+    });
+});
+
+// READ a specific project by id and retrieve just the DATE
+router.get('/api/projects/:id?fields=date', function(req, res, next) {
+    var id = req.params.id;
+    Project.findById(id, function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        return res.json(project);
+    });
+});
+
+// READ a specific project by id and retrieve just the STATUS
+router.get('/api/projects/:id?fields=status', function(req, res, next) {
+    var id = req.params.id;
+    Project.findById(id, function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        return res.json(project);
+    });
+});
+
+// READ a specific project by id and retrieve just the PRIORITY
+router.get('/api/projects/:id?fields=priority', function(req, res, next) {
+    var id = req.params.id;
+    Project.findById(id, function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        return res.json(project);
+    });
+});
+
+// READ a specific project by id and retrieve just the NOTE
+router.get('/api/projects/:id?fields=note', function(req, res, next) {
+    var id = req.params.id;
+    Project.findById(id, function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        return res.json(project);
+    });
+});
+
+// READ a specific project by id and retrieve just the NEEDLES
+router.get('/api/projects/:id?fields=[needles]', function(req, res, next) {
+    var id = req.params.id;
+    Project.findById(id, function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        return res.json(project);
+    });
+});
+
+// READ a specific project by id and retrieve just the YARNS
+router.get('/api/projects/:id?fields=[yarns]', function(req, res, next) {
+    var id = req.params.id;
+    Project.findById(id, function(err, project){
+        if (err) { return next(err); }
+        if (project === null) {
+            return res.status(404).json({'message': 'Project not found'});
+        }
+        return res.json(project);
+    });
+});
+
 //READ get all projects for a user
 router.get('/api/users/:user_id/projects', function(req, res, next) {
     var user_id = req.params.user_id;
