@@ -15,7 +15,7 @@
       <h1>My projects:</h1>
       <b-row align-h="center">
         <b-col cols="12" sm="6" md="4" v-for="project in projects" v-bind:key="project._id">
-            <project-item v-bind:project="project" v-on:del-project="deleteProject"/>
+            <project-item v-bind:project="project" v-on:del-project="deleteProject" v-on:load-project="loadProject"/>
         </b-col>
       </b-row>
     </b-container>
@@ -75,6 +75,9 @@ export default {
         .catch(error => {
           console.error(error)
         })
+    },
+    loadProject(id) {
+      location.href = '/specificproject/' + id
     }
   }
 }
