@@ -9,6 +9,7 @@
         <p>Cost: {{ yarn.cost }}</p>
         <p>Owned: {{ yarn.owned }}</p>
         <p>Note: {{ yarn.note }}</p>
+        <b-button-close v-on:click="$emit('del-yarn', yarn._id)" >&times;</b-button-close>
     </div>
 </template>
 

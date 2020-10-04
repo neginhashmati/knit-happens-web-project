@@ -4,10 +4,11 @@
     <h3>Welcome to your account page {{userName}}!</h3>
     <b-container class="inner-box">
       <b-row>
-        <b-col class="col-3 col-md-2 col xl-2">Change your password
+        <b-col class="col-3 col-md-2 col xl-2">
+          <p>Change your password</p>
         </b-col>
-        <b-col class="col-6 col-md-7 col xl-5">
-          <form class="form-group">
+        <b-col class="col-7 col-md-8 col xl-8">
+          <form class="form-inline">
           <input v-model="passwordNew" type="password" class="form-control" placeholder="New Password" required>
           <input v-model="confirmNew" type="password" class="form-control" placeholder="Confirm Password" required>
           <input type="submit" class="btn btn-info" @click="changePass">
@@ -16,7 +17,7 @@
       </b-row>
       <b-row>
         <b-col class="col-7 col-md-7 col xl-7">
-       To delete your account and all projects, click here:
+          <p>To delete your account and all projects, click here:</p>
         </b-col>
         <b-col h-align ="end" class="col-2 col-md-2 col xl-2">
         <b-button variant="danger" v-on:click="deleteAllProjects">Delete Account</b-button>
@@ -70,6 +71,10 @@ export default {
 
 <style>
 
+  p {
+    color: #2D3E4E;
+  }
+
   h3 {
     color: #2D3E4E;
     font-size: 12px;
@@ -93,7 +98,8 @@ export default {
     background: white;
     justify-content: center;
     align-items: center;
-    padding: 10px 0px 10px 0px;
+    border-radius: 25px;
+    padding: 20px 10px 20px 10px;
     margin-left: 10px;
     margin-right: 10px;
   }

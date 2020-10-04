@@ -1,9 +1,11 @@
 <template>
     <div>
+        <p>Name: {{ needle.name }}</p>
+        <p>Size: {{ needle.size }} mm</p>
+        <p>Cost: {{ needle.cost }}</p>
+        <p>Owned: {{ needle.owned }}</p>
+        <p>Note: {{ needle.note }}</p>
         <b-button-close v-on:click="$emit('del-needle', needle._id)" >&times;</b-button-close>
-        <p>The {{camel.color}} camel</p>
-        <div class="detail">is at position {{camel.position}}</div>
-        <div class="more-info">CAMEL SUMMARY</div>
     </div>
 </template>
 
