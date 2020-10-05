@@ -46,7 +46,7 @@ router.get('/api/users', function(req, res, next) {
     //User.find(function(err, users) {
         User.find().populate('projects').exec(function(err, users) {
         if (err) { return next(err); }
-        return res.json({'users': users });
+        return res.json({"users": users });
     })
 });
 
