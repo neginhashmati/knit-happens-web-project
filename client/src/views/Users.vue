@@ -4,7 +4,7 @@
       <h1>See what the community is up to!</h1>
       <b-row v-for="user in users" v-bind:key="user._id" class="useritem">
         <b-col cols="12" sm="6" md="4">
-          <a :href="'/users/' + user._id">{{ user.name }}: {{ user.projects }}</a>
+          <a :href="'/users' + user._id">{{ user.name }}: {{ user.projects }}</a>
         </b-col>
       </b-row>
     </b-container>
@@ -15,9 +15,6 @@ import { Api } from '@/Api'
 
 export default {
   name: 'users',
-  components: {
-
-  },
   mounted() {
     console.log('PAGE is loaded')
     // Load the real users from the server
