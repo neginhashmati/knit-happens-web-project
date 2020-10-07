@@ -35,7 +35,8 @@ export default {
   mounted() {
     console.log('PAGE is loaded')
     // Load the real projects from the server
-    Api.get('/projects')
+    // Api.get('/projects')
+    Api.get('users/' + localStorage.userID + '/projects')
       .then(response => {
         console.log(response.data)
         this.projects = response.data.projects
@@ -55,7 +56,8 @@ export default {
     return {
       message: '',
       projects: [],
-      text: ''
+      text: '',
+      userID: localStorage.userID
     }
   },
 
@@ -69,7 +71,10 @@ export default {
     createProject(input) {
       console.log('hello')
       console.log(input)
-      Api.post('/projects', input)
+      // Api.post('/projects', input)
+      // Api.post('users/' + localStorage.userID + '/projects', input)
+      Api.post('projects/' + localStorage.userID + '/projects', input)
+      // Api.post('/projects' + localStorage.userID, input)
         .catch(error => {
           console.error(error)
         })
