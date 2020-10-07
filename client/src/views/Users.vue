@@ -2,9 +2,10 @@
     <b-container>
       <p class="red">{{message}}</p>
       <h1>See what the community is up to!</h1>
-      <b-row v-for="user in users" v-bind:key="user._id" class="useritem">
-        <b-col cols="12" sm="6" md="4">
-          <a :href="'/users' + user._id">{{ user.name }}: {{ user.projects }}</a>
+      <br>
+      <b-row align-h="center">
+        <b-col cols="12" sm="6" md="6" lg="6" v-for="user in users" v-bind:key="user._id">
+          <user-item v-bind:user="user" v-on:display-user="displayUser"/>
         </b-col>
       </b-row>
     </b-container>
@@ -12,9 +13,13 @@
 
 <script>
 import { Api } from '@/Api'
+import UserItem from '@/components/UserItem.vue'
 
 export default {
   name: 'users',
+  components: {
+    UserItem
+  },
   mounted() {
     console.log('PAGE is loaded')
     // Load the real users from the server
@@ -47,10 +52,10 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  color: #2D3E4E;
+}
 .red {
     color: red;
-}
-.useritem  {
-  align-self: auto;
 }
 </style>
