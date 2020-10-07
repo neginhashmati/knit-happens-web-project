@@ -382,7 +382,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ab2408f9-68de-42ed-a3da-6a95183e0991",
+								"id": "1661ef21-c2e7-4edc-8e95-c4a5b0412408",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"var projectId = jsonData._id;\r",
@@ -477,7 +477,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Dominique's scarf\",\r\n    \"date\": \"2018-11-10 22:26:12.111Z\",\r\n    \"status\": \"Not started\",\r\n    \"priority\": \"Low\",\r\n    \"note\": \"For Dominique's birthday\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Dominique's scarf\",\r\n    \"date\": \"2018-11-10\",\r\n    \"selected\": null,\r\n    \"text\": \"\",\r\n    \"note\": \"For Dominique's birthday\"\r\n}",
 							"options": {
 								"raw": {}
 							}
@@ -542,6 +542,60 @@
 							"path": [
 								"api",
 								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all projects sorted ascending name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "035dc9e1-583e-46a1-bb2a-df44b31bfc9a",
+								"exec": [
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/projects?sort=name[asc]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "name[asc]"
+								}
 							]
 						}
 					},
@@ -753,7 +807,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"priority\": \"High\"\r\n}",
+							"raw": "{\r\n    \"priority\": \"High\",\r\n    \"$push\": {\"yarns\": \"{{yarn_id}}\"}\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -952,6 +1006,57 @@
 							"port": "3000",
 							"path": [
 								"api",
+								"yarns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create yarn for a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9ca81ca-6f9d-4a40-9779-5b6034230c20",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var yarnId = jsonData._id;\r",
+									"pm.environment.set(\"yarn_id\", yarnId);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pure merino\",\r\n\t\"source_name\": \"Adlibris\",\r\n\t\"cost\": 68.00,\r\n\t\"owned\": false,\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"natural\",\r\n    \"weight\": \"lace\",\r\n    \"fiber\": \"wool\",\r\n    \"note\": \"To be dyed purple\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/yarns/{{project_id}}/yarns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"yarns",
+								"{{project_id}}",
 								"yarns"
 							]
 						}
@@ -1355,6 +1460,57 @@
 							"port": "3000",
 							"path": [
 								"api",
+								"needles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create needle for a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "821dd837-6102-4174-8727-49c69a9e0076",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var needleId = jsonData._id;\r",
+									"pm.environment.set(\"needle_id\", needleId);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Dymondwood double tips\",\r\n\"source_name\": \"Hobbii.se\",\r\n\"cost\": 35.00,\r\n\"owned\": false,\r\n\"size\": \"3mm\",\r\n\"note\": \"zOMG, I need these!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/needles/{{project_id}}/needles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"needles",
+								"{{project_id}}",
 								"needles"
 							]
 						}
