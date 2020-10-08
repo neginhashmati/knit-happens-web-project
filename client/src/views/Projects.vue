@@ -55,7 +55,8 @@ export default {
     return {
       message: '',
       projects: [],
-      text: ''
+      text: '',
+      userID: localStorage.userID
     }
   },
 

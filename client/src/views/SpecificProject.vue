@@ -34,12 +34,11 @@
         </b-col>
         <b-col class="col-5 col-md-5 col-xl-5">
         <form class="form-inline">
-          <input v-model="statusNew" type="status" class="form-control" placeholder="New Password" required>
           <select class="custom-select">
             <option selected>Open this select menu</option>
-            <option value="1">Not Started</option>
-            <option value="2">In Progress</option>
-            <option value="3">Completed</option>
+            <option value="Not started">Not Started</option>
+            <option value="In progress">In Progress</option>
+            <option value="Completed">Completed</option>
           </select>
           <input type="submit" class="btn btn-info" @click="changeStatus">
         </form>
@@ -54,12 +53,11 @@
         </b-col>
         <b-col class="col-5 col-md-5 col-xl-5">
         <form class="form-inline">
-          <input v-model="priorityNew" type="priority" class="form-control" placeholder="New Password" required>
             <select class="custom-select">
               <option selected>Open this select menu</option>
-              <option value="1">Low</option>
-              <option value="2">Medium</option>
-              <option value="3">High</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           <input type="submit" class="btn btn-info" @click="changePriority">
         </form>
@@ -70,29 +68,29 @@
         <p>Note: </p>
         </b-col>
         <b-col class="col-3 col-md-3 col-xl-3">
-        <p>{{ project.note }}</p>
+          <p>{{ project.note }}</p>
         </b-col>
         <b-col class="col-5 col-md-5 col-xl-5">
-        <form class="form-inline">
-          <input v-model="noteNew" type="note" class="form-control" placeholder="" required>
-          <input type="submit" class="btn btn-info" @click="changeNote">
-        </form>
+          <form class="form-inline">
+            <b-form-textarea id="textarea" v-model="noteNew" placeholder="Enter something..." rows="3" max-rows="6"></b-form-textarea>
+            <input type="submit" class="btn btn-info" @click="changeNote">
+          </form>
+        </b-col>
+      </b-row>
+            <b-row>
+        <b-col cols="6" sm="6" md="6" v-for="yarn in yarns" v-bind:key="yarn._id">
+            <yarn-item v-bind:yarn="yarn" v-on:delete-yarn="deleteYarn"/>
+        </b-col>
+        <b-col cols="6" sm="6" md="6" v-for="needle in needles" v-bind:key="needle._id">
+            <needle-item v-bind:needle="needle" v-on:delete-needle="deleteNeedle"/>
         </b-col>
       </b-row>
       <b-row>
-      <b-col class="col-2 col-md-2 col-xl-2">
-        <p>Needles: </p>
+        <b-col cols="6" sm="6" md="6">
+          <new-yarn-form v-on:create-yarn="createYarn"/>
         </b-col>
-        <b-col cols="12" sm="6" md="4" v-for="needle in needles" v-bind:key="needle._id">
-          <needle-item v-bind:needle="needle" v-on:del-needle="deleteNeedle"/>
-        </b-col>
-      </b-row>
-      <b-row>
-      <b-col class="col-2 col-md-2 col-xl-2">
-        <p>Yarns: </p>
-        </b-col>
-        <b-col cols="12" sm="6" md="4" v-for="yarn in yarns" v-bind:key="yarn._id">
-          <yarn-item v-bind:project="project" v-on:del-yarn="deleteYarn"/>
+        <b-col cols="6" sm="6" md="6">
+          <new-needle-form v-on:create-needle="createNeedle"/>
         </b-col>
       </b-row>
     </b-container>
@@ -104,12 +102,18 @@
 import { Api } from '@/Api'
 import NeedleItem from '@/components/NeedleItem.vue'
 import YarnItem from '@/components/YarnItem.vue'
+import NewNeedleForm from '@/components/NewNeedleForm.vue'
+import NewYarnForm from '@/components/NewYarnForm.vue'
+// import EditProjectForm from '@/components/EditProject'
 
 export default {
   name: 'specificproject',
   components: {
     NeedleItem,
-    YarnItem
+    YarnItem,
+    NewYarnForm,
+    NewNeedleForm
+    // EditProjectForm
   },
 
   mounted() {
@@ -119,28 +123,108 @@ export default {
     Api.get('/projects/' + id)
       .then(response => {
         this.project = response.data
+        localStorage.projectID = this.project._id
         console.log('loaded project', this.project)
       })
-      .catch(error => {
-        this.message = error.message
-        console.error(error)
-        this.projects = []
-        // TODO: display error message
+    Api.get('/projects/' + id + '/needles')
+      .then(response => {
+        this.needles = response.data.needles
+        console.log(this.needles)
       })
-      .then(() => {
-        //   This code is always executed at the end. After success or failure.
+    Api.get('/projects/' + id + '/yarns')
+      .then(response => {
+        this.yarns = response.data.yarns
+        console.log(this.yarns)
       })
   },
   data() {
     return {
       message: 'none',
       project: null,
+      needles: [],
+      yarns: [],
+      nameNew: 'none',
+      statusNew: 'none',
+      priorityNew: 'none',
+      noteNew: 'none',
       userName: localStorage.userName,
-      userID: localStorage.userID
+      userID: localStorage.userID,
+      projectID: localStorage.projectID
     }
   },
   methods: {
-
+    changeName() {
+      Api.patch('/projects/' + localStorage.projectID, {
+        name: this.nameNew
+      })
+        .then((response) => {
+          console.log(response)
+          alert('Project name has been changed')
+        }, (error) => {
+          console.log(error)
+        })
+    },
+    changeStatus() {
+      Api.patch('/projects/' + localStorage.projectID, {
+        status: this.statusNew
+      })
+        .then((response) => {
+          console.log(response)
+          alert('Project status has been changed')
+        }, (error) => {
+          console.log(error)
+        })
+    },
+    changePriority() {
+      Api.patch('/projects/' + localStorage.projectID, {
+        priority: this.priorityNew
+      })
+        .then((response) => {
+          console.log(response)
+          alert('Project priority has been changed')
+        }, (error) => {
+          console.log(error)
+        })
+    },
+    changeNote() {
+      Api.patch('/projects/' + localStorage.projectID, {
+        note: this.noteNew
+      })
+        .then((response) => {
+          console.log(response)
+          alert('Project note has been changed')
+        }, (error) => {
+          console.log(error)
+        })
+    },
+    deleteNeedle(id) {
+      Api.delete(`/needles/${id}`)
+        .catch(error => {
+          console.error(error)
+        })
+    },
+    deleteYarn(id) {
+      Api.delete(`/yarns/${id}`)
+        .catch(error => {
+          console.error(error)
+        })
+    },
+    createNeedle(input) {
+      console.log('hello')
+      console.log(input)
+      Api.post('/projects' + localStorage.projectID + '/needles/', input)
+        .catch(error => {
+          console.error(error)
+        })
+    },
+    createYarn(input) {
+      console.log('hello')
+      console.log(input)
+      Api.post('/projects' + localStorage.projectID + '/needles/', input)
+        .catch(error => {
+          console.error(error)
+        })
+    }
   }
 }
 </script>

@@ -124,6 +124,11 @@ export default {
 </script>
 
 <style scoped>
+
+.grey-box {
+  background-color: #E8ECEB;
+}
+
 p {
   line-height: 1rem;
 }
