@@ -1,7 +1,6 @@
 <template>
-    <div v-if="projects !== null" class="user">
+    <div v-if="projects != null" class="user">
       <p>{{user.name}}</p>
-      <!-- Create check/error handling for users with empty projects (no projects) -->
       <div class="detail">Projects: {{user.projects[user.projects.length-1].name}}</div>
     </div>
     <div v-else class="user">
@@ -30,14 +29,18 @@ p {
 }
 @media (max-width: 600px) {
   .detail {
-    color: #2D3E4E;
     font-size: 16pt;
-    /* display: none; */
   }
+}
+
+.detail {
+  font-display: #2D3E4E;
 }
 
 .user {
   border-style: solid;
   border-color:  #E09E50;
+  margin-top: 10pt;
+  margin-bottom: 10pt;
 }
 </style>
