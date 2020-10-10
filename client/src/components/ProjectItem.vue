@@ -3,9 +3,10 @@
         <b-button-close v-on:click="$emit('delete-project', project._id)" >&times;</b-button-close>
         <b-button v-on:click="$emit('load-project', project._id)">Edit</b-button>
         <p>Name: {{project.name}}</p>
-        <div class="detail">Notes: {{project.note}}</div>
-        <div class="detail">Status: {{project.statusOptions}}</div>
-        <div class="detail">Priority: {{project.priorityOptions}}</div>
+        <!-- <div class="detail">Date: {{project.date}}</div> -->
+        <!-- <div class="detail">Notes: {{project.note}}</div> -->
+        <div class="detail">Status: {{project.status}}</div>
+        <div class="detail">Priority: {{project.priority}}</div>
     </div>
 </template>
 

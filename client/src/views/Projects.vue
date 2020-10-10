@@ -8,9 +8,9 @@
         <b-col cols="15">
           <project-form v-on:create-project="createProject"/>
         </b-col>
-        <b-col cols="4">
+        <!-- <b-col cols="4">
           <b-button v-on:click="deleteAllProjects">Delete All Projects</b-button>
-        </b-col>
+        </b-col> -->
       </b-row>
       <h1>My projects:</h1>
       <b-row align-h="center">
@@ -36,20 +36,7 @@ export default {
     console.log('PAGE is loaded')
     // Load the real projects from the server
     // Api.get('/projects')
-    Api.get('users/' + localStorage.userID + '/projects')
-      .then(response => {
-        console.log(response.data)
-        this.projects = response.data.projects
-      })
-      .catch(error => {
-        this.message = error.message
-        console.error(error)
-        this.projects = []
-        // TODO: display error message
-      })
-      .then(() => {
-        //   This code is always executed at the end. After success or failure.
-      })
+    this.loadAllProjects()
   },
 
   data() {
@@ -64,6 +51,10 @@ export default {
   methods: {
     deleteProject(id) {
       Api.delete(`/projects/${id}`)
+        .then(response => {
+          console.log(response)
+          this.loadAllProjects()
+        })
         .catch(error => {
           console.error(error)
         })
@@ -71,10 +62,13 @@ export default {
     createProject(input) {
       console.log('hello')
       console.log(input)
-      // Api.post('/projects', input)
-      // Api.post('users/' + localStorage.userID + '/projects', input)
       Api.post('projects/' + localStorage.userID + '/projects', input)
-      // Api.post('/projects' + localStorage.userID, input)
+        .then(response => {
+          console.log(response)
+          // var newProject = response.data
+          // this.projects.push(newProject)
+          this.loadAllProjects()
+        })
         .catch(error => {
           console.error(error)
         })
@@ -88,6 +82,22 @@ export default {
     },
     loadProject(id) {
       location.href = '/specificproject/' + id
+    },
+    loadAllProjects() {
+      Api.get('users/' + localStorage.userID + '/projects')
+        .then(response => {
+          console.log(response.data)
+          this.projects = response.data.projects
+        })
+        .catch(error => {
+          this.message = error.message
+          console.error(error)
+          this.projects = []
+        // TODO: display error message
+        })
+        .then(() => {
+        //   This code is always executed at the end. After success or failure.
+        })
     }
   }
 }
