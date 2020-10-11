@@ -120,22 +120,15 @@ export default {
     var id = this.$route.params.id
     console.log('PAGE is loaded', id)
     // Load the real projects from the server
-    Api.get('/projects/' + id)
+    /* Api.get('/projects/' + id)
       .then(response => {
         this.project = response.data
         localStorage.projectID = this.project._id
         console.log('loaded project', this.project)
-      })
-    Api.get('/projects/' + id + '/needles')
-      .then(response => {
-        this.needles = response.data.needles
-        console.log(this.needles)
-      })
-    Api.get('/projects/' + id + '/yarns')
-      .then(response => {
-        this.yarns = response.data.yarns
-        console.log(this.yarns)
-      })
+      }) */
+    this.loadSpecificProject()
+    this.loadAllNeedles()
+    this.loadAllYarns()
   },
   data() {
     return {
@@ -199,12 +192,20 @@ export default {
     },
     deleteNeedle(id) {
       Api.delete(`/needles/${id}`)
+        .then(response => {
+          console.log(response)
+          this.loadAllNeedles()
+        })
         .catch(error => {
           console.error(error)
         })
     },
     deleteYarn(id) {
       Api.delete(`/yarns/${id}`)
+        .then(response => {
+          console.log(response)
+          this.loadAllYarns()
+        })
         .catch(error => {
           console.error(error)
         })
@@ -223,6 +224,46 @@ export default {
       Api.post('/yarns/' + localStorage.projectID + '/yarns', input)
         .catch(error => {
           console.error(error)
+        })
+    },
+    loadSpecificProject() {
+      Api.get('/projects/' + localStorage.projectID)
+        .then(response => {
+          this.project = response.data
+          localStorage.projectID = this.project._id
+          console.log('loaded project', this.project)
+        })
+    },
+    loadAllNeedles() {
+      Api.get('projects/' + localStorage.projectID + '/needles')
+        .then(response => {
+          console.log(response.data)
+          this.needles = response.data.needles
+        })
+        .catch(error => {
+          this.message = error.message
+          console.error(error)
+          this.projects = []
+        // TODO: display error message
+        })
+        .then(() => {
+        //   This code is always executed at the end. After success or failure.
+        })
+    },
+    loadAllYarns() {
+      Api.get('projects/' + localStorage.projectID + '/yarns')
+        .then(response => {
+          console.log(response.data)
+          this.yarns = response.data.yarns
+        })
+        .catch(error => {
+          this.message = error.message
+          console.error(error)
+          this.projects = []
+        // TODO: display error message
+        })
+        .then(() => {
+        //   This code is always executed at the end. After success or failure.
         })
     }
   }
