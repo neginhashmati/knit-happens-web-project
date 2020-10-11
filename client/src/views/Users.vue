@@ -25,8 +25,9 @@ export default {
     // Load the real users from the server
     Api.get('/users')
       .then(response => {
-        console.log(response.data)
         this.users = response.data.users
+        localStorage.userID = this.users._id
+        console.log('loaded user', this.users)
       })
       .catch(error => {
         this.message = error.message
@@ -42,11 +43,18 @@ export default {
     return {
       users: [],
       message: '',
-      text: ''
+      text: '',
+      userID: localStorage.userID,
+      projects: []
     }
   },
   methods: {
-
+    displayUser() {
+      Api.get('users/' + localStorage.userID + '/projects')
+        .catch(error => {
+          console.error(error)
+        })
+    }
   }
 }
 </script>
