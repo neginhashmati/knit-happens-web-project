@@ -1,24 +1,14 @@
 <template>
   <div>
-    <div>
-      <p>Name: </p>
-      <p>Source: </p>
-      <p>Size: </p>
-      <p>Cost: </p>
-      <p>Owned: </p>
-      <p>Note: </p>
-    </div>
-    <div>
-      <form class="form-group">
-        <input v-model="input.needleNameReg" class="form-control" placeholder="Name" required>
-        <input v-model="input.needleSourceReg" class="form-control" placeholder="Source name">
-        <input v-model="input.needleSizeReg" class="form-control" placeholder="Needle size">
-        <input v-model="input.needleCostReg" class="form-control" placeholder="Cost">
-        <input v-model="input.needleOwnedReg" type="checkbox" true-value="yes" false-value="no">
-        <b-form-textarea id="textarea" v-model="input.needleNoteReg" placeholder="Enter something..." rows="3" max-rows="6"></b-form-textarea>
-        <b-button v-on:click="$emit('create-needle', input)">Add New needle</b-button>
-      </form>
-    </div>
+    <form class="form-group">
+      <input v-model="input.name" class="form-control" placeholder="Name" required>
+      <input v-model="input.source_name" class="form-control" placeholder="Source name">
+      <input v-model="input.size" class="form-control" placeholder="Needle size">
+      <input v-model="input.cost" class="form-control" placeholder="Cost">
+      <input v-model="input.owned" type="checkbox" true-value="yes" false-value="no">
+      <b-form-textarea id="textarea" v-model="input.note" placeholder="Enter something..." rows="3" max-rows="6"></b-form-textarea>
+      <b-button v-on:click="$emit('create-needle', input)">Add New needle</b-button>
+    </form>
   </div>
 </template>
 
@@ -29,12 +19,12 @@ export default {
   data() {
     return {
       input: {
-        needleNameReg: '',
-        needleSourceReg: null,
-        needleCostReg: null,
-        needleSizeReg: null,
-        needleOwnedReg: false,
-        needleNoteReg: null
+        name: '',
+        source_name: null,
+        cost: null,
+        size: null,
+        owned: false,
+        note: null
       },
       userName: localStorage.userName,
       userID: localStorage.userID

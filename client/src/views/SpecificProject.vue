@@ -12,7 +12,7 @@
         </b-col>
         <b-col class="col-5 col-md-5 col-xl-5">
         <form class="form-inline">
-          <input v-model="nameNew" type="name" class="form-control" placeholder="New name" required>
+          <input v-model="nameNew" type="name" class="form-control" placeholder="New name">
           <input type="submit" class="btn btn-info" @click="changeName">
         </form>
         </b-col>
@@ -34,7 +34,7 @@
         </b-col>
         <b-col class="col-5 col-md-5 col-xl-5">
         <form class="form-inline">
-          <select class="custom-select">
+          <select class="custom-select"  v-model="statusNew" >
             <option selected>Open this select menu</option>
             <option value="Not started">Not Started</option>
             <option value="In progress">In Progress</option>
@@ -53,7 +53,7 @@
         </b-col>
         <b-col class="col-5 col-md-5 col-xl-5">
         <form class="form-inline">
-            <select class="custom-select">
+            <select class="custom-select" v-model="priorityNew" >
               <option selected>Open this select menu</option>
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
@@ -77,7 +77,7 @@
           </form>
         </b-col>
       </b-row>
-            <b-row>
+      <b-row>
         <b-col cols="6" sm="6" md="6" v-for="yarn in yarns" v-bind:key="yarn._id">
             <yarn-item v-bind:yarn="yarn" v-on:delete-yarn="deleteYarn"/>
         </b-col>
@@ -212,7 +212,7 @@ export default {
     createNeedle(input) {
       console.log('hello')
       console.log(input)
-      Api.post('/projects' + localStorage.projectID + '/needles/', input)
+      Api.post('/needles/' + localStorage.projectID + '/needles', input)
         .catch(error => {
           console.error(error)
         })
@@ -220,7 +220,7 @@ export default {
     createYarn(input) {
       console.log('hello')
       console.log(input)
-      Api.post('/projects' + localStorage.projectID + '/needles/', input)
+      Api.post('/yarns/' + localStorage.projectID + '/yarns', input)
         .catch(error => {
           console.error(error)
         })
