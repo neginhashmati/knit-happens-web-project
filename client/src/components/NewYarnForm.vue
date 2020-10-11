@@ -25,8 +25,7 @@
         <label>Yarn cost</label>
           <b-form-input v-model="input.cost" size="sm" class="mt-3" placeholder="Enter the cost of the yarn"></b-form-input>
         <label>Do you own the yarn?</label>
-        <b-form-select v-model="input.owned" :options="options"  size="sm"></b-form-select>
-        <div class="mt-3">Selected: <strong>{{ input.owned }}</strong></div>
+          <b-form-select v-model="input.owned" :options="options"  size="sm"></b-form-select>
         <label>Yarn notes</label>
           <b-form-textarea
               id="textarea"
@@ -35,8 +34,7 @@
               rows="3"
               max-rows="6"
           ></b-form-textarea>
-
-        <b-button v-on:click="$bvModal.hide('modal-create-needle');$emit('create-needle', input)">Add New Yarn</b-button>
+        <b-button v-on:click="$bvModal.hide('modal-create-yarn');$emit('create-yarn', input)">Add New Yarn</b-button>
       </form>
     </b-modal>
   </div>

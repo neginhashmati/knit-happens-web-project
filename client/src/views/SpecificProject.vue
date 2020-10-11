@@ -1,20 +1,26 @@
 <template>
   <b-container class="col-12 col-md-10 col-xl-8 light-box">
-    <img src="../assets/cat-with-yarn.png">
     <h3>{{project.name}}</h3>
     <b-container class="inner-box">
       <b-row>
         <b-col class="col-2 col-md-2 col-xl-2">
-        <p>Project name: </p>
+          <p>Project name: </p>
         </b-col>
         <b-col class="col-3 col-md-3 col-xl-3">
-        <p>{{ project.name }}</p>
+          <p>{{ project.name }}</p>
         </b-col>
         <b-col class="col-5 col-md-5 col-xl-5">
-        <form class="form-inline">
-          <input v-model="nameNew" type="name" class="form-control" placeholder="New name">
-          <input type="submit" class="btn btn-info" @click="changeName">
-        </form>
+          <b-form inline>
+            <label class="sr-only">New Name</label>
+            <b-input
+              v-model="nameNew"
+              type="name"
+              class="form-control"
+              size="sm"
+              placeholder="New name"
+            ></b-input>
+            <b-button type="submit" size="sm" variant="info" @click="changeName">Submit</b-button>
+          </b-form>
         </b-col>
       </b-row>
       <b-row>
@@ -33,15 +39,18 @@
         <p>{{ project.status }}</p>
         </b-col>
         <b-col class="col-5 col-md-5 col-xl-5">
-        <form class="form-inline">
-          <select class="custom-select"  v-model="statusNew" >
-            <option selected>Open this select menu</option>
-            <option value="Not started">Not Started</option>
-            <option value="In progress">In Progress</option>
-            <option value="Completed">Completed</option>
-          </select>
-          <input type="submit" class="btn btn-info" @click="changeStatus">
-        </form>
+          <b-form inline>
+            <b-form-select
+            v-model="statusNew"
+            :options="statusOptions"
+            size="sm"
+            ></b-form-select>
+            <b-button
+            type="submit"
+            variant="info"
+            size="sm"
+            @click="changeStatus">Submit</b-button>
+          </b-form>
         </b-col>
       </b-row>
       <b-row>
@@ -52,15 +61,18 @@
         <p>{{ project.priority }}</p>
         </b-col>
         <b-col class="col-5 col-md-5 col-xl-5">
-        <form class="form-inline">
-            <select class="custom-select" v-model="priorityNew" >
-              <option selected>Open this select menu</option>
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
-          <input type="submit" class="btn btn-info" @click="changePriority">
-        </form>
+        <b-form inline>
+            <b-form-select
+            v-model="priorityNew"
+            :options="priorityOptions"
+            size="sm"
+            ></b-form-select>
+            <b-button
+            type="submit"
+            variant="info"
+            size="sm"
+            @click="changeStatus">Submit</b-button>
+          </b-form>
         </b-col>
       </b-row>
       <b-row>
@@ -72,24 +84,37 @@
         </b-col>
         <b-col class="col-5 col-md-5 col-xl-5">
           <form class="form-inline">
-            <b-form-textarea id="textarea" v-model="noteNew" placeholder="Enter something..." rows="3" max-rows="6"></b-form-textarea>
-            <input type="submit" class="btn btn-info" @click="changeNote">
+            <b-form-textarea
+            id="textarea"
+            v-model="noteNew"
+            placeholder="Edit note"
+            rows="3"
+            max-rows="6"
+            size="sm"
+            ></b-form-textarea>
+            <b-button
+            type="submit"
+            variant="info"
+            size="sm"
+            @click="changeNote">Submit</b-button>
           </form>
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols="6" sm="6" md="6" v-for="yarn in yarns" v-bind:key="yarn._id">
+        <h3> Yarns </h3>
+        <b-col cols="6" sm="5" md="5" v-for="yarn in yarns" v-bind:key="yarn._id">
             <yarn-item v-bind:yarn="yarn" v-on:delete-yarn="deleteYarn"/>
         </b-col>
-        <b-col cols="6" sm="6" md="6" v-for="needle in needles" v-bind:key="needle._id">
+        <h3> Needles </h3>
+        <b-col cols="6" sm="5" md="5" v-for="needle in needles" v-bind:key="needle._id">
             <needle-item v-bind:needle="needle" v-on:delete-needle="deleteNeedle"/>
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols="6" sm="6" md="6">
+        <b-col cols="6" sm="5" md="5">
           <new-yarn-form v-on:create-yarn="createYarn"/>
         </b-col>
-        <b-col cols="6" sm="6" md="6">
+        <b-col cols="6" sm="5" md="5">
           <new-needle-form v-on:create-needle="createNeedle"/>
         </b-col>
       </b-row>
@@ -119,13 +144,7 @@ export default {
   mounted() {
     var id = this.$route.params.id
     console.log('PAGE is loaded', id)
-    // Load the real projects from the server
-    /* Api.get('/projects/' + id)
-      .then(response => {
-        this.project = response.data
-        localStorage.projectID = this.project._id
-        console.log('loaded project', this.project)
-      }) */
+
     this.loadSpecificProject()
     this.loadAllNeedles()
     this.loadAllYarns()
@@ -142,7 +161,19 @@ export default {
       noteNew: 'none',
       userName: localStorage.userName,
       userID: localStorage.userID,
-      projectID: localStorage.projectID
+      projectID: localStorage.projectID,
+      statusOptions: [
+        { value: null, text: 'Please select a status', disabled: true },
+        { value: 'Not started', text: 'Not started' },
+        { value: 'In progress', text: 'In progress' },
+        { value: 'Completed', text: 'Completed' }
+      ],
+      priorityOptions: [
+        { value: null, text: 'Please select a priority', disabled: true },
+        { value: 'Low', text: 'Low' },
+        { value: 'Medium', text: 'Medium' },
+        { value: 'High', text: 'Highd' }
+      ]
     }
   },
   methods: {
@@ -211,9 +242,15 @@ export default {
         })
     },
     createNeedle(input) {
-      console.log('hello')
+      console.log('Doing stuff')
       console.log(input)
       Api.post('/needles/' + localStorage.projectID + '/needles', input)
+        .then(response => {
+          console.log(response)
+          // var newProject = response.data
+          // this.projects.push(newProject)
+          this.loadAllNeedles()
+        })
         .catch(error => {
           console.error(error)
         })
@@ -222,6 +259,12 @@ export default {
       console.log('hello')
       console.log(input)
       Api.post('/yarns/' + localStorage.projectID + '/yarns', input)
+        .then(response => {
+          console.log(response)
+          // var newProject = response.data
+          // this.projects.push(newProject)
+          this.loadAllYarns()
+        })
         .catch(error => {
           console.error(error)
         })
