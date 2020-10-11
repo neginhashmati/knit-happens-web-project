@@ -1,7 +1,16 @@
 <template>
     <div>
-        <!-- <b-button-close v-on:click="$emit('del-project', project._id)" >&times;</b-button-close> -->
-        <!-- <b-button v-on:click="$emit('load-project', project._id)">Edit</b-button> -->
+      <b-button v-b-modal.modal-create-project>Create New Project</b-button>
+
+      <b-modal
+      id="modal-create-project"
+      ref="modal"
+      title="New Project"
+      ok-disabled
+      cancel-disabled
+      hide-footer
+    >
+        <!-- <form ref="form" @submit.stop.prevent="handleSubmit"> -->
         <form>
         <label>Project Name</label>
         <b-form-input v-model="input.name" placeholder="Enter project name"></b-form-input>
@@ -19,13 +28,14 @@
         ></b-form-textarea>
 
         <label>Priority</label>
-        <b-form-select v-model="input.selected" :options="priorityOptions"></b-form-select>
+        <b-form-select v-model="input.priority" :options="priorityOptions"></b-form-select>
 
         <label>Status</label>
-        <b-form-select v-model="input.selected" :options="statusOptions" size="sm"></b-form-select>
+        <b-form-select v-model="input.status" :options="statusOptions" size="sm"></b-form-select>
 
-        <b-button v-on:click="$emit('create-project', input)">Create New Project</b-button>
+        <b-button v-on:click="$bvModal.hide('modal-create-project');$emit('create-project', input)">Create New Project</b-button>
         </form>
+      </b-modal>
     </div>
 </template>
 
@@ -40,19 +50,18 @@ export default {
         date: null,
         note: null,
         name: null,
-        selected: null
+        priority: null,
+        status: null
       },
       priorityOptions: [
-        { value: null, text: 'Please select an option' },
-        { value: 'a', text: 'Low' },
-        { value: 'b', text: 'Medium' },
-        { value: 'd', text: 'High' }
+        { value: 'Low', text: 'Low' },
+        { value: 'Medium', text: 'Medium' },
+        { value: 'High', text: 'High' }
       ],
       statusOptions: [
-        { value: null, text: 'Please select an option' },
-        { value: 'a', text: 'Not Started' },
-        { value: 'b', text: 'In Progress' },
-        { value: 'd', text: 'Completed' }
+        { value: 'Not started', text: 'Not Started' },
+        { value: 'In progress', text: 'In Progress' },
+        { value: 'Completed', text: 'Completed' }
       ]
     }
   },
