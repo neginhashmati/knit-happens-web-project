@@ -50,18 +50,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"dominique@gmail.com\",\r\n    \"password\": \"cakes\",\r\n    \"name\": \"Dominique\",\r\n    \"projects\": [],\r\n    \"materials\": []\r\n}",
+							"raw": "{\r\n    \"email\": \"dominique@gmail.com\",\r\n    \"password\": \"cakes\",\r\n    \"name\": \"Dominique\",\r\n    \"projects\": []\r\n}",
 							"options": {
 								"raw": {}
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users",
-							"protocol": "http",
+							"raw": "{{host}}/api/users",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users"
@@ -104,12 +102,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/users",
-							"protocol": "http",
+							"raw": "{{host}}/api/users",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users"
@@ -158,12 +154,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/users/{{user_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -221,12 +215,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/users/{{user_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -282,12 +274,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/users/{{user_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -319,12 +309,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/users/{{user_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -356,12 +344,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users",
-							"protocol": "http",
+							"raw": "{{host}}/api/users",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users"
@@ -425,12 +411,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/projects",
-							"protocol": "http",
+							"raw": "{{host}}/api/projects",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"projects"
@@ -477,18 +461,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Dominique's scarf\",\r\n    \"date\": \"2018-11-10\",\r\n    \"selected\": null,\r\n    \"text\": \"\",\r\n    \"note\": \"For Dominique's birthday\"\r\n}",
+							"raw": "{\r\n    \"name\": \"harry potter scarf\",\r\n    \"date\": \"2018-11-10\",\r\n    \"selected\": null,\r\n    \"text\": \"\",\r\n    \"note\": \"For Dominique's birthday\"\r\n}",
 							"options": {
 								"raw": {}
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/projects/{{user_id}}/projects",
-							"protocol": "http",
+							"raw": "{{host}}/api/projects/{{user_id}}/projects",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"projects",
@@ -533,12 +515,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/projects",
-							"protocol": "http",
+							"raw": "{{host}}/api/projects",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"projects"
@@ -581,12 +561,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/projects?sort=name[asc]",
-							"protocol": "http",
+							"raw": "{{host}}/api/projects?sort=name[asc]",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"projects"
@@ -642,12 +620,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/projects/{{project_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/projects/{{project_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"projects",
@@ -691,12 +667,10 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}/projects",
-							"protocol": "http",
+							"raw": "{{host}}/api/users/{{user_id}}/projects",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -754,12 +728,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/projects/{{project_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/projects/{{project_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"projects",
@@ -815,12 +787,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/projects/{{project_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/projects/{{project_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"projects",
@@ -852,12 +822,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/projects/{{project_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/projects/{{project_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"projects",
@@ -889,12 +857,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users/{{user_id}}/projects",
-							"protocol": "http",
+							"raw": "{{host}}/api/users/{{user_id}}/projects",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -927,12 +893,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/projects",
-							"protocol": "http",
+							"raw": "{{host}}/api/projects",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"projects"
@@ -998,12 +962,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/yarns",
-							"protocol": "http",
+							"raw": "{{host}}/api/yarns",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"yarns"
@@ -1047,12 +1009,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/yarns/{{project_id}}/yarns",
-							"protocol": "http",
+							"raw": "{{host}}/api/yarns/{{project_id}}/yarns",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"yarns",
@@ -1103,12 +1063,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/yarns",
-							"protocol": "http",
+							"raw": "{{host}}/api/yarns",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"yarns"
@@ -1164,12 +1122,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/yarns/{{yarn_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/yarns/{{yarn_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"yarns",
@@ -1219,12 +1175,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/yarns/5f5b219557601403d8e68953",
-							"protocol": "http",
+							"raw": "{{host}}/api/yarns/5f5b219557601403d8e68953",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"yarns",
@@ -1283,12 +1237,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/yarns/{{yarn_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/yarns/{{yarn_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"yarns",
@@ -1346,12 +1298,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/yarns/{{yarn_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/yarns/{{yarn_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"yarns",
@@ -1383,12 +1333,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/yarns/{{yarn_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/yarns/{{yarn_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"yarns",
@@ -1452,12 +1400,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/needles",
-							"protocol": "http",
+							"raw": "{{host}}/api/needles",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"needles"
@@ -1501,12 +1447,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/needles/{{project_id}}/needles",
-							"protocol": "http",
+							"raw": "{{host}}/api/needles/{{project_id}}/needles",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"needles",
@@ -1557,12 +1501,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/needles",
-							"protocol": "http",
+							"raw": "{{host}}/api/needles",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"needles"
@@ -1618,12 +1560,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/needles/{{needle_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/needles/{{needle_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"needles",
@@ -1673,12 +1613,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/needles/5f5b219557601403d8e68953",
-							"protocol": "http",
+							"raw": "{{host}}/api/needles/5f5b219557601403d8e68953",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"needles",
@@ -1736,12 +1674,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/needles/{{needle_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/needles/{{needle_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"needles",
@@ -1796,12 +1732,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/needles/{{needle_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/needles/{{needle_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"needles",
@@ -1833,12 +1767,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/needles/{{needle_id}}",
-							"protocol": "http",
+							"raw": "{{host}}/api/needles/{{needle_id}}",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"needles",
@@ -1850,6 +1782,35 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b6ca3f43-d4ec-4c93-9031-99d93bf8fc5c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "579a8047-769b-4b96-8e34-15f5214c1dc3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "968f0f49-c82d-4241-84b1-ec0bb937ae40",
+			"key": "host",
+			"value": "{{host}}"
 		}
 	],
 	"protocolProfileBehavior": {}
