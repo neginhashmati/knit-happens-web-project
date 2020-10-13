@@ -82,6 +82,7 @@ export default {
     },
     loadProject(id) {
       location.href = '/specificproject/' + id
+      localStorage.projectID = this.project._id
     },
     loadAllProjects() {
       Api.get('users/' + localStorage.userID + '/projects')
