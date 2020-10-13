@@ -26,7 +26,6 @@ export default {
     Api.get('/users')
       .then(response => {
         this.users = response.data.users
-        localStorage.userID = this.users._id
         console.log('loaded user', this.users)
       })
       .catch(error => {
@@ -49,8 +48,8 @@ export default {
     }
   },
   methods: {
-    displayUser() {
-      Api.get('users/' + localStorage.userID + '/projects')
+    displayUser(id) {
+      Api.get('users/' + `${id}` + '/projects')
         .catch(error => {
           console.error(error)
         })
