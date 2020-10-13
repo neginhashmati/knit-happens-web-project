@@ -6,10 +6,10 @@
     <p>Create anything you can imagine.</p>
     <br>
     <div class="button">
-      <b-button pill b-link v-bind:to="'projects'">See your projects</b-button>
+      <b-button pill variant="warning" b-link v-bind:to="'projects'">See your projects</b-button>
       <br>
       <br>
-      <b-button pill b-link v-bind:to="'account'">Go to your account</b-button>
+      <b-button pill variant="warning" b-link v-bind:to="'account'">Go to your account</b-button>
     </div>
   </div>
 </template>
@@ -41,10 +41,6 @@ export default {
 
 <style scoped>
 p {
-  font-size: 25px;
-}
-
-.button {
-  color:  #f6be7b !important;
+  font-size: 20px;
 }
 </style>

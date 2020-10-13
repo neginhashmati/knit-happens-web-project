@@ -7,8 +7,7 @@
     <br>
     <h2>Our team</h2>
     <b-row align-h="center">
-      <br>
-        <b-col cols="12" sm="2" md="2">
+        <b-col cols="12" sm="4" md="2">
           <h3>Dominique Deramat</h3>
           <img src="../assets/dom-avatar.jpeg" alt="doms avatar">
           <p>About Dominique:</p>
@@ -31,7 +30,6 @@ export default {
 
 <style scoped>
 img {
-  width: 200px;
   max-width: 100%;
   height: auto;
 }
