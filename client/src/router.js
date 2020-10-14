@@ -7,6 +7,7 @@ import Projects from './views/Projects.vue'
 import SpecificProject from './views/SpecificProject.vue'
 import Users from './views/Users.vue'
 import About from './views/About'
+import LoggedOut from './views/LoggedOut'
 
 Vue.use(Router)
 
@@ -16,8 +17,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'login',
+      component: Login
     },
     {
       path: '/account',
@@ -25,9 +26,9 @@ export default new Router({
       component: Account
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login
+      path: '/home',
+      name: 'home',
+      component: Home
     },
     {
       path: '/projects',
@@ -48,6 +49,11 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/loggedout',
+      name: 'loggedout',
+      component: LoggedOut
     }
   ]
 })
