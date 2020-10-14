@@ -142,8 +142,8 @@ export default {
   },
 
   mounted() {
-    var id = this.$route.params.id
-    console.log('PAGE is loaded', id)
+    this.projectID = this.$route.params.id
+    console.log('PAGE is loaded', this.projectID)
 
     this.loadSpecificProject()
     this.loadAllNeedles()
@@ -161,7 +161,7 @@ export default {
       noteNew: 'none',
       userName: localStorage.userName,
       userID: localStorage.userID,
-      projectID: localStorage.projectID,
+      projectID: null,
       statusOptions: [
         { value: null, text: 'Please select a status', disabled: true },
         { value: 'Not started', text: 'Not started' },
@@ -178,7 +178,7 @@ export default {
   },
   methods: {
     changeName() {
-      Api.patch('/projects/' + localStorage.projectID, {
+      Api.patch('/projects/' + this.projectID, {
         name: this.nameNew
       })
         .then((response) => {
@@ -189,7 +189,7 @@ export default {
         })
     },
     changeStatus() {
-      Api.patch('/projects/' + localStorage.projectID, {
+      Api.patch('/projects/' + this.projectID, {
         status: this.statusNew
       })
         .then((response) => {
@@ -200,7 +200,7 @@ export default {
         })
     },
     changePriority() {
-      Api.patch('/projects/' + localStorage.projectID, {
+      Api.patch('/projects/' + this.projectID, {
         priority: this.priorityNew
       })
         .then((response) => {
@@ -211,7 +211,7 @@ export default {
         })
     },
     changeNote() {
-      Api.patch('/projects/' + localStorage.projectID, {
+      Api.patch('/projects/' + this.projectID, {
         note: this.noteNew
       })
         .then((response) => {
@@ -244,7 +244,7 @@ export default {
     createNeedle(input) {
       console.log('Doing stuff')
       console.log(input)
-      Api.post('/needles/' + localStorage.projectID + '/needles', input)
+      Api.post('/needles/' + this.projectID + '/needles', input)
         .then(response => {
           console.log(response)
           // var newProject = response.data
@@ -258,7 +258,7 @@ export default {
     createYarn(input) {
       console.log('hello')
       console.log(input)
-      Api.post('/yarns/' + localStorage.projectID + '/yarns', input)
+      Api.post('/yarns/' + this.projectID + '/yarns', input)
         .then(response => {
           console.log(response)
           // var newProject = response.data
@@ -270,15 +270,15 @@ export default {
         })
     },
     loadSpecificProject() {
-      Api.get('/projects/' + localStorage.projectID)
+      Api.get('/projects/' + this.projectID)
         .then(response => {
           this.project = response.data
-          localStorage.projectID = this.project._id
+          this.projectID = this.project._id
           console.log('loaded project', this.project)
         })
     },
     loadAllNeedles() {
-      Api.get('projects/' + localStorage.projectID + '/needles')
+      Api.get('projects/' + this.projectID + '/needles')
         .then(response => {
           console.log(response.data)
           this.needles = response.data.needles
@@ -294,7 +294,7 @@ export default {
         })
     },
     loadAllYarns() {
-      Api.get('projects/' + localStorage.projectID + '/yarns')
+      Api.get('projects/' + this.projectID + '/yarns')
         .then(response => {
           console.log(response.data)
           this.yarns = response.data.yarns

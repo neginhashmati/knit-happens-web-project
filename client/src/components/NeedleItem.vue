@@ -28,6 +28,7 @@ export default {
 
 .card {
   margin-bottom: 5px;
+  width: 200px;
   border: 2px solid #000000;
   background-color: white;
   text-align: left;
