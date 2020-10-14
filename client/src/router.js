@@ -8,6 +8,7 @@ import SpecificProject from './views/SpecificProject.vue'
 import Users from './views/Users.vue'
 import About from './views/About'
 import LoggedOut from './views/LoggedOut'
+import DeleteUsers from './views/DeleteUsers'
 
 Vue.use(Router)
 
@@ -54,6 +55,11 @@ export default new Router({
       path: '/loggedout',
       name: 'loggedout',
       component: LoggedOut
+    },
+    {
+      path: '/deleteusers',
+      name: '/deleteusers',
+      component: DeleteUsers
     }
   ]
 })

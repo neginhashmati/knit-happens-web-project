@@ -46,6 +46,7 @@
   color: #000000;
   background-color: #E8ECEB;
 }
+
 .navbar.navbar-dark.bg-dark {
     background-color: #bddbda!important;
  }

@@ -18,6 +18,10 @@ export default {
   methods: {
     displayUser() {
       console.log('display-user with id:' + this.user._id)
+    },
+    deleteAllUsers() {
+      this.$emit('del-users', this.user)
+      console.log('del-users')
     }
   }
 }

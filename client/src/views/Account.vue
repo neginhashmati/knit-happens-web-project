@@ -24,6 +24,8 @@
         </b-col>
       </b-row>
     </b-container>
+    <p>Are you an admin? Click here to delete all users:</p>
+    <b-button b-link v-bind:to="'deleteusers'">Delete All Users</b-button>
   </b-container>
 </template>
 
