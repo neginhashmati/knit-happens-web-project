@@ -39,7 +39,6 @@ p {
 }
 
 .project {
-  font-display: #2D3E4E;
   font-size: 16pt;
   border-top: 2px solid #000000;
 }
@@ -53,11 +52,10 @@ p {
   border-radius: 5px;
   margin-top: 10pt;
   margin-bottom: 10pt;
-  color: #2D3E4E;
   border: 2px solid #000000;
 }
 
 ul {
-    display: inline-block
+  text-align: left;
 }
 </style>
