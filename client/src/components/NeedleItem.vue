@@ -1,13 +1,25 @@
 <template>
   <div class="card">
     <div class="title">
-      <p>Name: {{ needle.name }}
+      <p>{{ needle.name }}
         <b-button-close v-on:click="$emit('delete-needle', needle._id)" >&times;</b-button-close></p>
     </div>
-    <p>Size: {{ needle.size }} mm</p>
-    <p>Cost: {{ needle.cost }}</p>
-    <p>Owned: {{ needle.owned }}</p>
-    <p>Note: {{ needle.note }}</p>
+    <div class="card-body">
+      <div>
+        <p class="attribute">Source:</p>
+        <p class="attribute">Size:</p>
+        <p class="attribute">Cost:</p>
+        <p class="attribute">Owned:</p>
+        <p class="attribute">Note:</p>
+      </div>
+      <div>
+        <p>{{ needle.source_name }}</p>
+        <p>{{ needle.size }} mm</p>
+        <p>{{ needle.cost }}</p>
+        <p>{{ needle.owned }}</p>
+        <p>{{ needle.note }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,35 +28,44 @@ export default {
   name: 'needle-item',
   props: ['needle'],
   methods: {
-    // deleteCamel() {
-    //   this.$emit('del-camel', this.camel._id)
-    //   console.log('del-camel with id:' + this.camel._id)
-    // }
   }
 }
 </script>
 
 <style scoped>
 
+p {
+  padding-top: 5px;
+  padding-right: 5px;
+  margin: 0px;
+}
+
 .card {
   margin-bottom: 5px;
-  width: 200px;
+  width: 250px;
+  height: 300px;
   border: 2px solid #000000;
   background-color: white;
   text-align: left;
   float: left;
-  transition: box-shadow .2s;
 }
 
-.card:hover {
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+.card-body {
+  display: grid;
+  grid-template-columns: 70px 150px;
+  grid-column-gap: 0px;
 }
 
 .title {
   font-weight: bold;
   font-size: 14px;
   background-color: #f6be7b;
+  padding-left: 5px;
   border-bottom: 2px solid #000000;
+}
+
+.attribute {
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {
