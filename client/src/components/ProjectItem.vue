@@ -1,9 +1,20 @@
 <template>
     <div class="card">
      <div class="title">
-      <p>Name: {{project.name}}
-        <b-button-close v-on:click="$emit('delete-project', project._id)" >&times;</b-button-close>
-        <b-button v-on:click="$emit('load-project', project._id)">Edit</b-button></p>
+
+        <!-- <b-button-close v-on:click="$emit('delete-project', project._id)" >&times;</b-button-close> -->
+        <!-- <b-button v-on:click="$emit('load-project', project._id)">Edit</b-button></p> -->
+
+        <!-- <b-button class="mb-2" v-on:click="$emit('load-project', project._id)">
+           <b-icon icon="pencil-square" aria-hidden="true"></b-icon>
+          </b-button> -->
+        <p align="right">
+          <b-icon icon="pencil" aria-hidden="true" class="h5 mb-2" v-on:click="$emit('load-project', project._id)"></b-icon>
+          <b-icon icon="x" aria-hidden="true" class="h5 mb-2" v-on:click="$emit('delete-project', project._id)" >&times;</b-icon>
+
+      </p>
+
+      <p align="left">{{project.name}} </p>
     </div>
         <!-- <div class="detail">Date: {{project.date}}</div> -->
         <!-- <div class="detail">Notes: {{project.note}}</div> -->

@@ -89,7 +89,7 @@ export default {
             localStorage.userName = this.user.name
             localStorage.userID = this.user._id
             alert('WELCOME ' + localStorage.userName + '. IT\'S TIME TO MAKE KNIT HAPPEN!! :D')
-            document.location.href = '/projects'
+            document.location.href = '/home'
           })
       }
     },
