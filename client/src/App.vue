@@ -21,20 +21,31 @@
       <router-link to="/home">Home</router-link> |
       <router-link to="/projects">Projects</router-link> |
       <router-link to="/users">Users</router-link> |
-      <router-link to="/account">Account</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/account">Account</router-link>
       </b-navbar-nav>
 
     <b-navbar-nav class="ml-auto">
-      <router-link to="/loggedout">Logout</router-link>
+      <router-link to="/loggedout">Log Out</router-link>
     </b-navbar-nav>
 
       </b-navbar>
     </div>
 
-    <!-- Render the content of the current page view -->
+     <!-- Render the content of the current page view -->
     <router-view/>
+
+    <div id="nav">
+    <b-navbar variant="dark" type="dark" position="bottom">
+
+    <b-navbar-nav class="ml-auto">
+      <router-link to="/about">About Us</router-link>
+    </b-navbar-nav>
+
+      </b-navbar>
+    </div>
+
   </div>
+
 </template>
 
 <style scoped>
