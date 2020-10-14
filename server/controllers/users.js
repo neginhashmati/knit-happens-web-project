@@ -63,6 +63,18 @@ router.get('/api/users/:id', function(req, res, next) {
     });
 });
 
+// READ all users and return them sorted alphabetically by name
+router.get('/api/users?sort=name[asc]', function(req, res, next) {
+    User.find(function(err, users) {
+        if (err) { return next(err); }
+
+        if(req.query.sort != undefined) {
+            users.sort();
+        }
+        return res.json({'users': users });
+    })
+});
+
 // UPDATE all attributes of a specific user by id
 router.put('/api/users/:id', function(req, res, next) {
     var id = req.params.id;
