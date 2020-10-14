@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "User requests",
+			"name": "POST endpoints",
 			"item": [
 				{
 					"name": "Create a user",
@@ -68,300 +68,6 @@
 					},
 					"response": []
 				},
-				{
-					"name": "Get all users",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "f8239bae-1042-4ef6-86d9-be131fdad1a0",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{host}}/api/users",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get a specific user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d2e63214-f862-4492-bc91-3914548e9a36",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct user response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"Dominique\");\r",
-									"    pm.expect(jsonData.email).to.eql(\"dominique@gmail.com\");\r",
-									"    pm.expect(jsonData.password).to.eql(\"cakes\")\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{host}}/api/users/{{user_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"users",
-								"{{user_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update a user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "55c9e38a-b69f-4863-9015-a717ec301320",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct user response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"Oliver\");\r",
-									"    pm.expect(jsonData.email).to.eql(\"cake@gmail.com\");\r",
-									"    pm.expect(jsonData.password).to.eql(\"cake\")\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"cake@gmail.com\",\r\n    \"password\": \"cake\",\r\n    \"name\": \"Oliver\",\r\n    \"projects\": [],\r\n    \"materials\": []\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/users/{{user_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"users",
-								"{{user_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Patch a user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "9d9eff8d-5f25-4051-8505-0b972bdaf87a",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct user response\", function () {\r",
-									"    pm.expect(jsonData.email).to.eql(\"dominique@gmail.com\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"dominique@gmail.com\",\r\n    \"$push\": {\"projects\": \"{{project_id}}\"},\r\n    \"name\": \"Dominique\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/users/{{user_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"users",
-								"{{user_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete a specific user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c6e4c330-e172-4b7f-8729-827722bd6a24",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/users/{{user_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"users",
-								"{{user_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete all users",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "288d3253-219c-4572-8ab3-31f2084a60cc",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/users",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"users"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Project requests",
-			"item": [
 				{
 					"name": "Create a project",
 					"event": [
@@ -482,6 +188,332 @@
 					"response": []
 				},
 				{
+					"name": "Create new yarn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "beef5332-7860-48a8-a2cc-31db548f2356",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var yarnID = jsonData._id;\r",
+									"pm.environment.set(\"yarn_id\", yarnID);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct yarn response\", function () {\r",
+									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
+									"    pm.expect(jsonData.color).to.eql(\"natural\");\r",
+									"    pm.expect(jsonData.weight).to.eql(\"lace\");\r",
+									"    pm.expect(jsonData.fiber).to.eql(\"wool\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Pure merino\",\r\n\t\"source_name\": \"Adlibris\",\r\n\t\"cost\": 68.00,\r\n\t\"owned\": false,\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"natural\",\r\n    \"weight\": \"lace\",\r\n    \"fiber\": \"wool\",\r\n    \"note\": \"To be dyed purple\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/yarns",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"yarns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create yarn for a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9ca81ca-6f9d-4a40-9779-5b6034230c20",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var yarnId = jsonData._id;\r",
+									"pm.environment.set(\"yarn_id\", yarnId);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pure merino\",\r\n\t\"source_name\": \"Adlibris\",\r\n\t\"cost\": 68.00,\r\n\t\"owned\": false,\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"natural\",\r\n    \"weight\": \"lace\",\r\n    \"fiber\": \"wool\",\r\n    \"note\": \"To be dyed purple\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/yarns/{{project_id}}/yarns",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"yarns",
+								"{{project_id}}",
+								"yarns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new needle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d91a4c8a-11f9-4592-b8f6-9e76391be3fd",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var needleID = jsonData._id;\r",
+									"pm.environment.set(\"needle_id\", needleID);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct needle response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Dymondwood double tips\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Dymondwood double tips\",\r\n\"source_name\": \"Hobbii.se\",\r\n\"cost\": 35.00,\r\n\"owned\": false,\r\n\"size\": \"3mm\",\r\n\"note\": \"zOMG, I need these!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/needles",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"needles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create needle for a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "821dd837-6102-4174-8727-49c69a9e0076",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var needleId = jsonData._id;\r",
+									"pm.environment.set(\"needle_id\", needleId);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Dymondwood double tips\",\r\n\"source_name\": \"Hobbii.se\",\r\n\"cost\": 35.00,\r\n\"owned\": false,\r\n\"size\": \"3mm\",\r\n\"note\": \"zOMG, I need these!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/needles/{{project_id}}/needles",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"needles",
+								"{{project_id}}",
+								"needles"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GET endpoints",
+			"item": [
+				{
+					"name": "Get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f8239bae-1042-4ef6-86d9-be131fdad1a0",
+								"exec": [
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d2e63214-f862-4492-bc91-3914548e9a36",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct user response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Dominique\");\r",
+									"    pm.expect(jsonData.email).to.eql(\"dominique@gmail.com\");\r",
+									"    pm.expect(jsonData.password).to.eql(\"cakes\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users/{{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get all projects",
 					"event": [
 						{
@@ -522,58 +554,6 @@
 							"path": [
 								"api",
 								"projects"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all projects sorted ascending name",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "035dc9e1-583e-46a1-bb2a-df44b31bfc9a",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{host}}/api/projects?sort=name[asc]",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"projects"
-							],
-							"query": [
-								{
-									"key": "sort",
-									"value": "name[asc]"
-								}
 							]
 						}
 					},
@@ -682,89 +662,25 @@
 					"response": []
 				},
 				{
-					"name": "Update a project",
+					"name": "Get all projects sorted ascending name",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "8cef2722-8964-4587-9729-58978ad38d02",
+								"id": "035dc9e1-583e-46a1-bb2a-df44b31bfc9a",
 								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
+									"pm.test(\"Correct status code\", function() {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Correct user response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"Sebastien\");\r",
-									"    pm.expect(jsonData.priority).to.eql(\"Low\")\r",
-									"});"
+									"// TODO: more assertions..."
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Sebastien's hat\",\r\n    \"date\": \"2018-11-10T22:26:12.111Z\",\r\n    \"status\": \"In progress\",\r\n    \"priority\": \"Low\",\r\n    \"note\": \"Finish by June 3rd!!\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/projects/{{project_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"projects",
-								"{{project_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Patch a project",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "b242a9e1-465b-4700-8c72-b03404a9cc52",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct user response\", function () {\r",
-									"    pm.expect(jsonData.priority).to.eql(\"High\")\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
@@ -774,250 +690,24 @@
 							{
 								"key": "Content-Type",
 								"type": "text",
-								"value": "application/json"
+								"value": "application/json",
+								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"priority\": \"High\",\r\n    \"$push\": {\"yarns\": \"{{yarn_id}}\"}\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{host}}/api/projects/{{project_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"projects",
-								"{{project_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete a specific project",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d7cd15a6-c240-44dd-9894-1dda328985cc",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/projects/{{project_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"projects",
-								"{{project_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete all projects for a user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2a4abdb0-9d23-41b9-8465-63b40b70bbef",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/users/{{user_id}}/projects",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"users",
-								"{{user_id}}",
-								"projects"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete all projects",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c948ff6e-4530-4d2e-b892-e38c494c5a6a",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/projects",
+							"raw": "{{host}}/api/projects?sort=name[asc]",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
 								"projects"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Yarn requests",
-			"item": [
-				{
-					"name": "Create new yarn",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "beef5332-7860-48a8-a2cc-31db548f2356",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var yarnID = jsonData._id;\r",
-									"pm.environment.set(\"yarn_id\", yarnID);\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct yarn response\", function () {\r",
-									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
-									"    pm.expect(jsonData.color).to.eql(\"natural\");\r",
-									"    pm.expect(jsonData.weight).to.eql(\"lace\");\r",
-									"    pm.expect(jsonData.fiber).to.eql(\"wool\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"Pure merino\",\r\n\t\"source_name\": \"Adlibris\",\r\n\t\"cost\": 68.00,\r\n\t\"owned\": false,\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"natural\",\r\n    \"weight\": \"lace\",\r\n    \"fiber\": \"wool\",\r\n    \"note\": \"To be dyed purple\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/yarns",
-							"host": [
-								"{{host}}"
 							],
-							"path": [
-								"api",
-								"yarns"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create yarn for a project",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c9ca81ca-6f9d-4a40-9779-5b6034230c20",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var yarnId = jsonData._id;\r",
-									"pm.environment.set(\"yarn_id\", yarnId);\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Pure merino\",\r\n\t\"source_name\": \"Adlibris\",\r\n\t\"cost\": 68.00,\r\n\t\"owned\": false,\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"natural\",\r\n    \"weight\": \"lace\",\r\n    \"fiber\": \"wool\",\r\n    \"note\": \"To be dyed purple\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"query": [
+								{
+									"key": "sort",
+									"value": "name[asc]"
 								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/yarns/{{project_id}}/yarns",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"yarns",
-								"{{project_id}}",
-								"yarns"
 							]
 						}
 					},
@@ -1189,279 +879,6 @@
 					"response": []
 				},
 				{
-					"name": "Fully update a yarn",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c8b9493b-807f-4900-92df-708eda8b4a13",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct yarn response\", function () {\r",
-									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
-									"    pm.expect(jsonData.color).to.eql(\"white\");\r",
-									"    pm.expect(jsonData.weight).to.eql(\"fingering\");\r",
-									"    pm.expect(jsonData.fiber).to.eql(\"cotton\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"Pure cotton\",\r\n\t\"source_name\": \"Adlibris\",\r\n\t\"cost\": 55.00,\r\n\t\"owned\": false,\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"white\",\r\n    \"weight\": \"fingering\",\r\n    \"fiber\": \"cotton\",\r\n    \"note\": \"To be dyed pink\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/yarns/{{yarn_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"yarns",
-								"{{yarn_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Partly update a yarn",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2b025ca3-ba00-4e6f-a2aa-35115312c0b7",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct yarn response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"Pure cotton\"); \r",
-									"    pm.expect(jsonData.color).to.eql(\"cream\"); \r",
-									"    pm.expect(jsonData.owned).to.eql(true);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/ecmascript",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"color\": \"cream\",\r\n    \"owned\": true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/yarns/{{yarn_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"yarns",
-								"{{yarn_id}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete a yarn",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "0d7f1989-895f-4a7b-b0d8-5012d3e5ee9b",
-								"exec": [
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/yarns/{{yarn_id}}",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"yarns",
-								"{{yarn_id}}"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Needle requests",
-			"item": [
-				{
-					"name": "Create new needle",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "d91a4c8a-11f9-4592-b8f6-9e76391be3fd",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var needleID = jsonData._id;\r",
-									"pm.environment.set(\"needle_id\", needleID);\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Correct needle response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"Dymondwood double tips\");\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"name\": \"Dymondwood double tips\",\r\n\"source_name\": \"Hobbii.se\",\r\n\"cost\": 35.00,\r\n\"owned\": false,\r\n\"size\": \"3mm\",\r\n\"note\": \"zOMG, I need these!\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/needles",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"needles"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create needle for a project",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "821dd837-6102-4174-8727-49c69a9e0076",
-								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var needleId = jsonData._id;\r",
-									"pm.environment.set(\"needle_id\", needleId);\r",
-									"\r",
-									"pm.test(\"Correct status code\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"name\": \"Dymondwood double tips\",\r\n\"source_name\": \"Hobbii.se\",\r\n\"cost\": 35.00,\r\n\"owned\": false,\r\n\"size\": \"3mm\",\r\n\"note\": \"zOMG, I need these!\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/needles/{{project_id}}/needles",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"needles",
-								"{{project_id}}",
-								"needles"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get all needles",
 					"event": [
 						{
@@ -1625,6 +1042,195 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PUT endpoints",
+			"item": [
+				{
+					"name": "Update a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "55c9e38a-b69f-4863-9015-a717ec301320",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct user response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Oliver\");\r",
+									"    pm.expect(jsonData.email).to.eql(\"cake@gmail.com\");\r",
+									"    pm.expect(jsonData.password).to.eql(\"cake\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cake@gmail.com\",\r\n    \"password\": \"cake\",\r\n    \"name\": \"Oliver\",\r\n    \"projects\": [],\r\n    \"materials\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8cef2722-8964-4587-9729-58978ad38d02",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct user response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Sebastien\");\r",
+									"    pm.expect(jsonData.priority).to.eql(\"Low\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sebastien's hat\",\r\n    \"date\": \"2018-11-10T22:26:12.111Z\",\r\n    \"status\": \"In progress\",\r\n    \"priority\": \"Low\",\r\n    \"note\": \"Finish by June 3rd!!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/projects/{{project_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"{{project_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fully update a yarn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c8b9493b-807f-4900-92df-708eda8b4a13",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct yarn response\", function () {\r",
+									"    pm.expect(jsonData.brand).to.eql(\"adlibris\");\r",
+									"    pm.expect(jsonData.color).to.eql(\"white\");\r",
+									"    pm.expect(jsonData.weight).to.eql(\"fingering\");\r",
+									"    pm.expect(jsonData.fiber).to.eql(\"cotton\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"Pure cotton\",\r\n\t\"source_name\": \"Adlibris\",\r\n\t\"cost\": 55.00,\r\n\t\"owned\": false,\r\n    \"brand\": \"adlibris\",\r\n    \"color\": \"white\",\r\n    \"weight\": \"fingering\",\r\n    \"fiber\": \"cotton\",\r\n    \"note\": \"To be dyed pink\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/yarns/{{yarn_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"yarns",
+								"{{yarn_id}}"
+							]
+						}
+					},
+					"response": []
 				},
 				{
 					"name": "Fully update a needle",
@@ -1686,6 +1292,191 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PATCH endpoints",
+			"item": [
+				{
+					"name": "Patch a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9d9eff8d-5f25-4051-8505-0b972bdaf87a",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct user response\", function () {\r",
+									"    pm.expect(jsonData.email).to.eql(\"dominique@gmail.com\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dominique@gmail.com\",\r\n    \"$push\": {\"projects\": \"{{project_id}}\"},\r\n    \"name\": \"Dominique\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b242a9e1-465b-4700-8c72-b03404a9cc52",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct user response\", function () {\r",
+									"    pm.expect(jsonData.priority).to.eql(\"High\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"priority\": \"High\",\r\n    \"$push\": {\"yarns\": \"{{yarn_id}}\"}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/projects/{{project_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"{{project_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partly update a yarn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2b025ca3-ba00-4e6f-a2aa-35115312c0b7",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct yarn response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Pure cotton\"); \r",
+									"    pm.expect(jsonData.color).to.eql(\"cream\"); \r",
+									"    pm.expect(jsonData.owned).to.eql(true);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/ecmascript",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\": \"cream\",\r\n    \"owned\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/yarns/{{yarn_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"yarns",
+								"{{yarn_id}}"
+							]
+						}
+					},
+					"response": []
 				},
 				{
 					"name": "Partly update a needle",
@@ -1740,6 +1531,221 @@
 								"api",
 								"needles",
 								"{{needle_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DELETE endpoints",
+			"item": [
+				{
+					"name": "Delete all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "288d3253-219c-4572-8ab3-31f2084a60cc",
+								"exec": [
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specific user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6e4c330-e172-4b7f-8729-827722bd6a24",
+								"exec": [
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all projects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c948ff6e-4530-4d2e-b892-e38c494c5a6a",
+								"exec": [
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/projects",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all projects for a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2a4abdb0-9d23-41b9-8465-63b40b70bbef",
+								"exec": [
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{user_id}}/projects",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specific project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d7cd15a6-c240-44dd-9894-1dda328985cc",
+								"exec": [
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/projects/{{project_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"{{project_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a yarn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0d7f1989-895f-4a7b-b0d8-5012d3e5ee9b",
+								"exec": [
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/yarns/{{yarn_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"yarns",
+								"{{yarn_id}}"
 							]
 						}
 					},
@@ -1808,7 +1814,7 @@
 	],
 	"variable": [
 		{
-			"id": "968f0f49-c82d-4241-84b1-ec0bb937ae40",
+			"id": "57b56917-3c3f-487b-8130-a41fe4207c3f",
 			"key": "host",
 			"value": "{{host}}"
 		}

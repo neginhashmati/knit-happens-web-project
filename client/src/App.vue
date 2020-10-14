@@ -39,11 +39,12 @@
 
 <style scoped>
 #app {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #000000;
+  background-color: #E8ECEB;
 }
 .navbar.navbar-dark.bg-dark {
     background-color: #bddbda!important;

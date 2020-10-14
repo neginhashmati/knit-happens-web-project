@@ -1,16 +1,14 @@
 <template>
-  <div class="user">
+  <div class="card">
     <p>{{user.name}}</p>
       <div class="project">Projects: </div>
       <br>
-    <div v-for="project in user.projects" v-bind:key="project._id">
-      <div class="projectname">
+    <div v-for="project in user.projects" v-bind:key="project._id" class="projectname">
         <ul>
           <li>{{project.name}}</li>
         </ul>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -27,10 +25,11 @@ export default {
 
 <style scoped>
 p {
-    background-color: #E09E50;
-    color: #2D3E4E;
-    font-size: 16pt;
-    padding: 10pt;
+    background-color: #f6be7b;
+    font-size: 30px;
+    padding: 10px;
+    margin-left: inherit;
+    margin-bottom: 0px;
 }
 
 @media (max-width: 600px) {
@@ -40,24 +39,23 @@ p {
 }
 
 .project {
-  font-display: #2D3E4E;
   font-size: 16pt;
+  border-top: 2px solid #000000;
 }
 
 .projectname {
   font-size: 14pt;
 }
 
-.user {
+.card {
   border-style: solid;
-  border-color:  #E09E50;
   border-radius: 5px;
   margin-top: 10pt;
   margin-bottom: 10pt;
-  color: #2D3E4E;
+  border: 2px solid #000000;
 }
 
 ul {
-    display: inline-block
+  text-align: left;
 }
 </style>

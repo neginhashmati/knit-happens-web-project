@@ -5,11 +5,13 @@
     <p>Create a new project, add the yarns and needles you need to it, track your progress.</p>
     <p>Create anything you can imagine.</p>
     <br>
-    <b-button pill b-link v-bind:to="'projects'">See your projects</b-button>
-    <br>
-    <br>
-    <b-button pill b-link v-bind:to="'account'">Go to your account</b-button>
-</div>
+    <div class="button">
+      <b-button pill variant="warning" b-link v-bind:to="'projects'">See your projects</b-button>
+      <br>
+      <br>
+      <b-button pill variant="warning" b-link v-bind:to="'account'">Go to your account</b-button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -38,11 +40,7 @@ export default {
 </script>
 
 <style scoped>
-* {
-  background-color: purple;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.button {
-  color: #8CBDB9;
+p {
+  font-size: 20px;
 }
 </style>
