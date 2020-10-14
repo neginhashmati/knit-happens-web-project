@@ -1,10 +1,10 @@
 <template>
-  <b-container class="col-12 col-md-10 col-xl-8 light-box">
+  <b-container class="col-12 col-md-10 col-xl-8">
     <h3>{{project.name}}</h3>
     <b-container class="inner-box">
       <b-row>
         <b-col class="col-2 col-md-2 col-xl-2">
-          <p>Project name: </p>
+          <p class="attribute">Project name: </p>
         </b-col>
         <b-col class="col-3 col-md-3 col-xl-3">
           <p>{{ project.name }}</p>
@@ -25,7 +25,7 @@
       </b-row>
       <b-row>
         <b-col class="col-2 col-md-2 col-xl-2">
-        <p>Date created: </p>
+        <p class="attribute">Date created: </p>
         </b-col>
         <b-col class="col-3 col-md-3 col-xl-3">
         <p>{{ project.date }}</p>
@@ -33,7 +33,7 @@
       </b-row>
       <b-row>
         <b-col class="col-2 col-md-2 col-xl-2">
-        <p>Status: </p>
+        <p class="attribute">Status: </p>
         </b-col>
         <b-col class="col-3 col-md-3 col-xl-3">
         <p>{{ project.status }}</p>
@@ -55,7 +55,7 @@
       </b-row>
       <b-row>
         <b-col class="col-2 col-md-2 col-xl-2">
-        <p>Priority: </p>
+        <p class="attribute">Priority: </p>
         </b-col>
         <b-col class="col-3 col-md-3 col-xl-3">
         <p>{{ project.priority }}</p>
@@ -77,7 +77,7 @@
       </b-row>
       <b-row>
         <b-col class="col-2 col-md-2 col-xl-2">
-        <p>Note: </p>
+        <p class="attribute">Note: </p>
         </b-col>
         <b-col class="col-3 col-md-3 col-xl-3">
           <p>{{ project.note }}</p>
@@ -102,18 +102,26 @@
       </b-row>
       <b-row>
         <h3> Yarns </h3>
-        <b-col cols="6" sm="5" md="5" v-for="yarn in yarns" v-bind:key="yarn._id">
+      </b-row>
+      <b-row>
+        <b-col cols="8" sm="6" md="4" v-for="yarn in yarns" v-bind:key="yarn._id">
             <yarn-item v-bind:yarn="yarn" v-on:delete-yarn="deleteYarn"/>
         </b-col>
+      </b-row>
+      <b-row>
+        <b-col cols="8" sm="6" md="5">
+          <new-yarn-form v-on:create-yarn="createYarn"/>
+        </b-col>
+      </b-row>
+      <b-row>
         <h3> Needles </h3>
-        <b-col cols="6" sm="5" md="5" v-for="needle in needles" v-bind:key="needle._id">
+      </b-row>
+      <b-row>
+        <b-col cols="8" sm="6" md="4" v-for="needle in needles" v-bind:key="needle._id">
             <needle-item v-bind:needle="needle" v-on:delete-needle="deleteNeedle"/>
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols="6" sm="5" md="5">
-          <new-yarn-form v-on:create-yarn="createYarn"/>
-        </b-col>
         <b-col cols="6" sm="5" md="5">
           <new-needle-form v-on:create-needle="createNeedle"/>
         </b-col>
@@ -129,7 +137,6 @@ import NeedleItem from '@/components/NeedleItem.vue'
 import YarnItem from '@/components/YarnItem.vue'
 import NewNeedleForm from '@/components/NewNeedleForm.vue'
 import NewYarnForm from '@/components/NewYarnForm.vue'
-// import EditProjectForm from '@/components/EditProject'
 
 export default {
   name: 'specificproject',
@@ -138,12 +145,11 @@ export default {
     YarnItem,
     NewYarnForm,
     NewNeedleForm
-    // EditProjectForm
   },
 
   mounted() {
-    var id = this.$route.params.id
-    console.log('PAGE is loaded', id)
+    this.projectID = this.$route.params.id
+    console.log('PAGE is loaded', this.projectID)
 
     this.loadSpecificProject()
     this.loadAllNeedles()
@@ -161,7 +167,7 @@ export default {
       noteNew: 'none',
       userName: localStorage.userName,
       userID: localStorage.userID,
-      projectID: localStorage.projectID,
+      projectID: null,
       statusOptions: [
         { value: null, text: 'Please select a status', disabled: true },
         { value: 'Not started', text: 'Not started' },
@@ -178,7 +184,7 @@ export default {
   },
   methods: {
     changeName() {
-      Api.patch('/projects/' + localStorage.projectID, {
+      Api.patch('/projects/' + this.projectID, {
         name: this.nameNew
       })
         .then((response) => {
@@ -189,7 +195,7 @@ export default {
         })
     },
     changeStatus() {
-      Api.patch('/projects/' + localStorage.projectID, {
+      Api.patch('/projects/' + this.projectID, {
         status: this.statusNew
       })
         .then((response) => {
@@ -200,7 +206,7 @@ export default {
         })
     },
     changePriority() {
-      Api.patch('/projects/' + localStorage.projectID, {
+      Api.patch('/projects/' + this.projectID, {
         priority: this.priorityNew
       })
         .then((response) => {
@@ -211,7 +217,7 @@ export default {
         })
     },
     changeNote() {
-      Api.patch('/projects/' + localStorage.projectID, {
+      Api.patch('/projects/' + this.projectID, {
         note: this.noteNew
       })
         .then((response) => {
@@ -244,11 +250,9 @@ export default {
     createNeedle(input) {
       console.log('Doing stuff')
       console.log(input)
-      Api.post('/needles/' + localStorage.projectID + '/needles', input)
+      Api.post('/needles/' + this.projectID + '/needles', input)
         .then(response => {
           console.log(response)
-          // var newProject = response.data
-          // this.projects.push(newProject)
           this.loadAllNeedles()
         })
         .catch(error => {
@@ -258,11 +262,9 @@ export default {
     createYarn(input) {
       console.log('hello')
       console.log(input)
-      Api.post('/yarns/' + localStorage.projectID + '/yarns', input)
+      Api.post('/yarns/' + this.projectID + '/yarns', input)
         .then(response => {
           console.log(response)
-          // var newProject = response.data
-          // this.projects.push(newProject)
           this.loadAllYarns()
         })
         .catch(error => {
@@ -270,15 +272,15 @@ export default {
         })
     },
     loadSpecificProject() {
-      Api.get('/projects/' + localStorage.projectID)
+      Api.get('/projects/' + this.projectID)
         .then(response => {
           this.project = response.data
-          localStorage.projectID = this.project._id
+          this.projectID = this.project._id
           console.log('loaded project', this.project)
         })
     },
     loadAllNeedles() {
-      Api.get('projects/' + localStorage.projectID + '/needles')
+      Api.get('projects/' + this.projectID + '/needles')
         .then(response => {
           console.log(response.data)
           this.needles = response.data.needles
@@ -294,7 +296,7 @@ export default {
         })
     },
     loadAllYarns() {
-      Api.get('projects/' + localStorage.projectID + '/yarns')
+      Api.get('projects/' + this.projectID + '/yarns')
         .then(response => {
           console.log(response.data)
           this.yarns = response.data.yarns
@@ -329,13 +331,15 @@ export default {
     padding: 40px 10px 40px 10px;
   }
 
+  .attribute {
+    font-weight: bold;
+  }
   .bold-box {
     color: #2D3E4E;
   }
 
   .light-box {
     background: #8CBDB9;
-   /* display: flex;*/
     justify-content: center;
     align-items: center;
     padding: 4em 4em 4em 4em;
@@ -346,7 +350,6 @@ export default {
     background: white;
     justify-content: center;
     align-items: center;
-    border-radius: 25px;
     padding: 20px 10px 20px 10px;
     margin-left: 10px;
     margin-right: 10px;
