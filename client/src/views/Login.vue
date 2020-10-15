@@ -66,33 +66,19 @@ export default {
       if (this.emailLogin === '' || this.passwordLogin === '') {
         this.emptyFields = true
       } else {
-        Api.get('/users')
+        Api.get('/auth/?email=' + this.emailLogin + '&password=' + this.passwordLogin)
           .then(response => {
-            this.user = null
-            for (var cnt = 0; cnt < response.data.users.length; cnt++) {
-              var element = response.data.users[cnt]
-              if (element.email === this.emailLogin) {
-                this.user = element
-                console.log('FOUND USER')
-              }
+            if (typeof response.data.error !== 'undefined') {
+              alert(response.data.error)
+              this.user = null
+            } else {
+              this.user = response.data
+              console.log('AND THEN')
+              localStorage.userName = this.user.name
+              localStorage.userID = this.user._id
+              alert('Welcome ' + localStorage.userName + '. It/s time to make knit happen!')
+              document.location.href = '/home'
             }
-          })
-          .catch(error => {
-            this.message = error.message
-            console.error(error)
-            this.project = []
-            // TODO: display error messages
-          })
-          .then(() => {
-            console.log('AND THEN')
-            if (this.user === null) {
-              alert('Login failed')
-              return
-            }
-            localStorage.userName = this.user.name
-            localStorage.userID = this.user._id
-            alert('Welcome ' + localStorage.userName + '. It is time to make knit happen!')
-            document.location.href = '/home'
           })
       }
     },
@@ -114,7 +100,7 @@ export default {
             .then((response) => {
               localStorage.userName = response.data.name
               localStorage.userID = response.data._id
-              alert('You are now registered ' + localStorage.userName + '. It is time to make knit happen!')
+              alert('You are now registered ' + localStorage.userName + '. It/s time to make knit happen!')
               document.location.href = '/projects'
             }, (error) => {
               console.log(error)

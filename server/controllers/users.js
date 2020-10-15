@@ -39,7 +39,24 @@ router.post('/api/users', function(req, res, next) {
         if (err) { return next(err); }
         return res.status(201).json(user);
     });   
-});       
+});      
+
+
+
+router.get('/api/auth/', function(req, res, next) {
+    var password = req.query.password;    
+    var emailAddress = req.query.email;
+    User.findOne({ email: emailAddress }).exec(function(err, user){
+        if (err) { return next(err); }
+        if (user === null) {
+            return res.status(201).json({'error': 'User not found'});
+        }
+        if(user.password !== password) {
+            return res.status(201).json({'error': 'Wrong password'})
+        }
+        return res.status(201).json(user);
+    });
+});
 
 // READ all users in the user collection
 router.get('/api/users', function(req, res, next) {
