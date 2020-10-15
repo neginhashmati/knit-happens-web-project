@@ -54,17 +54,12 @@ p {
   background-color: white;
   text-align: left;
   float: left;
-  transition: box-shadow .2s;
 }
 
 .card-body {
   display: grid;
   grid-template-columns: 70px 150px;
   grid-column-gap: 0px;
-}
-
-.card:hover {
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
 }
 
 .title {

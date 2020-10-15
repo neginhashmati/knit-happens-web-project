@@ -7,6 +7,9 @@
 
       <div class="container">
          <div class="row">
+          <div id="login-logo">
+            <img src="../assets/homelogo.png" class="col-lg-4 col-md-6 col-sm-8 mx-auto" alt="Logo">
+          </div>
             <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
                <div v-if="!registerActive" class="card login" v-bind:class="{ error: emptyFields }">
                   <h1>Sign In</h1>
@@ -137,6 +140,10 @@ p {
   padding: 20px;
 }
 
+#login-logo {
+  align-items: center;
+}
+
 .form-group input {
   margin-bottom: 20px;
 }
@@ -147,7 +154,6 @@ p {
   height: 100vh;
 }
 .login-page .wallpaper-login {
-  background: url('../assets/homelogo.png') no-repeat center center;
   background-size: cover;
   height: 100%;
   position: absolute;
@@ -162,7 +168,6 @@ p {
   opacity: 0;
 }
 .login-page .wallpaper-register {
-  background: url('../assets/create_account_background.jpg') no-repeat center center;
   background-size: cover;
   height: 100%;
   position: absolute;

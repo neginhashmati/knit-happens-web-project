@@ -25,7 +25,7 @@
       </b-navbar-nav>
 
     <b-navbar-nav class="ml-auto">
-      <router-link to="/loggedout">Log Out</router-link>
+      <router-link to="/logout">Log Out</router-link>
     </b-navbar-nav>
 
       </b-navbar>
