@@ -7,6 +7,9 @@
 
       <div class="container">
          <div class="row">
+          <div id="login-logo">
+            <img src="../assets/homelogo.png" class="col-lg-4 col-md-6 col-sm-8 mx-auto" alt="Logo">
+          </div>
             <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
                <div v-if="!registerActive" class="card login" v-bind:class="{ error: emptyFields }">
                   <h1>Sign In</h1>
@@ -63,33 +66,19 @@ export default {
       if (this.emailLogin === '' || this.passwordLogin === '') {
         this.emptyFields = true
       } else {
-        Api.get('/users')
+        Api.get('/auth/?email=' + this.emailLogin + '&password=' + this.passwordLogin)
           .then(response => {
-            this.user = null
-            for (var cnt = 0; cnt < response.data.users.length; cnt++) {
-              var element = response.data.users[cnt]
-              if (element.email === this.emailLogin) {
-                this.user = element
-                console.log('FOUND USER')
-              }
+            if (typeof response.data.error !== 'undefined') {
+              alert(response.data.error)
+              this.user = null
+            } else {
+              this.user = response.data
+              console.log('AND THEN')
+              localStorage.userName = this.user.name
+              localStorage.userID = this.user._id
+              alert('Welcome ' + localStorage.userName + '. It/s time to make knit happen!')
+              document.location.href = '/home'
             }
-          })
-          .catch(error => {
-            this.message = error.message
-            console.error(error)
-            this.project = []
-            // TODO: display error messages
-          })
-          .then(() => {
-            console.log('AND THEN')
-            if (this.user === null) {
-              alert('LOGIN FAILED!! AAAAAA!!!! OMG!!!!!!!11!11!!!oneoneone!!!')
-              return
-            }
-            localStorage.userName = this.user.name
-            localStorage.userID = this.user._id
-            alert('WELCOME ' + localStorage.userName + '. IT\'S TIME TO MAKE KNIT HAPPEN!! :D')
-            document.location.href = '/projects'
           })
       }
     },
@@ -111,7 +100,7 @@ export default {
             .then((response) => {
               localStorage.userName = response.data.name
               localStorage.userID = response.data._id
-              alert('You are now registered ' + localStorage.userName + '. IT\'S TIME TO MAKE KNIT HAPPEN!! :D')
+              alert('You are now registered ' + localStorage.userName + '. It/s time to make knit happen!')
               document.location.href = '/projects'
             }, (error) => {
               console.log(error)
@@ -123,13 +112,22 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.grey-box {
+  background-color: #E8ECEB;
+}
+
 p {
   line-height: 1rem;
 }
 
 .card {
   padding: 20px;
+}
+
+#login-logo {
+  align-items: center;
 }
 
 .form-group input {
@@ -142,7 +140,6 @@ p {
   height: 100vh;
 }
 .login-page .wallpaper-login {
-  background: url('../assets/login_background.jpg') no-repeat center center;
   background-size: cover;
   height: 100%;
   position: absolute;
@@ -157,7 +154,6 @@ p {
   opacity: 0;
 }
 .login-page .wallpaper-register {
-  background: url('../assets/create_account_background.jpg') no-repeat center center;
   background-size: cover;
   height: 100%;
   position: absolute;

@@ -33,7 +33,15 @@ router.post('/api/needles/:project_id/needles', function(req, res) {
     });
 }); 
 
-// READ/GET - Retrieve all needles for a user
+// READ/GET - Retrieve all needles
+router.get('/api/needles', function(req, res, next) {
+    Needle.find(function(err, needles) {
+    if (err) { return next(err); }
+    res.json({"needles": needles});
+    });
+});
+
+// READ/GET - Retrieve all needles for a project
 router.get('/api/projects/needles', function(req, res, next) {
     var project_id = req.params.project_id;
     Project.findById(project_id).populate('needles').exec(function(err, project){

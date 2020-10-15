@@ -38,18 +38,6 @@ router.get('/api/projects', function(req, res, next) {
     })
 });
 
-// READ all projects in the project collection and return them sorted
-router.get('/api/projects?sort=name[asc]', function(req, res, next) {
-    Project.find(function(err, projects) {
-        if (err) { return next(err); }
-
-        if(req.query.sort != undefined) {
-            projects.sort();
-        }
-        return res.json({'projects': projects });
-    })
-});
-
 // READ a specific project by id
 router.get('/api/projects/:id', function(req, res, next) {
     var id = req.params.id;
@@ -111,22 +99,6 @@ router.delete('/api/projects/:id', function(req, res, next) {
             return res.status(404).json({"message": "Project not found"});
         }
        return res.status(200).json(project);
-    });
-});
-
-//DELETE all projects for a user
-router.delete('/api/users/:user_id/projects', function(req, res, next) {
-    var user_id = req.params.user_id;
-    //User.findById(user_id).populate('projects').exec(function(err, user){
-    User.findByIdAndDelete(user_id).populate('projects').exec(function(err, user){
-        if (err) { return next(err); }
-        if (user === null) {
-            return res.status(404).json({'message': 'User not found'});
-        }
-        var projects = user.projects;
-        return res.json({'projects': projects });
-
-       // return res.json(user);
     });
 });
 

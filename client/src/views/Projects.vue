@@ -5,66 +5,72 @@
         <!-- <b-col cols="7" offset="1" offset-md="2">
           <b-form-input v-model="text" placeholder="Enter your name"></b-form-input>
         </b-col> -->
-        <b-col cols="15">
-          <b-button v-on:click="createProject">Create New Project</b-button>
-        </b-col>
-        <b-col cols="4">
+
+        <!-- <b-col cols="4">
           <b-button v-on:click="deleteAllProjects">Delete All Projects</b-button>
-        </b-col>
+        </b-col> -->
       </b-row>
       <h1>My projects:</h1>
       <b-row align-h="center">
         <b-col cols="12" sm="6" md="4" v-for="project in projects" v-bind:key="project._id">
-            <project-item v-bind:project="project" v-on:del-project="deleteProject"/>
+            <project-item v-bind:project="project" v-on:delete-project="deleteProject" v-on:load-project="loadProject"/>
         </b-col>
       </b-row>
+
+    <div id="createproject-button">
+      <project-form v:on:create-project="createProject">Create new project</project-form>
+    </div>
     </b-container>
 </template>
 
 <script>
 import { Api } from '@/Api'
 import ProjectItem from '@/components/ProjectItem.vue'
+import ProjectForm from '@/components/ProjectForm.vue'
 
 export default {
   name: 'projects',
   components: {
-    ProjectItem
+    ProjectItem,
+    ProjectForm
   },
   mounted() {
     console.log('PAGE is loaded')
     // Load the real projects from the server
-    Api.get('/projects')
-      .then(response => {
-        console.log(response.data)
-        this.projects = response.data.projects
-      })
-      .catch(error => {
-        this.message = error.message
-        console.error(error)
-        this.projects = []
-        // TODO: display error message
-      })
-      .then(() => {
-        //   This code is always executed at the end. After success or failure.
-      })
+    // Api.get('/projects')
+    this.loadAllProjects()
   },
+
   data() {
     return {
-      projects: [],
       message: '',
-      text: ''
+      projects: [],
+      text: '',
+      userID: localStorage.userID
     }
   },
+
   methods: {
     deleteProject(id) {
       Api.delete(`/projects/${id}`)
+        .then(response => {
+          console.log(response)
+          this.loadAllProjects()
+        })
         .catch(error => {
           console.error(error)
         })
     },
-    createProject() {
-      console.log(this.text)
-      Api.post('/projects')
+    createProject(input) {
+      console.log('hello')
+      console.log(input)
+      Api.post('projects/' + localStorage.userID + '/projects', input)
+        .then(response => {
+          console.log(response)
+          // var newProject = response.data
+          // this.projects.push(newProject)
+          this.loadAllProjects()
+        })
         .catch(error => {
           console.error(error)
         })
@@ -75,6 +81,26 @@ export default {
         .catch(error => {
           console.error(error)
         })
+    },
+    loadProject(id) {
+      location.href = '/specificproject/' + id
+      localStorage.projectID = this.project._id
+    },
+    loadAllProjects() {
+      Api.get('users/' + localStorage.userID + '/projects')
+        .then(response => {
+          console.log(response.data)
+          this.projects = response.data.projects
+        })
+        .catch(error => {
+          this.message = error.message
+          console.error(error)
+          this.projects = []
+        // TODO: display error message
+        })
+        .then(() => {
+        //   This code is always executed at the end. After success or failure.
+        })
     }
   }
 }
@@ -84,4 +110,28 @@ export default {
 .red {
     color: red;
 }
+
+#createproject-button {
+  margin: auto;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  border: 2px solid black;
+  background-color: #f6be7b;
+  padding-top: 7px;
+  color: black;
+}
+
+#createproject-button:hover {
+  background-color: #E09E50;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+   color: black
+}
+
 </style>

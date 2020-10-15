@@ -1,0 +1,21 @@
+body {
+    
+    font-display: #000000;
+    
+}
+
+#page-container {
+    position: relative;
+    min-height: 100%;
+  }
+  
+  #content-wrap {
+    padding-bottom: 2.5rem;    
+  }
+  
+  /* #footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;           
+  } */
