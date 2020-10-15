@@ -6,11 +6,14 @@
     <p>Create a new project, add the yarns and needles you need to it, track your progress.</p>
     <p>Create anything you can imagine.</p>
     <br>
-    <div class="button">
-      <b-button variant="warning" b-link v-bind:to="'projects'">See your projects</b-button>
-      <br>
-      <br>
-      <b-button variant="warning" b-link v-bind:to="'account'">Go to your account</b-button>
+    <div class="buttons">
+        <div id="logout-button">
+          <router-link to="/projects">See your projects</router-link>
+        </div>
+        <br>
+        <div id="logout-button">
+          <router-link to="/account">Go to your account</router-link>
+        </div>
     </div>
   </div>
 </template>
@@ -53,5 +56,28 @@ p {
   .home {
     padding: 20px 10px 20px 10px;
   }
+}
+
+#logout-button {
+  margin: auto;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  border: 2px solid black;
+  background-color: #f6be7b;
+  padding-top: 7px;
+  color: black;
+}
+
+#logout-button:hover {
+  background-color: #E09E50;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+   color: black
 }
 </style>

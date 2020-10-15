@@ -16,7 +16,7 @@ import { Api } from '@/Api'
 import UserItem from '@/components/UserItem.vue'
 
 export default {
-  name: 'users',
+  name: 'explore',
   components: {
     UserItem
   },

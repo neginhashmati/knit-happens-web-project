@@ -17,9 +17,9 @@
         </b-col>
       </b-row>
 
-      <b-col cols="12">
-         <project-form v-on:create-project="createProject"/>
-      </b-col>
+    <div id="createproject-button">
+      <project-form v:on:create-project="createProject">Create new project</project-form>
+    </div>
     </b-container>
 </template>
 
@@ -110,4 +110,28 @@ export default {
 .red {
     color: red;
 }
+
+#createproject-button {
+  margin: auto;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  border: 2px solid black;
+  background-color: #f6be7b;
+  padding-top: 7px;
+  color: black;
+}
+
+#createproject-button:hover {
+  background-color: #E09E50;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+   color: black
+}
+
 </style>
