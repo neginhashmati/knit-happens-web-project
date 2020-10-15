@@ -54,8 +54,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  font-display: #000000;
-  background-color: #E8ECEB;
 }
 
 .navbar.navbar-dark.bg-dark {

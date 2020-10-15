@@ -41,7 +41,13 @@ export default {
 </script>
 
 <style scoped>
-p {
-  font-size: 20px;
+h3 {
+  font-size: 2rem;
+}
+
+@media (max-width: 600px) {
+  .delete {
+    padding: 2rem 1rem 2rem 1rem;
+  }
 }
 </style>

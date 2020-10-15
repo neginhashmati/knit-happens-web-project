@@ -30,32 +30,32 @@ export default {
 <style scoped>
 p {
     background-color: #f6be7b;
-    font-size: 30px;
+    font-size: 2rem;
     padding: 10px;
     margin-left: inherit;
     margin-bottom: 0px;
 }
 
 @media (max-width: 600px) {
-  .detail {
-    font-size: 16pt;
+  .card {
+    font-size: 1rem;
   }
 }
 
 .project {
-  font-size: 16pt;
+  font-size: 1.5rem;
   border-top: 2px solid #000000;
 }
 
 .projectname {
-  font-size: 14pt;
+  font-size: 1rem;
 }
 
 .card {
   border-style: solid;
   border-radius: 5px;
-  margin-top: 10pt;
-  margin-bottom: 10pt;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border: 2px solid #000000;
 }
 

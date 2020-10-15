@@ -42,7 +42,16 @@ export default {
 
 <style scoped>
 p {
-  font-size: 20px;
+  font-size: 1rem;
 }
 
+.home {
+  padding: 20px 10px 20px 10px;
+}
+
+@media (max-width: 600px) {
+  .home {
+    padding: 20px 10px 20px 10px;
+  }
+}
 </style>
