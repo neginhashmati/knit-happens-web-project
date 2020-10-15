@@ -1,51 +1,42 @@
 <template>
-  <!-- <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/login">Login Page</router-link> |
-      <router-link to="/projects">Projects</router-link> |
-      <router-link to="/users">Users</router-link> |
-      <router-link to="/account">Account</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-
   <div id="app">
-    <div id="nav">
-    <b-navbar variant="dark" type="dark">
-      <b-navbar-brand ref="#">
-       <img src="./assets/knithappenslogoDARK2.png" class="d-inline-block align-top" alt="Logo" width="40" height="40">
-      Knit Happens
-    </b-navbar-brand>
 
-    <b-navbar-nav class="d-md-flex d-block flex-row mx-md-auto mx-0">
-      <router-link to="/home">Home</router-link> |
-      <router-link to="/projects">Projects</router-link> |
-      <router-link to="/users">Users</router-link> |
-      <router-link to="/account">Account</router-link>
-      </b-navbar-nav>
+    <div id="top-nav">
+      <b-navbar variant="dark" type="dark">
+        <b-navbar-brand ref="#">
+          <img src="./assets/knithappenslogoDARK2.png" class="d-inline-block align-top" alt="Logo" width="40" height="40">
+          Knit Happens
+        </b-navbar-brand>
 
-    <b-navbar-nav class="ml-auto">
-      <router-link to="/logout">Log Out</router-link>
-    </b-navbar-nav>
+        <b-navbar-nav class="d-md-flex d-block flex-row mx-md-auto mx-0">
+          <router-link to="/home">Home</router-link> |
+          <router-link to="/projects">Projects</router-link> |
+          <router-link to="/users">Users</router-link> |
+          <router-link to="/account">Account</router-link>
+        </b-navbar-nav>
+
+        <b-navbar-nav class="ml-auto">
+          <router-link to="/logout">Log Out</router-link>
+        </b-navbar-nav>
 
       </b-navbar>
     </div>
 
      <!-- Render the content of the current page view -->
-    <router-view/>
+    <div class="view-wrapper"><router-view/></div>
 
-    <div id="nav">
-    <b-navbar variant="dark" type="dark" position="bottom">
+    <div id="bottom-nav">
+      <b-navbar variant="dark" type="dark" >
 
-    <b-navbar-nav class="ml-auto">
-      <router-link to="/about">About Us</router-link>
-    </b-navbar-nav>
+        <b-navbar-nav class="ml-auto">
+          <a href="https://git.chalmers.se/courses/dit341/2020/group-23-web">GitLab Repository </a> |
+           <router-link to="/about">About Us</router-link>
+       </b-navbar-nav>
 
       </b-navbar>
     </div>
 
   </div>
-
 </template>
 
 <style scoped>
@@ -54,6 +45,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  min-height: 100vh;
+  background-color: #bddbda;
+
+}
+.view-wrapper {
+  background-color:#E8ECEB;
+  min-height: 82vh;
+
 }
 
 .navbar.navbar-dark.bg-dark {
@@ -65,6 +64,9 @@
 }
 a:hover {
    color: black
+}
+#bottom-nav {
+  width: 100%;
 }
 
 </style>

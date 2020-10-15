@@ -91,7 +91,7 @@ export default {
             }
             localStorage.userName = this.user.name
             localStorage.userID = this.user._id
-            alert('Welcome ' + localStorage.userName + '. It/s time to make knit happen!')
+            alert('Welcome ' + localStorage.userName + '. It is time to make knit happen!')
             document.location.href = '/home'
           })
       }
@@ -114,7 +114,7 @@ export default {
             .then((response) => {
               localStorage.userName = response.data.name
               localStorage.userID = response.data._id
-              alert('You are now registered ' + localStorage.userName + '. It/s time to make knit happen!')
+              alert('You are now registered ' + localStorage.userName + '. It is time to make knit happen!')
               document.location.href = '/projects'
             }, (error) => {
               console.log(error)

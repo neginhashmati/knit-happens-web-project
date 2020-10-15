@@ -461,6 +461,58 @@
 					"response": []
 				},
 				{
+					"name": "Get all users sorted ascending name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "035dc9e1-583e-46a1-bb2a-df44b31bfc9a",
+								"exec": [
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users?sort=name[asc]",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "name[asc]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get a specific user",
 					"event": [
 						{
@@ -574,7 +626,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Correct project response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"Dominique's scarf\");\r",
+									"    pm.expect(jsonData.name).to.eql(\"harry potter scarf\");\r",
 									"    pm.expect(jsonData.status).to.eql(\"Not started\"),\r",
 									"    pm.expect(jsonData.priority).to.eql(\"Low\"),\r",
 									"    pm.expect(jsonData.note).to.eql(\"For Dominique's birthday\")\r",
@@ -656,58 +708,6 @@
 								"users",
 								"{{user_id}}",
 								"projects"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all projects sorted ascending name",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "035dc9e1-583e-46a1-bb2a-df44b31bfc9a",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{host}}/api/projects?sort=name[asc]",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"projects"
-							],
-							"query": [
-								{
-									"key": "sort",
-									"value": "name[asc]"
-								}
 							]
 						}
 					},
@@ -1125,7 +1125,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Correct user response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"Sebastien\");\r",
+									"    pm.expect(jsonData.name).to.eql(\"Sebastien's hat\");\r",
 									"    pm.expect(jsonData.priority).to.eql(\"Low\")\r",
 									"});"
 								],
@@ -1543,14 +1543,14 @@
 			"name": "DELETE endpoints",
 			"item": [
 				{
-					"name": "Delete all users",
+					"name": "Delete a needle",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "288d3253-219c-4572-8ab3-31f2084a60cc",
+								"id": "966d2a54-41f5-494e-80b4-680c2d789388",
 								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
+									"pm.test(\"Correct status code\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
@@ -1564,27 +1564,28 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/api/needles/{{needle_id}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"users"
+								"needles",
+								"{{needle_id}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete a specific user",
+					"name": "Delete a yarn",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "c6e4c330-e172-4b7f-8729-827722bd6a24",
+								"id": "0d7f1989-895f-4a7b-b0d8-5012d3e5ee9b",
 								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
+									"pm.test(\"Correct status code\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
@@ -1598,26 +1599,26 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/users/{{user_id}}",
+							"raw": "{{host}}/api/yarns/{{yarn_id}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"users",
-								"{{user_id}}"
+								"yarns",
+								"{{yarn_id}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete all projects",
+					"name": "Delete a specific project",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "c948ff6e-4530-4d2e-b892-e38c494c5a6a",
+								"id": "d7cd15a6-c240-44dd-9894-1dda328985cc",
 								"exec": [
 									"pm.test(\"Correct status code\", function() {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -1633,13 +1634,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/projects",
+							"raw": "{{host}}/api/projects/{{project_id}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"projects"
+								"projects",
+								"{{project_id}}"
 							]
 						}
 					},
@@ -1682,12 +1684,12 @@
 					"response": []
 				},
 				{
-					"name": "Delete a specific project",
+					"name": "Delete all projects",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "d7cd15a6-c240-44dd-9894-1dda328985cc",
+								"id": "c948ff6e-4530-4d2e-b892-e38c494c5a6a",
 								"exec": [
 									"pm.test(\"Correct status code\", function() {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -1703,28 +1705,27 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/projects/{{project_id}}",
+							"raw": "{{host}}/api/projects",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"projects",
-								"{{project_id}}"
+								"projects"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete a yarn",
+					"name": "Delete a specific user",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "0d7f1989-895f-4a7b-b0d8-5012d3e5ee9b",
+								"id": "c6e4c330-e172-4b7f-8729-827722bd6a24",
 								"exec": [
-									"pm.test(\"Correct status code\", function () {\r",
+									"pm.test(\"Correct status code\", function() {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
@@ -1738,28 +1739,28 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/yarns/{{yarn_id}}",
+							"raw": "{{host}}/api/users/{{user_id}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"yarns",
-								"{{yarn_id}}"
+								"users",
+								"{{user_id}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete a needle",
+					"name": "Delete all users",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "966d2a54-41f5-494e-80b4-680c2d789388",
+								"id": "288d3253-219c-4572-8ab3-31f2084a60cc",
 								"exec": [
-									"pm.test(\"Correct status code\", function () {\r",
+									"pm.test(\"Correct status code\", function() {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
@@ -1773,14 +1774,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/needles/{{needle_id}}",
+							"raw": "{{host}}/api/users",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
-								"needles",
-								"{{needle_id}}"
+								"users"
 							]
 						}
 					},
@@ -1814,7 +1814,7 @@
 	],
 	"variable": [
 		{
-			"id": "57b56917-3c3f-487b-8130-a41fe4207c3f",
+			"id": "5f702dbf-4e6f-4043-b11d-c98f48bfd202",
 			"key": "host",
 			"value": "{{host}}"
 		}
