@@ -41,20 +41,6 @@ app.get('/api', function(req, res, next) {
     res.json({'message': 'Time to make Knit Happen!'});
 });
 
-
-//test from supervision
-//app.get('/api/abc', function(req, res, next) {
-    //console.log('FIRST abc BEFORE next');
-    //next();
-    //console.log('FIRST abc AFTER next');
-    //res.json({'message': 'FIRST abc response '});
-//});
-
-//app.get('/api/abc', function(req, res) {
-    //console.log('SECOND abc');
-   // res.json({'message': 'SECOND abc response'});
-//});
-
 app.delete;
 
 app.use(usersController);
