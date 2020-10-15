@@ -1,7 +1,9 @@
 <template>
   <div class="card">
     <div class="title">
-      <p align="right">
+ <p align="left">{{ project.name }}
+
+      <!-- <p align="right"> -->
         <b-icon
           icon="pencil"
           aria-hidden="true"
@@ -17,14 +19,19 @@
         >
       </p>
 
-      <p align="left">{{ project.name }}</p>
     </div>
 
     <div class="card-body">
       <div>
-        <p>Status: {{ project.status }}</p>
-        <p>Priority: {{ project.priority }}</p>
+        <p class="attribute">Status: </p>
+        <p class="attribute">Priority:</p>
       </div>
+
+      <div>
+        <p>{{ project.status }}</p>
+          <p>{{ project.priority }}</p>
+      </div>
+
     </div>
   </div>
 </template>
@@ -50,6 +57,13 @@ export default {
   text-align: left;
   float: left;
   transition: box-shadow 0.2s;
+   /* width: 250px;
+  height: 300px; */
+}
+.card-body {
+  display: grid;
+  grid-template-columns: 70px 150px;
+  grid-column-gap: 0px;
 }
 
 .card:hover {
@@ -66,6 +80,7 @@ export default {
 p {
   padding-top: 5px;
   padding-right: 5px;
+  margin: 0px;
 }
 
 @media (max-width: 600px) {
