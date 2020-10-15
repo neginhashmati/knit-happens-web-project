@@ -43,7 +43,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #000000;
+  font-display: #000000;
   background-color: #E8ECEB;
 }
 

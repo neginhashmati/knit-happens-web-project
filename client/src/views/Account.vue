@@ -1,6 +1,5 @@
 <template>
-  <b-container class="col-12 col-md-10 col-xl-8 light-box">
-    <img src="../assets/cat-with-yarn.png">
+  <b-container class="col-12 col-md-10 col-xl-8">
     <h3>Welcome to your account page {{userName}}!</h3>
     <b-container class="inner-box">
       <b-row>
@@ -25,7 +24,7 @@
       </b-row>
     </b-container>
     <p>Are you an admin? Click here to delete all users:</p>
-    <b-button b-link v-bind:to="'deleteusers'">Delete All Users</b-button>
+    <b-button size="sm" b-link v-bind:to="'deleteusers'">Delete All Users</b-button>
   </b-container>
 </template>
 
