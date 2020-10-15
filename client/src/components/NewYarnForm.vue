@@ -12,20 +12,28 @@
       <form>
         <label>Yarn name</label>
           <b-form-input v-model="input.name" size="sm" placeholder="Enter yarn name"></b-form-input>
+
         <label>Yarn brand</label>
           <b-form-input v-model="input.brand" size="sm" placeholder="Enter the yarn's brand"></b-form-input>
+
         <label>Yarn color</label>
           <b-form-input v-model="input.color" size="sm" placeholder="Enter the yarn's color"></b-form-input>
+
         <label>Yarn weight</label>
-          <b-form-input v-model="input.weight" size="sm" placeholder="Enter yarn weight (e.g. lace, sock, sport)"></b-form-input>
+          <b-form-select v-model="input.weight" :options="weightOptions" size="sm" placeholder="Enter yarn weight (e.g. lace, sock, sport)"></b-form-select>
+
         <label>Yarn fiber</label>
           <b-form-input v-model="input.fiber" size="sm" placeholder="Enter the yarn's fiber (e.g. wool, acylic, cotton)"></b-form-input>
+
         <label>Yarn source</label>
           <b-form-input v-model="input.source_name" size="sm" placeholder="Enter where the yarn was purchased"></b-form-input>
+
         <label>Yarn cost</label>
           <b-form-input v-model="input.cost" size="sm" class="mt-3" placeholder="Enter the cost of the yarn"></b-form-input>
+
         <label>Do you own the yarn?</label>
-          <b-form-select v-model="input.owned" :options="options"  size="sm"></b-form-select>
+          <b-form-select v-model="input.owned" :options="ownedOptions" size="sm"></b-form-select>
+
         <label>Yarn notes</label>
           <b-form-textarea
               id="textarea"
@@ -59,8 +67,19 @@ export default {
       },
       userName: localStorage.userName,
       userID: localStorage.userID,
-      options: [
-        { value: null, text: 'Please select an option' },
+      weightOptions: [
+        { value: null, text: 'Please select a weight', disabled: true },
+        { value: 'cobweb', text: 'Cobweb' },
+        { value: 'lace', text: 'Lace' },
+        { value: 'sock', text: 'Sock' },
+        { value: 'dk', text: 'DK' },
+        { value: 'aran', text: 'Aran' },
+        { value: 'chunky', text: 'Chunky' },
+        { value: 'super-chunky', text: 'Super-chunky' },
+        { value: 'jumbo', text: 'Jumbo' }
+      ],
+      ownedOptions: [
+        { value: null, text: 'Please select an option', disabled: true },
         { value: true, text: 'Yes, I own this yarn' },
         { value: false, text: 'No, I dont own this yarn' }
       ]
