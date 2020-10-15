@@ -1,14 +1,4 @@
 <template>
-  <!-- <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/login">Login Page</router-link> |
-      <router-link to="/projects">Projects</router-link> |
-      <router-link to="/users">Users</router-link> |
-      <router-link to="/account">Account</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-
   <div id="app">
     <div id="nav">
     <b-navbar variant="dark" type="dark">
@@ -20,7 +10,7 @@
     <b-navbar-nav class="d-md-flex d-block flex-row mx-md-auto mx-0">
       <router-link to="/home">Home</router-link> |
       <router-link to="/projects">Projects</router-link> |
-      <router-link to="/users">Users</router-link> |
+      <router-link to="/explore">Explore</router-link> |
       <router-link to="/account">Account</router-link>
       </b-navbar-nav>
 
@@ -45,7 +35,6 @@
     </div>
 
   </div>
-
 </template>
 
 <style scoped>
