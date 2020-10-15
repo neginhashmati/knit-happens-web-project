@@ -39,14 +39,35 @@ router.post('/api/users', function(req, res, next) {
         if (err) { return next(err); }
         return res.status(201).json(user);
     });   
-});       
+});      
+
+
+
+router.get('/api/auth/', function(req, res, next) {
+    var password = req.query.password;    
+    var emailAddress = req.query.email;
+    User.findOne({ email: emailAddress }).exec(function(err, user){
+        if (err) { return next(err); }
+        if (user === null) {
+            return res.status(201).json({'error': 'User not found'});
+        }
+        if(user.password !== password) {
+            return res.status(201).json({'error': 'Wrong password'})
+        }
+        return res.status(201).json(user);
+    });
+});
 
 // READ all users in the user collection
 router.get('/api/users', function(req, res, next) {
+    var userMoongose = User.find();
+    if(req.query.sort !== null) {
+        userMoongose.sort(req.query.sort);
+    }
     //User.find(function(err, users) {
-        User.find().populate('projects').exec(function(err, users) {
+    userMoongose.populate('projects').exec(function(err, users) {
         if (err) { return next(err); }
-        return res.json({'users': users });
+        return res.json({"users": users });
     })
 });
 
@@ -61,6 +82,19 @@ router.get('/api/users/:id', function(req, res, next) {
         }
         return res.json(user);
     });
+});
+
+// READ all users and return them sorted alphabetically by name
+router.get('/api/users', function(req, res, next) {
+
+    User.find(function(err, users) {
+        if (err) { return next(err); }
+
+        if(req.query.sort != undefined) {
+            users.sort();
+        }
+        return res.json({'users': users });
+    })
 });
 
 // UPDATE all attributes of a specific user by id
