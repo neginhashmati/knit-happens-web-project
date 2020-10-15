@@ -60,8 +60,9 @@ export default {
 
 <style scoped>
 h1 {
-  color: #2D3E4E;
+  color: #000000;
 }
+
 .red {
     color: red;
 }

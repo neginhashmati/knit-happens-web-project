@@ -17,7 +17,7 @@
         </b-col>
       </b-row>
 
-      <b-col cols="3">
+      <b-col cols="12">
          <project-form v-on:create-project="createProject"/>
       </b-col>
     </b-container>

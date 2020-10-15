@@ -1,26 +1,22 @@
 <template>
   <div class="card">
     <div class="title">
- <p align="left">{{ project.name }}
-
+      <p align="left">{{ project.name }}
       <!-- <p align="right"> -->
         <b-icon
           icon="pencil"
           aria-hidden="true"
           class="h5 mb-2"
-          v-on:click="$emit('load-project', project._id)"
-        ></b-icon>
+          v-on:click="$emit('load-project', project._id)">
+        </b-icon>
         <b-icon
           icon="x"
           aria-hidden="true"
           class="h5 mb-2"
-          v-on:click="$emit('delete-project', project._id)"
-          >&times;</b-icon
-        >
+          v-on:click="$emit('delete-project', project._id)">&times;
+        </b-icon>
       </p>
-
     </div>
-
     <div class="card-body">
       <div>
         <p class="attribute">Status: </p>
@@ -72,7 +68,7 @@ export default {
 
 .title {
   font-weight: bold;
-  font-size: 14px;
+  font-size: 1rem;
   background-color: #f6be7b;
   border-bottom: 2px solid #000000;
 }
@@ -81,20 +77,6 @@ p {
   padding-top: 5px;
   padding-right: 5px;
   margin: 0px;
-}
-
-@media (max-width: 600px) {
-  .detail {
-    color: red;
-    font-size: 16pt;
-    font-weight: bold;
-    /* display: none; */
-  }
-}
-
-@media (min-width: 600px) {
-  .more-info {
-    display: none;
-  }
+  font-size: 1rem;
 }
 </style>

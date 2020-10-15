@@ -23,7 +23,7 @@
         </b-col>
       </b-row>
     </b-container>
-    <p>Are you an admin? Click here to delete all users:</p>
+    <p>Are you an admin? Click here to go to the 'delete all users' page:</p>
     <b-button size="sm" b-link v-bind:to="'deleteusers'">Delete All Users</b-button>
   </b-container>
 </template>
@@ -46,7 +46,7 @@ export default {
   methods: {
     changePass() {
       if (this.confirmNew !== this.passwordNew) {
-        alert('Your passwords do not match')
+        alert('Your passwords do not match.')
       } else {
         Api.patch('/users/' + localStorage.userID, {
           password: this.passwordNew
@@ -78,30 +78,23 @@ export default {
 
   h3 {
     color: #2D3E4E;
-    font-size: 12px;
-    padding: 40px 10px 40px 10px;
-  }
-
-  .bold-box {
-    color: #2D3E4E;
-  }
-
-  .light-box {
-    background: #8CBDB9;
-   /* display: flex;*/
-    justify-content: center;
-    align-items: center;
-    padding: 4em 4em 4em 4em;
-    margin: 4em 4em 4em 4em;
+    font-size: 10rem;
+    padding: 40rem 10rem 40rem 10rem;
   }
 
   .inner-box {
     background: white;
     justify-content: center;
     align-items: center;
-    border-radius: 25px;
-    padding: 20px 10px 20px 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+    border-radius: 2rem;
+    padding: 15rem 5rem 15rem 5rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+  }
+
+  @media (max-width: 600px) {
+    .inner-box {
+      padding: 2rem 1rem 2rem 1rem;
+    }
   }
 </style>
