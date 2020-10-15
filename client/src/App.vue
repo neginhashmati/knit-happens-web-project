@@ -15,7 +15,6 @@
       <router-link to="/account">Account</router-link>
       </b-navbar-nav>
 
-
         <b-navbar-nav class="ml-auto">
           <router-link to="/logout">Log Out</router-link>
         </b-navbar-nav>

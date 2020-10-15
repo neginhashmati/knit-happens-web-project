@@ -1,7 +1,8 @@
 <template>
     <div class="logout spacing">
       <div class="spacing">
-      <img src="../assets/cat-with-yarn.png" alt="Naughty kitten tangled in yarn">
+      <img src="../assets/logout.png" alt="Naughty kitten tangled in yarn" height="300" width="300" >
+      <!-- <img src="../assets/cat-with-yarn.png" alt="Naughty kitten tangled in yarn"> -->
       </div>
       <div>
         <div id="logout-button" class="spacing" @click="doLogout">Log me out

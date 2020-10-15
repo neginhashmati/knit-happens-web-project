@@ -10,17 +10,17 @@
     <b-row align-h="center">
       <b-col cols="12" sm="6" md="4">
         <h3>Dominique Deramat</h3>
-        <img src="../assets/dom-avatar.jpeg" fluid alt="doms avatar">
+        <img src="../assets/dom-avatar.jpeg" fluid alt="doms avatar" height="310" width="310" >
         <p>About Dominique:</p>
       </b-col>
       <b-col cols="12" sm="6" md="4">
         <h3>Shonaigh Douglas</h3>
-        <img src="../assets/sho-avatar.png" fluid alt="shos avatar">
+        <img src="../assets/sho-avatar.png" fluid alt="shos avatar" height="300" width="300" >
         <p>About Shonaigh:</p>
       </b-col>
       <b-col cols="12" sm="6" md="4">
         <h3>Negin Hashmati</h3>
-        <img src="../assets/negin-avatar.png" fluid alt="negins avatar">
+        <img src="../assets/negin-avatar.png" fluid alt="negins avatar" height="300" width="300" >
         <p>About Negin:</p>
       </b-col>
     </b-row>
