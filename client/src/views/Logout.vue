@@ -1,10 +1,10 @@
 <template>
-    <div class="col-12 col-md-12 col-xl-12 logout spacing">
-      <div class="col-12 col-md-12 col-xl-12 spacing">
+    <div class="logout spacing">
+      <div class="spacing">
       <img src="../assets/cat-with-yarn.png" alt="Naughty kitten tangled in yarn">
       </div>
-      <div class="col-12 col-md-12 col-xl-12 spacing">
-        <div id="logout-button" @click="doLoggout">Log me out
+      <div>
+        <div id="logout-button" class="spacing" @click="doLogout">Log me out
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@ export default {
     }
   },
   methods: {
-    doLoggout() {
+    doLogout() {
       localStorage.userID = null
       localStorage.userName = null
       alert('You are now logged out \nSee you again soon!')
@@ -37,6 +37,7 @@ export default {
 }
 
 #logout-button {
+  margin: auto;
   cursor: pointer;
   width: 100px;
   height: 50px;
@@ -44,4 +45,9 @@ export default {
   background-color: #f6be7b;
   padding-top: 7px;
 }
+
+#logout-button:hover {
+  background-color: #E09E50;
+}
+
 </style>
