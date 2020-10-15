@@ -102,22 +102,6 @@ router.delete('/api/projects/:id', function(req, res, next) {
     });
 });
 
-//DELETE all projects for a user
-router.delete('/api/users/:user_id/projects', function(req, res, next) {
-    var user_id = req.params.user_id;
-    //User.findById(user_id).populate('projects').exec(function(err, user){
-    User.findByIdAndDelete(user_id).populate('projects').exec(function(err, user){
-        if (err) { return next(err); }
-        if (user === null) {
-            return res.status(404).json({'message': 'User not found'});
-        }
-        var projects = user.projects;
-        return res.json({'projects': projects });
-
-       // return res.json(user);
-    });
-});
-
 //DELETE all projects in collection
 router.delete('/api/projects', function (req, res, next) {
 

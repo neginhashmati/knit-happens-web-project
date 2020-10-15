@@ -14,14 +14,6 @@
           </form>
         </b-col>
       </b-row>
-      <b-row>
-        <b-col class="col-7 col-md-7 col xl-7">
-          <p>To delete your account and all projects, click here:</p>
-        </b-col>
-        <b-col h-align ="end" class="col-2 col-md-2 col xl-2">
-        <b-button variant="danger" v-on:click="deleteAllProjects">Delete Account</b-button>
-        </b-col>
-      </b-row>
     </b-container>
     <p>Are you an admin? Click here to go to the 'delete all users' page:</p>
     <b-button size="sm" b-link v-bind:to="'deleteusers'">Delete All Users</b-button>
@@ -59,13 +51,6 @@ export default {
           })
       }
     }
-    /* deleteUser(UserID) {
-      UserID =
-      Api.delete(`/user/${userID}`)
-        .catch(error => {
-          console.error(error)
-        })
-    } */
   }
 }
 </script>
