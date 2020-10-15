@@ -1,26 +1,39 @@
 <template>
-    <div class="card">
-     <div class="title">
+  <div class="card">
+    <div class="title">
+ <p align="left">{{ project.name }}
 
-        <!-- <b-button-close v-on:click="$emit('delete-project', project._id)" >&times;</b-button-close> -->
-        <!-- <b-button v-on:click="$emit('load-project', project._id)">Edit</b-button></p> -->
-
-        <!-- <b-button class="mb-2" v-on:click="$emit('load-project', project._id)">
-           <b-icon icon="pencil-square" aria-hidden="true"></b-icon>
-          </b-button> -->
-        <p align="right">
-          <b-icon icon="pencil" aria-hidden="true" class="h5 mb-2" v-on:click="$emit('load-project', project._id)"></b-icon>
-          <b-icon icon="x" aria-hidden="true" class="h5 mb-2" v-on:click="$emit('delete-project', project._id)" >&times;</b-icon>
-
+      <!-- <p align="right"> -->
+        <b-icon
+          icon="pencil"
+          aria-hidden="true"
+          class="h5 mb-2"
+          v-on:click="$emit('load-project', project._id)"
+        ></b-icon>
+        <b-icon
+          icon="x"
+          aria-hidden="true"
+          class="h5 mb-2"
+          v-on:click="$emit('delete-project', project._id)"
+          >&times;</b-icon
+        >
       </p>
 
-      <p align="left">{{project.name}} </p>
     </div>
-        <!-- <div class="detail">Date: {{project.date}}</div> -->
-        <!-- <div class="detail">Notes: {{project.note}}</div> -->
-        <div class="detail">Status: {{project.status}}</div>
-        <div class="detail">Priority: {{project.priority}}</div>
+
+    <div class="card-body">
+      <div>
+        <p class="attribute">Status: </p>
+        <p class="attribute">Priority:</p>
+      </div>
+
+      <div>
+        <p>{{ project.status }}</p>
+          <p>{{ project.priority }}</p>
+      </div>
+
     </div>
+  </div>
 </template>
 
 <script>
@@ -37,14 +50,20 @@ export default {
 </script>
 
 <style scoped>
-
 .card {
   margin-bottom: 5px;
   border: 2px solid #000000;
   background-color: white;
   text-align: left;
   float: left;
-  transition: box-shadow .2s;
+  transition: box-shadow 0.2s;
+   /* width: 250px;
+  height: 300px; */
+}
+.card-body {
+  display: grid;
+  grid-template-columns: 70px 150px;
+  grid-column-gap: 0px;
 }
 
 .card:hover {
@@ -56,6 +75,12 @@ export default {
   font-size: 14px;
   background-color: #f6be7b;
   border-bottom: 2px solid #000000;
+}
+
+p {
+  padding-top: 5px;
+  padding-right: 5px;
+  margin: 0px;
 }
 
 @media (max-width: 600px) {
@@ -72,5 +97,4 @@ export default {
     display: none;
   }
 }
-
 </style>

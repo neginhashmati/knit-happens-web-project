@@ -5,9 +5,7 @@
         <!-- <b-col cols="7" offset="1" offset-md="2">
           <b-form-input v-model="text" placeholder="Enter your name"></b-form-input>
         </b-col> -->
-        <b-col cols="15">
-          <project-form v-on:create-project="createProject"/>
-        </b-col>
+
         <!-- <b-col cols="4">
           <b-button v-on:click="deleteAllProjects">Delete All Projects</b-button>
         </b-col> -->
@@ -18,6 +16,10 @@
             <project-item v-bind:project="project" v-on:delete-project="deleteProject" v-on:load-project="loadProject"/>
         </b-col>
       </b-row>
+
+      <b-col cols="3">
+         <project-form v-on:create-project="createProject"/>
+      </b-col>
     </b-container>
 </template>
 

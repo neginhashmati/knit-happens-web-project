@@ -83,12 +83,12 @@ export default {
           .then(() => {
             console.log('AND THEN')
             if (this.user === null) {
-              alert('LOGIN FAILED!! AAAAAA!!!! OMG!!!!!!!11!11!!!oneoneone!!!')
+              alert('Login failed')
               return
             }
             localStorage.userName = this.user.name
             localStorage.userID = this.user._id
-            alert('WELCOME ' + localStorage.userName + '. IT\'S TIME TO MAKE KNIT HAPPEN!! :D')
+            alert('Welcome ' + localStorage.userName + '. It/s time to make knit happen!')
             document.location.href = '/home'
           })
       }
@@ -111,7 +111,7 @@ export default {
             .then((response) => {
               localStorage.userName = response.data.name
               localStorage.userID = response.data._id
-              alert('You are now registered ' + localStorage.userName + '. IT\'S TIME TO MAKE KNIT HAPPEN!! :D')
+              alert('You are now registered ' + localStorage.userName + '. It/s time to make knit happen!')
               document.location.href = '/projects'
             }, (error) => {
               console.log(error)
@@ -147,7 +147,7 @@ p {
   height: 100vh;
 }
 .login-page .wallpaper-login {
-  background: url('../assets/login_background.jpg') no-repeat center center;
+  background: url('../assets/homelogo.png') no-repeat center center;
   background-size: cover;
   height: 100%;
   position: absolute;
