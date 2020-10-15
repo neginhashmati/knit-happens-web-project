@@ -43,8 +43,12 @@ router.post('/api/users', function(req, res, next) {
 
 // READ all users in the user collection
 router.get('/api/users', function(req, res, next) {
+    var userMoongose = User.find();
+    if(req.query.sort !== null) {
+        userMoongose.sort(req.query.sort);
+    }
     //User.find(function(err, users) {
-        User.find().populate('projects').exec(function(err, users) {
+    userMoongose.populate('projects').exec(function(err, users) {
         if (err) { return next(err); }
         return res.json({"users": users });
     })
@@ -64,7 +68,8 @@ router.get('/api/users/:id', function(req, res, next) {
 });
 
 // READ all users and return them sorted alphabetically by name
-router.get('/api/users?sort=name[asc]', function(req, res, next) {
+router.get('/api/users', function(req, res, next) {
+
     User.find(function(err, users) {
         if (err) { return next(err); }
 

@@ -8,12 +8,13 @@
           Knit Happens
         </b-navbar-brand>
 
-        <b-navbar-nav class="d-md-flex d-block flex-row mx-md-auto mx-0">
-          <router-link to="/home">Home</router-link> |
-          <router-link to="/projects">Projects</router-link> |
-          <router-link to="/users">Users</router-link> |
-          <router-link to="/account">Account</router-link>
-        </b-navbar-nav>
+    <b-navbar-nav class="d-md-flex d-block flex-row mx-md-auto mx-0">
+      <router-link to="/home">Home</router-link> |
+      <router-link to="/projects">Projects</router-link> |
+      <router-link to="/explore">Explore</router-link> |
+      <router-link to="/account">Account</router-link>
+      </b-navbar-nav>
+
 
         <b-navbar-nav class="ml-auto">
           <router-link to="/logout">Log Out</router-link>

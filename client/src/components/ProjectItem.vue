@@ -1,8 +1,9 @@
 <template>
   <div class="card">
     <div class="title">
-      <p align="left">{{ project.name }}
+      <p align="left">{{ project.name }}</p>
       <!-- <p align="right"> -->
+      <div class="icons">
         <b-icon
           icon="pencil"
           aria-hidden="true"
@@ -15,7 +16,7 @@
           class="h5 mb-2"
           v-on:click="$emit('delete-project', project._id)">&times;
         </b-icon>
-      </p>
+      </div>
     </div>
     <div class="card-body">
       <div>
@@ -78,5 +79,9 @@ p {
   padding-right: 5px;
   margin: 0px;
   font-size: 1rem;
+}
+
+.icons {
+  float: right;
 }
 </style>

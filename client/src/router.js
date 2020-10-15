@@ -5,7 +5,7 @@ import Account from './views/Account.vue'
 import Login from './views/Login.vue'
 import Projects from './views/Projects.vue'
 import SpecificProject from './views/SpecificProject.vue'
-import Users from './views/Users.vue'
+import Explore from './views/Explore.vue'
 import About from './views/About'
 import Logout from './views/Logout'
 import DeleteUsers from './views/DeleteUsers'
@@ -42,9 +42,9 @@ export default new Router({
       component: SpecificProject
     },
     {
-      path: '/users',
-      name: 'users',
-      component: Users
+      path: '/explore',
+      name: 'explore',
+      component: Explore
     },
     {
       path: '/about',
