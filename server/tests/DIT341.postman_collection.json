@@ -1715,42 +1715,6 @@
 					"response": []
 				},
 				{
-					"name": "Delete all projects for a user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2a4abdb0-9d23-41b9-8465-63b40b70bbef",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/users/{{user_id}}/projects",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"users",
-								"{{user_id}}",
-								"projects"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Delete all users",
 					"event": [
 						{
@@ -1812,7 +1776,7 @@
 	],
 	"variable": [
 		{
-			"id": "a2721885-eac5-4945-a4d2-c38a58d52e2b",
+			"id": "6a66aea4-0320-4797-a7de-1f3487969e2d",
 			"key": "host",
 			"value": "{{host}}"
 		}
