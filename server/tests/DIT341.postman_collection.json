@@ -167,7 +167,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"harry potter scarf\",\r\n    \"date\": \"2018-11-10\",\r\n    \"selected\": null,\r\n    \"text\": \"\",\r\n    \"note\": \"For Dominique's birthday\"\r\n}",
+							"raw": "{\r\n    \"name\": \"harry potter scarf\",\r\n    \"note\": \"For Dominique's birthday\"\r\n}",
 							"options": {
 								"raw": {}
 							}
@@ -626,9 +626,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Correct project response\", function () {\r",
-									"    pm.expect(jsonData.name).to.eql(\"harry potter scarf\");\r",
-									"    pm.expect(jsonData.status).to.eql(\"Not started\"),\r",
-									"    pm.expect(jsonData.priority).to.eql(\"Low\"),\r",
+									"    pm.expect(jsonData.name).to.eql(\"harry potter scarf\"),\r",
 									"    pm.expect(jsonData.note).to.eql(\"For Dominique's birthday\")\r",
 									"});"
 								],
@@ -1648,42 +1646,6 @@
 					"response": []
 				},
 				{
-					"name": "Delete all projects for a user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2a4abdb0-9d23-41b9-8465-63b40b70bbef",
-								"exec": [
-									"pm.test(\"Correct status code\", function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// TODO: more assertions..."
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/users/{{user_id}}/projects",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"users",
-								"{{user_id}}",
-								"projects"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Delete all projects",
 					"event": [
 						{
@@ -1753,6 +1715,42 @@
 					"response": []
 				},
 				{
+					"name": "Delete all projects for a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2a4abdb0-9d23-41b9-8465-63b40b70bbef",
+								"exec": [
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// TODO: more assertions..."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/{{user_id}}/projects",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete all users",
 					"event": [
 						{
@@ -1814,7 +1812,7 @@
 	],
 	"variable": [
 		{
-			"id": "5f702dbf-4e6f-4043-b11d-c98f48bfd202",
+			"id": "a2721885-eac5-4945-a4d2-c38a58d52e2b",
 			"key": "host",
 			"value": "{{host}}"
 		}
