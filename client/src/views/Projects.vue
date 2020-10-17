@@ -1,6 +1,5 @@
 <template>
     <b-container>
-      <p class="red">{{message}}</p>
       <b-row>
         <!-- <b-col cols="7" offset="1" offset-md="2">
           <b-form-input v-model="text" placeholder="Enter your name"></b-form-input>
@@ -17,9 +16,10 @@
         </b-col>
       </b-row>
 
-    <div id="createproject-button">
+    <!-- <div id="createproject-button"> -->
+      <b-button variant="secondary" :disabled="true">
       <project-form v:on:create-project="createProject">Create new project</project-form>
-    </div>
+      </b-button>
     </b-container>
 </template>
 
@@ -46,7 +46,8 @@ export default {
       message: '',
       projects: [],
       text: '',
-      userID: localStorage.userID
+      userID: localStorage.userID,
+      loggedIn: false
     }
   },
 
@@ -60,6 +61,12 @@ export default {
         .catch(error => {
           console.error(error)
         })
+    },
+
+    isDisabled: function () {
+      if (localStorage.userID !== null) {
+        return !this.loggedIn
+      }
     },
     createProject(input) {
       console.log('hello')
@@ -87,29 +94,31 @@ export default {
       localStorage.projectID = this.project._id
     },
     loadAllProjects() {
-      Api.get('users/' + localStorage.userID + '/projects')
-        .then(response => {
-          console.log(response.data)
-          this.projects = response.data.projects
-        })
-        .catch(error => {
-          this.message = error.message
-          console.error(error)
-          this.projects = []
-        // TODO: display error message
-        })
-        .then(() => {
-        //   This code is always executed at the end. After success or failure.
-        })
+      if (localStorage.userID === '') {
+        alert('You are not logged in.\nYou are being diverted to the login page!')
+        document.location.href = '/'
+      } else {
+        Api.get('users/' + localStorage.userID + '/projects')
+          .then(response => {
+            console.log(response.data)
+            this.projects = response.data.projects
+          })
+          .catch(error => {
+            this.message = error.message
+            console.error(error)
+            this.projects = []
+          // TODO: display error message
+          })
+          .then(() => {
+          //   This code is always executed at the end. After success or failure.
+          })
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-.red {
-    color: red;
-}
 
 #createproject-button {
   margin: auto;

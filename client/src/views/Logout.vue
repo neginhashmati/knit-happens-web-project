@@ -19,10 +19,18 @@ export default {
       message: 'none'
     }
   },
+
+  mounted() {
+    if (localStorage.userID === '') {
+      alert('You are not logged in.\nYou are being diverted to the login page!')
+      document.location.href = '/'
+    }
+  },
+
   methods: {
     doLogout() {
-      localStorage.userID = null
-      localStorage.userName = null
+      localStorage.userID = ''
+      localStorage.userName = ''
       alert('You are now logged out \nSee you again soon!')
       document.location.href = '/'
     }
