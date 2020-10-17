@@ -21,8 +21,8 @@ export default {
   },
   methods: {
     doLogout() {
-      localStorage.userID = null
-      localStorage.userName = null
+      localStorage.userID = ''
+      localStorage.userName = ''
       alert('You are now logged out \nSee you again soon!')
       document.location.href = '/'
     }
