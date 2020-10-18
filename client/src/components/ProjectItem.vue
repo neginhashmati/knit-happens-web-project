@@ -38,7 +38,6 @@ export default {
   name: 'project-item',
   props: ['project'],
   methods: {
-
   }
 }
 </script>
@@ -50,7 +49,8 @@ export default {
 }
 
 .card {
-  margin-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: 2px solid #000000;
   background-color: white;
   text-align: left;

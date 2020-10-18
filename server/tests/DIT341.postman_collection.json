@@ -9,6 +9,126 @@
 			"name": "POST endpoints",
 			"item": [
 				{
+					"name": "Create a user (C)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1e48b916-d786-427e-94c1-5488c468ac59",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var userId = jsonData._id;\r",
+									"pm.environment.set(\"user_id\", userId);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct user response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Dominique\");\r",
+									"    pm.expect(jsonData.email).to.eql(\"dominique@gmail.com\");\r",
+									"    pm.expect(jsonData.password).to.eql(\"cakes\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dominique@gmail.com\",\r\n    \"password\": \"cakes\",\r\n    \"name\": \"Dominique\",\r\n    \"projects\": []\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a user (A)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4de5056d-aeb6-42f5-a598-8b7d0478e6cb",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var userId = jsonData._id;\r",
+									"pm.environment.set(\"user_id\", userId);\r",
+									"\r",
+									"pm.test(\"Correct status code\", function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct user response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Dominique\");\r",
+									"    pm.expect(jsonData.email).to.eql(\"dominique@gmail.com\");\r",
+									"    pm.expect(jsonData.password).to.eql(\"cakes\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dominique@gmail.com\",\r\n    \"password\": \"cakes\",\r\n    \"name\": \"Dominique\",\r\n    \"projects\": []\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create a user",
 					"event": [
 						{
@@ -18,7 +138,13 @@
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"var userId = jsonData._id;\r",
+									"var userEmail = jsonData.email;\r",
+									"var userPassword = jsonData.password;\r",
+									"\r",
 									"pm.environment.set(\"user_id\", userId);\r",
+									"pm.environment.set(\"user_email\", userEmail);\r",
+									"pm.environment.set(\"user_password\", userPassword);\r",
+									"\r",
 									"\r",
 									"pm.test(\"Correct status code\", function() {\r",
 									"    pm.response.to.have.status(201);\r",
@@ -461,18 +587,28 @@
 					"response": []
 				},
 				{
-					"name": "Get all users sorted ascending name",
+					"name": "Get all users alphabetically",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "035dc9e1-583e-46a1-bb2a-df44b31bfc9a",
+								"id": "d5ff6f7d-e3ba-4b2a-b169-117c807d7e83",
 								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var _ = require('lodash')\r",
+									"\r",
 									"pm.test(\"Correct status code\", function() {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"// TODO: more assertions..."
+									"pm.test('Users have been sorted by name', () => {\r",
+									"   // Using the orderBy function from lodash \r",
+									"   // Read docs: https://lodash.com/docs/4.17.10#orderBy\r",
+									"    var expectedSortedOrder = _.orderBy(jsonData.users, ['name'],['asc']);\r",
+									"\r",
+									"    pm.expect(jsonData.users).to.eql(expectedSortedOrder);    \r",
+									"});\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -494,7 +630,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{host}}/api/users?sort=name[asc]",
+							"raw": "{{host}}/api/users?sort=name",
 							"host": [
 								"{{host}}"
 							],
@@ -505,7 +641,7 @@
 							"query": [
 								{
 									"key": "sort",
-									"value": "name[asc]"
+									"value": "name"
 								}
 							]
 						}
@@ -1036,6 +1172,57 @@
 								"api",
 								"needles",
 								"5f5b219557601403d8e68953"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate email & password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2fc71b63-c184-4d0f-8a49-c04125b5b3ec",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Correct status code\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct user response\", function () {\r",
+									"    pm.expect(jsonData.name).to.eql(\"Dominique\");\r",
+									"    pm.expect(jsonData.email).to.eql(\"dominique@gmail.com\");\r",
+									"    pm.expect(jsonData.password).to.eql(\"cakes\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/auth/?email={{user_email}}&password={{user_password}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{user_email}}"
+								},
+								{
+									"key": "password",
+									"value": "{{user_password}}"
+								}
 							]
 						}
 					},
@@ -1776,7 +1963,7 @@
 	],
 	"variable": [
 		{
-			"id": "6a66aea4-0320-4797-a7de-1f3487969e2d",
+			"id": "cbaf2017-f14c-48f6-887c-c8d2878bd89e",
 			"key": "host",
 			"value": "{{host}}"
 		}
