@@ -17,9 +17,13 @@
         </b-col>
       </b-row>
 
-    <div id="createproject-button">
+  <b-col cols="12">
+         <project-form v-on:create-project="createProject"/>
+      </b-col>
+
+    <!-- <div id="createproject-button">
       <project-form v:on:create-project="createProject">Create new project</project-form>
-    </div>
+    </div> -->
     </b-container>
 </template>
 

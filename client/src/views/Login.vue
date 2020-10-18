@@ -8,7 +8,7 @@
       <div class="container">
          <div class="row">
           <div id="login-logo">
-            <img src="../assets/homelogo.png" class="col-lg-4 col-md-6 col-sm-8 mx-auto" alt="Logo">
+            <img src="../assets/loginlogo.png" class="col-lg-4 col-md-6 col-sm-8 mx-auto" alt="Logo">
           </div>
             <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
                <div v-if="!registerActive" class="card login" v-bind:class="{ error: emptyFields }">

@@ -38,17 +38,14 @@ export default {
   name: 'project-item',
   props: ['project'],
   methods: {
-    // deleteProject() {
-    //   this.$emit('del-project', this.project._id)
-    //   console.log('del-project with id:' + this.project._id)
-    // }
   }
 }
 </script>
 
 <style scoped>
 .card {
-  margin-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: 2px solid #000000;
   background-color: white;
   text-align: left;
