@@ -49,12 +49,12 @@ router.get('/api/auth/', function(req, res, next) {
     User.findOne({ email: emailAddress }).exec(function(err, user){
         if (err) { return next(err); }
         if (user === null) {
-            return res.status(201).json({'error': 'User not found'});
+            return res.status(200).json({'error': 'User not found'});
         }
         if(user.password !== password) {
-            return res.status(201).json({'error': 'Wrong password'})
+            return res.status(200).json({'error': 'Wrong password'})
         }
-        return res.status(201).json(user);
+        return res.status(200).json(user);
     });
 });
 

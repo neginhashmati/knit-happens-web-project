@@ -1,6 +1,7 @@
 <template>
     <div>
-      <div class="createproject-button" v-b-modal.modal-create-project>Create New Project</div>
+      <b-button v-b-modal.modal-create-project>Create New Project</b-button>
+      <!-- <div class="createproject-button" v-b-modal.modal-create-project>Create New Project</div> -->
 
       <b-modal
       id="modal-create-project"
@@ -12,13 +13,13 @@
     >
         <!-- <form ref="form" @submit.stop.prevent="handleSubmit"> -->
         <form>
-        <label>Project Name</label>
+        <label>Project Name </label><span class="required"> * </span>
         <b-form-input v-model="input.name" placeholder="Enter project name"></b-form-input>
 
-        <label>Date</label>
+        <label>Date </label><span class="required"> * </span>
         <b-form-datepicker id="date-blah" v-model="input.date"></b-form-datepicker>
 
-        <label>Notes</label>
+        <label>Notes </label>
         <b-form-textarea
             id="textarea"
             v-model="input.note"
@@ -27,11 +28,16 @@
             max-rows="6"
         ></b-form-textarea>
 
-        <label>Priority</label>
+        <label>Priority </label><span class="required"> * </span>
         <b-form-select v-model="input.priority" :options="priorityOptions"></b-form-select>
 
-        <label>Status</label>
+        <label>Status </label><span class="required"> * </span>
         <b-form-select v-model="input.status" :options="statusOptions" size="sm"></b-form-select>
+
+        <p></p>
+        <p></p>
+        <p></p>
+        <p class="required">* Required information</p>
 
         <b-button v-on:click="$bvModal.hide('modal-create-project');$emit('create-project', input)">Create New Project</b-button>
         </form>
@@ -93,5 +99,10 @@ a {
 
 a:hover {
    color: black
+}
+
+.required {
+  color: red;
+  font-size: 0.9rem;
 }
 </style>

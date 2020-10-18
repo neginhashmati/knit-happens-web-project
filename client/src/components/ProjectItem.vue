@@ -1,34 +1,34 @@
 <template>
   <div class="card">
     <div class="title">
-      <p align="left">{{ project.name }}</p>
-      <!-- <p align="right"> -->
-      <div class="icons">
-        <b-icon
-          icon="pencil"
-          aria-hidden="true"
-          class="h5 mb-2"
-          v-on:click="$emit('load-project', project._id)">
-        </b-icon>
-        <b-icon
-          icon="x"
-          aria-hidden="true"
-          class="h5 mb-2"
-          v-on:click="$emit('delete-project', project._id)">&times;
-        </b-icon>
+      <div class="title-body">
+        <div>
+          <p>{{ project.name }}</p>
+        </div>
+        <div class="title-col2">
+          <b-icon
+            icon="pencil"
+            id="edit-button"
+            v-on:click="$emit('load-project', project._id)">
+          </b-icon><span>     </span>
+          <b-button-close v-on:click="$emit('delete-project', project._id)">&times;</b-button-close>
+        </div>
       </div>
     </div>
     <div class="card-body">
       <div>
         <p class="attribute">Status: </p>
         <p class="attribute">Priority:</p>
+        <p class="attributenotes">Notes:</p>
       </div>
 
       <div>
         <p>{{ project.status }}</p>
-          <p>{{ project.priority }}</p>
+        <p>{{ project.priority }}</p>
+        <div class="notes">
+        <p>{{ project.note }}</p>
+        </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -38,28 +38,28 @@ export default {
   name: 'project-item',
   props: ['project'],
   methods: {
-    // deleteProject() {
-    //   this.$emit('del-project', this.project._id)
-    //   console.log('del-project with id:' + this.project._id)
-    // }
   }
 }
 </script>
 
 <style scoped>
+
+#edit-button {
+  cursor: pointer;
+}
+
 .card {
-  margin-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: 2px solid #000000;
   background-color: white;
   text-align: left;
   float: left;
   transition: box-shadow 0.2s;
-   /* width: 250px;
-  height: 300px; */
 }
 .card-body {
   display: grid;
-  grid-template-columns: 70px 150px;
+  grid-template-columns: 75px 150px;
   grid-column-gap: 0px;
 }
 
@@ -74,14 +74,38 @@ export default {
   border-bottom: 2px solid #000000;
 }
 
+.title-body {
+  display: grid;
+  grid-template-columns: 220px 35px;
+  grid-column-gap: 0px;
+}
+
+.title-col2 {
+  align-content: right;
+}
+
 p {
   padding-top: 5px;
   padding-right: 5px;
+  padding-left: 5px;
   margin: 0px;
   font-size: 1rem;
 }
 
 .icons {
   float: right;
+}
+
+.attributenotes {
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .notes {
+    display: none;
+  }
+  .attributenotes {
+    display: none;
+  }
 }
 </style>
