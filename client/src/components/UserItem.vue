@@ -40,6 +40,9 @@ p {
   .card {
     font-size: 1rem;
   }
+  p {
+    padding: 10px;
+  }
 }
 
 .project {

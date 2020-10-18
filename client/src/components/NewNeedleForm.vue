@@ -9,25 +9,34 @@
       cancel-disabled
       hide-footer
       >
+
       <form>
-        <label>Needle name</label>
-          <b-form-input v-model="input.name" size="sm" placeholder="Enter needle name"></b-form-input>
-        <label>Needle source</label>
-          <b-form-input v-model="input.source_name" size="sm" placeholder="Enter where the needle was purchased"></b-form-input>
-        <label>Needle size</label>
-          <b-form-select v-model="input.size" :options="sizeOptions" size="sm"></b-form-select>
-        <label>Needle cost</label>
-          <b-form-input v-model="input.cost" size="sm" placeholder="Enter the cost of the needle"></b-form-input>
-        <label>Do you own the needle?</label>
-          <b-form-select v-model="input.owned" :options="ownedOptions"  size="sm"></b-form-select>
-        <label>Needle notes</label>
+        <label>Needle name</label><span class="required"> *</span>
+          <b-form-input v-model="input.name" size="sm" placeholder="Enter needle name"></b-form-input><br>
+
+        <label>Needle source</label><span class="required"> *</span>
+          <b-form-input v-model="input.source_name" size="sm" placeholder="Enter where the needle was purchased"></b-form-input><br>
+
+        <label>Needle size</label><span class="required"> *</span>
+          <b-form-select v-model="input.size" :options="sizeOptions" size="sm"></b-form-select><br><br>
+
+        <label>Needle cost</label><span class="required"> *</span>
+        <b-input-group prepend="€" size="sm">
+          <b-form-input v-model="input.cost" prepend="€" size="sm" placeholder="Enter the cost of the needle"></b-form-input>
+        </b-input-group><br>
+
+        <label>Do you own the needle?</label><span class="required"> *</span>
+          <b-form-select v-model="input.owned" :options="ownedOptions"  size="sm"></b-form-select><br><br>
+
+        <label>Needle notes </label>
           <b-form-textarea
               id="textarea"
               v-model="input.note"
               placeholder="Enter notes here:"
               rows="3"
               max-rows="6"
-          ></b-form-textarea>
+          ></b-form-textarea><br>
+        <p class="required">* - required information</p>
         <b-button v-on:click="$bvModal.hide('modal-create-needle');$emit('create-needle', input)">Add New Needle</b-button>
       </form>
     </b-modal>
@@ -90,4 +99,9 @@ export default {
 </script>
 
 <style scoped>
+
+.required {
+  color: red;
+  font-size: 0.7rem;
+}
 </style>

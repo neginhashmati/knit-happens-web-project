@@ -2,7 +2,6 @@
     <div class="logout spacing">
       <div class="spacing">
       <img src="../assets/logout.png" alt="Naughty kitten tangled in yarn" height="300" width="300" >
-      <!-- <img src="../assets/cat-with-yarn.png" alt="Naughty kitten tangled in yarn"> -->
       </div>
       <div>
         <div id="logout-button" class="spacing" @click="doLogout">Log me out
@@ -19,10 +18,18 @@ export default {
       message: 'none'
     }
   },
+
+  mounted() {
+    if (localStorage.userID === '') {
+      alert('You are not logged in.\nYou are being diverted to the login page!')
+      document.location.href = '/'
+    }
+  },
+
   methods: {
     doLogout() {
-      localStorage.userID = null
-      localStorage.userName = null
+      localStorage.userID = ''
+      localStorage.userName = ''
       alert('You are now logged out \nSee you again soon!')
       document.location.href = '/'
     }
@@ -33,7 +40,7 @@ export default {
 <style scoped>
 
 .spacing {
-  margin: 100px;
+  margin: 10px;
   align-content: center;
 }
 
@@ -51,4 +58,10 @@ export default {
   background-color: #E09E50;
 }
 
+@media (max-width: 600px) {
+  .spacing {
+    align-content: center;
+    margin: 10px;
+  }
+}
 </style>
