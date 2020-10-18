@@ -327,7 +327,6 @@ export default {
 
   h3 {
     color: #2D3E4E;
-    font-size: 10px;
     padding: 40px 10px 40px 10px;
   }
 

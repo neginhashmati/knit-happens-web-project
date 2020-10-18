@@ -19,13 +19,16 @@
       <div>
         <p class="attribute">Status: </p>
         <p class="attribute">Priority:</p>
+        <p class="attributenotes">Notes:</p>
       </div>
 
       <div>
         <p>{{ project.status }}</p>
         <p>{{ project.priority }}</p>
+        <div class="notes">
+        <p>{{ project.note }}</p>
+        </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -53,8 +56,6 @@ export default {
   text-align: left;
   float: left;
   transition: box-shadow 0.2s;
-   /* width: 250px;
-  height: 300px; */
 }
 .card-body {
   display: grid;
@@ -93,5 +94,18 @@ p {
 
 .icons {
   float: right;
+}
+
+.attributenotes {
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .notes {
+    display: none;
+  }
+  .attributenotes {
+    display: none;
+  }
 }
 </style>

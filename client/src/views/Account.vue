@@ -72,7 +72,6 @@ export default {
 
   h3 {
     color: #2D3E4E;
-    font-size: 10rem;
     padding: 40rem 10rem 40rem 10rem;
   }
 
@@ -88,7 +87,13 @@ export default {
 
   @media (max-width: 600px) {
     .inner-box {
-      padding: 2rem 1rem 2rem 1rem;
+      padding: 20px 10px 20px 10px;
+    }
+  }
+
+  @media (min-width: 400px) {
+    .inner-box {
+      padding: 20px 10px 20px 10px;
     }
   }
 </style>
