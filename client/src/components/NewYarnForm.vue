@@ -10,29 +10,31 @@
       hide-footer
       >
       <form>
-        <label>Yarn name</label>
-          <b-form-input v-model="input.name" size="sm" placeholder="Enter yarn name"></b-form-input>
+        <label>Yarn name</label><span class="required"> *</span>
+          <b-form-input v-model="input.name" size="sm" placeholder="Enter yarn name"></b-form-input><br>
 
-        <label>Yarn brand</label>
-          <b-form-input v-model="input.brand" size="sm" placeholder="Enter the yarn's brand"></b-form-input>
+        <label>Yarn brand</label><span class="required"> *</span>
+          <b-form-input v-model="input.brand" size="sm" placeholder="Enter the yarn's brand"></b-form-input><br>
 
-        <label>Yarn color</label>
-          <b-form-input v-model="input.color" size="sm" placeholder="Enter the yarn's color"></b-form-input>
+        <label>Yarn color</label><span class="required"> *</span>
+          <b-form-input v-model="input.color" size="sm" placeholder="Enter the yarn's color"></b-form-input><br>
 
-        <label>Yarn weight</label>
-          <b-form-select v-model="input.weight" :options="weightOptions" size="sm" placeholder="Enter yarn weight (e.g. lace, sock, sport)"></b-form-select>
+        <label>Yarn weight</label><span class="required"> *</span>
+          <b-form-select v-model="input.weight" :options="weightOptions" size="sm" placeholder="Select yarn weight"></b-form-select><br><br>
 
-        <label>Yarn fiber</label>
-          <b-form-input v-model="input.fiber" size="sm" placeholder="Enter the yarn's fiber (e.g. wool, acylic, cotton)"></b-form-input>
+        <label>Yarn fiber</label><span class="required"> *</span>
+          <b-form-input v-model="input.fiber" size="sm" placeholder="Enter the yarn's fiber (e.g. wool, acylic, cotton)"></b-form-input><br>
 
-        <label>Yarn source</label>
-          <b-form-input v-model="input.source_name" size="sm" placeholder="Enter where the yarn was purchased"></b-form-input>
+        <label>Yarn source</label><span class="required"> *</span>
+          <b-form-input v-model="input.source_name" size="sm" placeholder="Enter where the yarn was purchased"></b-form-input><br>
 
-        <label>Yarn cost</label>
-          <b-form-input v-model="input.cost" size="sm" class="mt-3" placeholder="Enter the cost of the yarn"></b-form-input>
+        <label>Yarn cost</label><span class="required"> *</span>
+        <b-input-group prepend="€" size="sm">
+          <b-form-input v-model="input.cost" size="sm" placeholder="Enter the cost of the yarn"></b-form-input>
+        </b-input-group><br>
 
-        <label>Do you own the yarn?</label>
-          <b-form-select v-model="input.owned" :options="ownedOptions" size="sm"></b-form-select>
+        <label>Do you own the yarn?</label><span class="required"> *</span>
+          <b-form-select v-model="input.owned" :options="ownedOptions" size="sm"></b-form-select><br><br>
 
         <label>Yarn notes</label>
           <b-form-textarea
@@ -42,6 +44,7 @@
               rows="3"
               max-rows="6"
           ></b-form-textarea>
+          <p class="required">* - required information</p>
         <b-button v-on:click="$bvModal.hide('modal-create-yarn');$emit('create-yarn', input)">Add New Yarn</b-button>
       </form>
     </b-modal>
@@ -97,4 +100,9 @@ export default {
 </script>
 
 <style scoped>
+
+.required {
+  color: red;
+  font-size: 0.7rem;
+}
 </style>

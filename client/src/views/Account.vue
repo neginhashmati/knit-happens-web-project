@@ -10,7 +10,7 @@
           <form class="form-inline">
           <input v-model="passwordNew" type="password" class="form-control" placeholder="New Password" required>
           <input v-model="confirmNew" type="password" class="form-control" placeholder="Confirm Password" required>
-          <input type="submit" class="btn btn-info" @click="changePass">
+          <input type="submit" class="btn btn-info" :disabled='isDisabled' @click="changePass">
           </form>
         </b-col>
       </b-row>
@@ -32,9 +32,18 @@ export default {
       confirmNew: 'none',
       passwordNew: 'none',
       userName: localStorage.userName,
-      userID: localStorage.userID
+      userID: localStorage.userID,
+      loggedIn: true
     }
   },
+
+  mounted() {
+    if (localStorage.userID === '') {
+      alert('You are not logged in.\nYou are being diverted to the login page!')
+      document.location.href = '/'
+    }
+  },
+
   methods: {
     changePass() {
       if (this.confirmNew !== this.passwordNew) {

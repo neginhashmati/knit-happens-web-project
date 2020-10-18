@@ -1,20 +1,18 @@
 <template>
   <div class="card">
     <div class="title">
-      <p align="left">{{ project.name }}</p>
-      <div class="icons">
-        <b-icon
-          icon="pencil"
-          aria-hidden="true"
-          class="h5 mb-2"
-          v-on:click="$emit('load-project', project._id)">
-        </b-icon>
-        <b-icon
-          icon="x"
-          aria-hidden="true"
-          class="h5 mb-2"
-          v-on:click="$emit('delete-project', project._id)">&times;
-        </b-icon>
+      <div class="title-body">
+        <div>
+          <p>{{ project.name }}</p>
+        </div>
+        <div class="title-col2">
+          <b-icon
+            icon="pencil"
+            id="edit-button"
+            v-on:click="$emit('load-project', project._id)">
+          </b-icon><span>     </span>
+          <b-button-close v-on:click="$emit('delete-project', project._id)">&times;</b-button-close>
+        </div>
       </div>
     </div>
     <div class="card-body">
@@ -46,6 +44,11 @@ export default {
 </script>
 
 <style scoped>
+
+#edit-button {
+  cursor: pointer;
+}
+
 .card {
   margin-bottom: 5px;
   border: 2px solid #000000;
@@ -56,7 +59,7 @@ export default {
 }
 .card-body {
   display: grid;
-  grid-template-columns: 70px 150px;
+  grid-template-columns: 75px 150px;
   grid-column-gap: 0px;
 }
 
@@ -71,9 +74,20 @@ export default {
   border-bottom: 2px solid #000000;
 }
 
+.title-body {
+  display: grid;
+  grid-template-columns: 220px 35px;
+  grid-column-gap: 0px;
+}
+
+.title-col2 {
+  align-content: right;
+}
+
 p {
   padding-top: 5px;
   padding-right: 5px;
+  padding-left: 5px;
   margin: 0px;
   font-size: 1rem;
 }
