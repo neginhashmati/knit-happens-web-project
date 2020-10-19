@@ -8,8 +8,6 @@
         </b-navbar-brand>
 
     <b-navbar-nav class="d-md-flex d-block flex-row mx-md-auto mx-0">
-
-       <!-- <b-navbar-nav class="col-lg-4 col-md-6 col-sm-8 mx-auto"> -->
       <router-link to="/home">Home</router-link> |
       <router-link to="/projects">Projects</router-link> |
       <router-link to="/explore">Explore</router-link> |
