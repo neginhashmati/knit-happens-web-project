@@ -61,6 +61,9 @@ export default {
     }
   },
 
+  mounted() {
+    localStorage.userID = ''
+  },
   methods: {
     doLogin() {
       if (this.emailLogin === '' || this.passwordLogin === '') {

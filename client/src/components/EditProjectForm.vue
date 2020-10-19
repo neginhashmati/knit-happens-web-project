@@ -91,11 +91,6 @@ export default {
       },
       userName: localStorage.userName,
       userID: localStorage.userID
-      // when checked:
-      // vm.toggle === 'yes'
-      // when unchecked:
-      // vm.toggle === 'no'
-
     }
   },
 

@@ -4,17 +4,6 @@ var router = express.Router();
 
 var User = require('../models/user.js');
 
-// // READ get all documents in a collection
-// function getAllDocuments(Type,label) {
-//     return function (req, res, next) {
-//         Type.find(function(err, documents) {
-//             if (err) { return next(err); }
-//             var arrayLabel = label;
-//             return res.json({arrayLabel: documents });
-//         });
-//     }
-// }
-
 // UPDATE all attributes of a specific document by id 
 function putDocument(Type) {
     return function (req, res, next) {
@@ -29,9 +18,6 @@ function putDocument(Type) {
     };
 }
 
-//router.get('/api/v2/users', getAllDocuments(User, "users"));
-router.put('/api/v2/users/:id', putDocument(User));
-
 // CREATE a user document
 router.post('/api/users', function(req, res, next) {
     var user = new User(req.body);
@@ -40,8 +26,6 @@ router.post('/api/users', function(req, res, next) {
         return res.status(201).json(user);
     });   
 });      
-
-
 
 router.get('/api/auth/', function(req, res, next) {
     var password = req.query.password;    

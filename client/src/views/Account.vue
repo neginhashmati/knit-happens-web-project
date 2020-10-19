@@ -10,7 +10,7 @@
           <form class="form-inline">
           <input v-model="passwordNew" type="password" class="form-control" placeholder="New Password" required>
           <input v-model="confirmNew" type="password" class="form-control" placeholder="Confirm Password" required>
-          <input type="submit" class="btn btn-info" :disabled='isDisabled' @click="changePass">
+          <input type="submit" class="btn btn-info" @click="changePass">
           </form>
         </b-col>
       </b-row>
@@ -97,3 +97,4 @@ export default {
     }
   }
 </style>
+

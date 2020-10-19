@@ -105,7 +105,6 @@ router.put('/api/yarns/:id', function(req, res) {
 });
 
 // UPDATE/PATCH - update only some of the information for a particular yarn
-
 router.patch('/api/yarns/:id', function(req, res) {
     var id = req.params.id;
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -135,24 +134,7 @@ router.patch('/api/yarns/:id', function(req, res) {
     });
 });
 
-/*
-// DELETE - remove all yarns
-router.delete('/api/yarns', function(req, res, next) {
-    var id = req.params.id;
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        return res.status(404).json({  "message": "Illegal ID format" });
-      }
-    Yarn.findOneAndDelete({_id: id}, function(err, yarn) {
-        if (err) { return next(err); }
-        if (yarn === null) {
-            return  res.status(404).json(    {"message": "yarn not found"});
-        }
-        res.json(yarn);
-    });
-});
-*/
 //DELETE - remove all needles for a project
-
 router.delete('/api/projects/:project_id/needles', function(req, res, next) {
     var project_id = req.params.project_id;
     if (!project_id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -171,7 +153,6 @@ router.delete('/api/projects/:project_id/needles', function(req, res, next) {
 });
 
 //DELETE - remove all yarns for a project
-
 router.delete('/api/projects/:project_id/yarns', function(req, res, next) {
     var project_id = req.params.project_id;
     if (!project_id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -190,7 +171,6 @@ router.delete('/api/projects/:project_id/yarns', function(req, res, next) {
 });
 
 // DELETE - remove a particular yarn
-
 router.delete('/api/yarns/:id', function(req, res, next) {
     var id = req.params.id;
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {

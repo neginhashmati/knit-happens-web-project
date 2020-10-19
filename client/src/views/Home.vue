@@ -29,6 +29,13 @@ export default {
       message: 'none'
     }
   },
+
+  mounted() {
+    if (localStorage.userID === '') {
+      alert('You are not logged in.\nYou are being diverted to the login page!')
+      document.location.href = '/'
+    }
+  },
   methods: {
     getMessage() {
       Api.get('/')

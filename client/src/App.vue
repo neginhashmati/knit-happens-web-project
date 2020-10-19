@@ -4,9 +4,7 @@
     <div id="top-nav">
       <b-navbar >
         <b-navbar-brand ref="#">
-          <img src="./assets/knithappenslogoDARK2.png" class="d-inline-block align-top" alt="Logo" width="40" height="40">
-
-          <router-link class="routerLink" to="/home">Knit Happens</router-link>
+          <img src="./assets/knithappenslogoDARK2.png" class="d-inline-block align-top" alt="Logo" width="40" height="40">Knit Happens
         </b-navbar-brand>
 
     <b-navbar-nav class="d-md-flex d-block flex-row mx-md-auto mx-0">
