@@ -1,13 +1,18 @@
 <template>
   <div class="card">
-    <p>{{user.name}}</p>
-      <div class="project">Projects: </div>
-      <br>
-    <div v-for="project in user.projects" v-bind:key="project._id" class="projectname">
+    <div class="title">
+        <div class="user-name">
+          <p>{{user.name}}</p>
+        </div>
+    </div>
+      <div class="card-body">
+        <p>Projects:</p>
+        <div v-for="project in user.projects" v-bind:key="project._id">
         <ul>
           <li>{{project.name}}</li>
         </ul>
       </div>
+    </div>
     </div>
 </template>
 
@@ -28,12 +33,41 @@ export default {
 </script>
 
 <style scoped>
+.card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid #000000;
+  background-color: white;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.title {
+  font-size: 1rem;
+  background-color: #f6be7b;
+  border-bottom: 2px solid #000000;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.card-body {
+  grid-template-columns: 75px 150px;
+  grid-column-gap: 0px;
+  text-align: left;
+}
+
 p {
-    background-color: #f6be7b;
-    font-size: 2rem;
-    padding: 10px;
-    margin-left: inherit;
-    margin-bottom: 0px;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin: 0px;
+  font-size: 1rem;
+}
+
+ul {
+  text-align: left;
 }
 
 @media (max-width: 600px) {
@@ -43,26 +77,5 @@ p {
   p {
     padding: 10px;
   }
-}
-
-.project {
-  font-size: 1.5rem;
-  border-top: 2px solid #000000;
-}
-
-.projectname {
-  font-size: 1rem;
-}
-
-.card {
-  border-style: solid;
-  border-radius: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px solid #000000;
-}
-
-ul {
-  text-align: left;
 }
 </style>

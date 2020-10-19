@@ -72,17 +72,17 @@ export default {
 
   h3 {
     color: #2D3E4E;
-    padding: 40rem 10rem 40rem 10rem;
+    padding: 20px 10px 20px 10px;
   }
 
   .inner-box {
     background: white;
     justify-content: center;
     align-items: center;
-    border-radius: 2rem;
-    padding: 15rem 5rem 15rem 5rem;
-    margin-left: 10rem;
-    margin-right: 10rem;
+    border-radius: 20px;
+    padding: 20px 10px 20px 10px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   @media (max-width: 600px) {
@@ -97,4 +97,3 @@ export default {
     }
   }
 </style>
-
