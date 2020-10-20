@@ -44,7 +44,7 @@
             type="submit"
             variant="info"
             size="sm"
-            @click="editYarn">Submit</b-button>
+            @click="editYarn">Update</b-button>
           </b-form>
         </b-col>
       </b-row>
