@@ -60,24 +60,23 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 ## System Definition (MS0)
 
 ### Purpose
-
-A website that helps users organize and plan future craft projects, specifically by cataloguing materials and their costs. Users create an account and then they have the option to create, delete, or update a project and add, delete, or update materials or they can simply add materials to their materials stash. The user must include the price of the materials they do not own yet and they have the option to add photos or links. 
+Knit Happens is a project planner for knitting projects where the users get to add and see information about their projects. It is a tool for organizing and keeping track of what has been done on projects, together with what materials they want to use. Users have all the tools to create, update, or delete projects and materials. There is also a community feature where they can see what other users of Knit Happens are creating. 
 
 ### Pages
-
-* Homepage: displays a welcome message. This is where the user can login or create an account.
-* Account settings page: this is where the user can handle the settings for their profile such as name, email, password, etc.
-* Profile page: displays the user's profile picture, the list of projects, and list of materials. 
-* Projects page: displays the list of all the user's projects, also features the option to create a new project.
-* Selected project page: where it displays the picture of the finished project, link to inspiration, and the total price for the project. 
-* Materials page: where it displays the list of all the user's materials with an option to add new materials.
-* Selected material page: where it displays a picture of the selected material, link to where to buy it, its price, and if user owns it or not. 
+* Log in page: the page you land on when first visiting the website. Here the user can either log in to an existing account or create a new one.
+* Homepage: displays a welcome message and provides an easy way for the logged in user to access their projects or go to their account page.
+* Account page: this is where the user can change their password and if they are an admin, delete all users.
+* Projects page: displays all the user's projects and also features the option to create a new project.
+* Selected project page: the page a user lands on when having selected a project from the 'Projects' page. Here the user can add yarns and needles to their project, as well as update the existing information about the project such as name, date, status, priority, and notes.
+* Explore page: this is where all users of Knit Happens are displayed together with their projects so all users can see what the community has been up to. 
+* About page: a page with information about the group behind Knit Happens.
+* Log out page: this is the page where the user can log out from their account.
 
 
 ### Entity-Relationship (ER) Diagram
 
-![ER Diagram](https://imgur.com/4w8bh3C)
+![ER Diagram](https://i.imgur.com/4w8bh3C.png)
 
 ## Teaser (MS3)
 
-![Teaser](./images/teaser.png)
+![Teaser](https://i.imgur.com/nNWFCEZ.png)
