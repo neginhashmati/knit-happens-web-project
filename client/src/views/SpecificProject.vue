@@ -105,7 +105,7 @@
       </b-row>
       <b-row>
         <b-col cols="8" sm="6" md="4" v-for="yarn in yarns" v-bind:key="yarn._id">
-            <yarn-item v-bind:yarn="yarn" v-on:delete-yarn="deleteYarn"/>
+            <yarn-item v-bind:yarn="yarn" v-on:delete-yarn="deleteYarn" v-on:load-yarn="loadYarn"/>
         </b-col>
       </b-row>
       <b-row>
@@ -118,7 +118,7 @@
       </b-row>
       <b-row>
         <b-col cols="8" sm="6" md="4" v-for="needle in needles" v-bind:key="needle._id">
-            <needle-item v-bind:needle="needle" v-on:delete-needle="deleteNeedle"/>
+            <needle-item v-bind:needle="needle" v-on:delete-needle="deleteNeedle" v-on:load-needle="loadNeedle"/>
         </b-col>
       </b-row>
       <b-row>
@@ -161,10 +161,10 @@ export default {
       project: null,
       needles: [],
       yarns: [],
-      nameNew: 'none',
-      statusNew: 'none',
-      priorityNew: 'none',
-      noteNew: 'none',
+      nameNew: '',
+      statusNew: '',
+      priorityNew: '',
+      noteNew: '',
       userName: localStorage.userName,
       userID: localStorage.userID,
       projectID: null,
@@ -310,6 +310,16 @@ export default {
         .then(() => {
         //   This code is always executed at the end. After success or failure.
         })
+    },
+    loadNeedle(id) {
+      console.log('Load the damn needle')
+      location.href = '/specificneedle/' + id
+      localStorage.needleID = this.needle._id
+    },
+    loadYarn(id) {
+      console.log('Load the damn yarn')
+      location.href = '/specificyarn/' + id
+      localStorage.yarnID = this.yarn._id
     }
   }
 }
