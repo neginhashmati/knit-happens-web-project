@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button v-b-modal.modal-create-needle>Add new needle</b-button>
+    <b-button v-b-modal.modal-create-needle>Add New Needle</b-button>
       <b-modal
       id="modal-create-needle"
       ref="modal"
@@ -36,7 +36,7 @@
               rows="3"
               max-rows="6"
           ></b-form-textarea><br>
-        <p class="required">* - required information</p>
+        <p class="required">* Required information</p>
         <b-button v-on:click="$bvModal.hide('modal-create-needle');$emit('create-needle', input)">Add New Needle</b-button>
       </form>
     </b-modal>
@@ -102,6 +102,6 @@ export default {
 
 .required {
   color: red;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
 }
 </style>

@@ -2,104 +2,125 @@
   <b-container class="col-12 col-md-10 col-xl-8">
     <h3>{{project.name}}</h3>
     <b-container class="inner-box">
+      <b-form >
       <b-row>
-        <b-col class="col-2 col-md-2 col-xl-2">
-          <p class="attribute">Project name: </p>
+        <b-col class="project-label col-1 col-md-1 col-xl-1" />
+        <b-col class="project-label col-2 col-md-2 col-xl-2" >
+          <label>Project Name: </label>
         </b-col>
-        <b-col class="col-3 col-md-3 col-xl-3">
+        <!-- <b-col class="col-3 col-md-3 col-xl-3">
           <p>{{ project.name }}</p>
-        </b-col>
-        <b-col class="col-5 col-md-5 col-xl-5">
-          <b-form inline>
-            <label class="sr-only">New Name</label>
+        </b-col> -->
+        <b-col class="col-6 col-md-6 col-xl-6">
             <b-input
               v-model="nameNew"
               type="name"
               class="form-control"
-              size="sm"
               placeholder="New name"
             ></b-input>
-            <b-button type="submit" size="sm" variant="info" @click="changeName">Submit</b-button>
-          </b-form>
+        </b-col>
+        <b-col class="col-1 col-md-1 col-xl-1">
+          <b-button type="submit" size="sm" variant="info" @click="changeName">Update</b-button>
         </b-col>
       </b-row>
+      </b-form>
+
+      <b-form>
       <b-row>
-        <b-col class="col-2 col-md-2 col-xl-2">
-        <p class="attribute">Date created: </p>
+        <b-col class="project-label col-1 col-md-1 col-xl-1" />
+        <b-col class="project-label col-2 col-md-2 col-xl-2" >
+          <label>Date: </label>
         </b-col>
-        <b-col class="col-3 col-md-3 col-xl-3">
-        <p>{{ project.date }}</p>
+        <!-- <b-col class="col-3 col-md-3 col-xl-3">
+          <p>{{ project.date }}</p>
+        </b-col> -->
+        <b-col class="col-6 col-md-6 col-xl-6">
+          <b-form-datepicker id="date-blah" v-model="dateNew"></b-form-datepicker>
+        </b-col>
+        <b-col class="col-1 col-md-1 col-xl-1">
+          <b-button type="submit" size="sm" variant="info" @click="changeDate">Update</b-button>
         </b-col>
       </b-row>
+      </b-form>
+
+      <b-form>
       <b-row>
-        <b-col class="col-2 col-md-2 col-xl-2">
-        <p class="attribute">Status: </p>
+        <b-col class="project-label col-1 col-md-1 col-xl-1" />
+        <b-col class="project-label col-2 col-md-2 col-xl-2" >
+        <label>Status: </label>
         </b-col>
-        <b-col class="col-3 col-md-3 col-xl-3">
+        <!-- <b-col class="col-3 col-md-3 col-xl-3">
         <p>{{ project.status }}</p>
-        </b-col>
-        <b-col class="col-5 col-md-5 col-xl-5">
-          <b-form inline>
+        </b-col> -->
+         <b-col class="col-6 col-md-6 col-xl-6">
             <b-form-select
             v-model="statusNew"
             :options="statusOptions"
-            size="sm"
             ></b-form-select>
+        </b-col>
+        <b-col class="col-1 col-md-1 col-xl-1">
             <b-button
             type="submit"
             variant="info"
             size="sm"
-            @click="changeStatus">Submit</b-button>
-          </b-form>
-        </b-col>
+            @click="changeStatus">Update</b-button>
+          </b-col>
       </b-row>
+       </b-form>
+
+      <b-form>
       <b-row>
-        <b-col class="col-2 col-md-2 col-xl-2">
-        <p class="attribute">Priority: </p>
+        <b-col class="project-label col-1 col-md-1 col-xl-1" />
+        <b-col class="project-label col-2 col-md-2 col-xl-2" >
+          <label>Priority: </label>
         </b-col>
-        <b-col class="col-3 col-md-3 col-xl-3">
-        <p>{{ project.priority }}</p>
-        </b-col>
-        <b-col class="col-5 col-md-5 col-xl-5">
-        <b-form inline>
+        <!-- <b-col class="col-3 col-md-3 col-xl-3">
+        <p>{{ project.status }}</p>
+        </b-col> -->
+         <b-col class="col-6 col-md-6 col-xl-6">
             <b-form-select
             v-model="priorityNew"
             :options="priorityOptions"
-            size="sm"
             ></b-form-select>
+        </b-col>
+        <b-col class="col-1 col-md-1 col-xl-1">
             <b-button
             type="submit"
             variant="info"
             size="sm"
-            @click="changeStatus">Submit</b-button>
-          </b-form>
+            @click="changePriority">Update</b-button>
         </b-col>
       </b-row>
+       </b-form>
+
+    <b-form>
       <b-row>
-        <b-col class="col-2 col-md-2 col-xl-2">
-        <p class="attribute">Note: </p>
+        <b-col class="project-label col-1 col-md-1 col-xl-1" />
+        <b-col class="project-label col-2 col-md-2 col-xl-2" >
+        <label>Note: </label>
         </b-col>
-        <b-col class="col-3 col-md-3 col-xl-3">
+        <!-- <b-col class="col-3 col-md-3 col-xl-3">
           <p>{{ project.note }}</p>
-        </b-col>
-        <b-col class="col-5 col-md-5 col-xl-5">
-          <form class="form-inline">
+        </b-col> -->
+         <b-col class="col-6 col-md-6 col-xl-6">
             <b-form-textarea
             id="textarea"
             v-model="noteNew"
             placeholder="Edit note"
             rows="3"
             max-rows="6"
-            size="sm"
             ></b-form-textarea>
+        </b-col>
+        <b-col class="col-1 col-md-1 col-xl-1">
             <b-button
             type="submit"
             variant="info"
             size="sm"
-            @click="changeNote">Submit</b-button>
-          </form>
+            @click="changeNote">Update</b-button>
         </b-col>
       </b-row>
+       </b-form>
+
       <b-row>
         <h3> Yarns </h3>
       </b-row>
@@ -161,24 +182,25 @@ export default {
       project: null,
       needles: [],
       yarns: [],
-      nameNew: '',
-      statusNew: '',
-      priorityNew: '',
-      noteNew: '',
+
+      nameNew: null,
+      dateNew: null,
+      statusNew: null,
+      priorityNew: null,
+      noteNew: null,
+
       userName: localStorage.userName,
       userID: localStorage.userID,
       projectID: null,
       statusOptions: [
-        { value: null, text: 'Please select a status', disabled: true },
-        { value: 'Not started', text: 'Not started' },
-        { value: 'In progress', text: 'In progress' },
+        { value: 'Not started', text: 'Not Started' },
+        { value: 'In progress', text: 'In Progress' },
         { value: 'Completed', text: 'Completed' }
       ],
       priorityOptions: [
-        { value: null, text: 'Please select a priority', disabled: true },
         { value: 'Low', text: 'Low' },
         { value: 'Medium', text: 'Medium' },
-        { value: 'High', text: 'Highd' }
+        { value: 'High', text: 'High' }
       ]
     }
   },
@@ -189,7 +211,18 @@ export default {
       })
         .then((response) => {
           console.log(response)
-          alert('Project name has been changed')
+          // alert('Project name has been changed')
+        }, (error) => {
+          console.log(error)
+        })
+    },
+    changeDate() {
+      Api.patch('/projects/' + this.projectID, {
+        date: this.dateNew
+      })
+        .then((response) => {
+          console.log(response)
+          // alert('Project date has been changed')
         }, (error) => {
           console.log(error)
         })
@@ -200,7 +233,7 @@ export default {
       })
         .then((response) => {
           console.log(response)
-          alert('Project status has been changed')
+          // alert('Project status has been changed')
         }, (error) => {
           console.log(error)
         })
@@ -211,7 +244,7 @@ export default {
       })
         .then((response) => {
           console.log(response)
-          alert('Project priority has been changed')
+          // alert('Project priority has been changed')
         }, (error) => {
           console.log(error)
         })
@@ -222,7 +255,7 @@ export default {
       })
         .then((response) => {
           console.log(response)
-          alert('Project note has been changed')
+          // alert('Project note has been changed')
         }, (error) => {
           console.log(error)
         })
@@ -277,6 +310,11 @@ export default {
           this.project = response.data
           this.projectID = this.project._id
           console.log('loaded project', this.project)
+          this.nameNew = this.project.name
+          this.dateNew = this.project.date
+          this.noteNew = this.project.note
+          this.statusNew = this.project.status
+          this.priorityNew = this.project.priority
         })
     },
     loadAllNeedles() {
@@ -357,10 +395,15 @@ export default {
 
   .inner-box {
     background: white;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
     padding: 20px 10px 20px 10px;
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  .project-label {
+    text-align: left;
+
   }
 </style>
