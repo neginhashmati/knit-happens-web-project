@@ -52,7 +52,7 @@
             type="submit"
             variant="info"
             size="sm"
-            @click="editNeedle">Submit</b-button>
+            @click="editNeedle">Update</b-button>
           </b-form>
         </b-col>
       </b-row>

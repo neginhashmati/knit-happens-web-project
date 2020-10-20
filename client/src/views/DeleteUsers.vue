@@ -30,7 +30,10 @@ export default {
       Api.delete('/users')
         .then(response => {
           console.log(response)
-          this.loadAllProjects()
+          localStorage.userID = ''
+          localStorage.userName = ''
+          alert('You have deleted all users! Shame on you!\nYou will now be redirected to the login page')
+          document.location.href = '/'
         })
         .catch(error => {
           console.error(error)
