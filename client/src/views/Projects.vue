@@ -1,13 +1,6 @@
 <template>
     <b-container>
       <b-row>
-        <!-- <b-col cols="7" offset="1" offset-md="2">
-          <b-form-input v-model="text" placeholder="Enter your name"></b-form-input>
-        </b-col> -->
-
-        <!-- <b-col cols="4">
-          <b-button v-on:click="deleteAllProjects">Delete All Projects</b-button>
-        </b-col> -->
       </b-row>
       <h1>My projects:</h1>
       <b-row align-h="center">
@@ -20,9 +13,6 @@
          <project-form v-on:create-project="createProject"/>
       </b-col>
 
-    <!-- <div id="createproject-button">
-      <project-form v:on:create-project="createProject">Create new project</project-form>
-    </div> -->
     </b-container>
 </template>
 

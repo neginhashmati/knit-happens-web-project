@@ -62,7 +62,9 @@ export default {
   },
 
   mounted() {
-    localStorage.userID = ''
+    if (!localStorage.userID) {
+      localStorage.userID = ''
+    }
   },
   methods: {
     doLogin() {
@@ -104,7 +106,7 @@ export default {
               localStorage.userName = response.data.name
               localStorage.userID = response.data._id
               alert('You are now registered ' + localStorage.userName + '. It\'s time to make knit happen!')
-              document.location.href = '/projects'
+              document.location.href = '/home'
             }, (error) => {
               console.log(error)
             })
