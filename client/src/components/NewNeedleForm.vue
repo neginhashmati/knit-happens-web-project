@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button v-b-modal.modal-create-needle>Add new needle</b-button>
+    <b-button v-b-modal.modal-create-needle>Add New Needle</b-button>
       <b-modal
       id="modal-create-needle"
       ref="modal"
