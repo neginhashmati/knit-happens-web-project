@@ -56,8 +56,8 @@ export default {
         date: null,
         note: null,
         name: null,
-        priority: null,
-        status: null
+        priority: 'Low',
+        status: 'Not started'
       },
       priorityOptions: [
         { value: 'Low', text: 'Low' },

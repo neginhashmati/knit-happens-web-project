@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button v-b-modal.modal-create-yarn>Add new yarn</b-button>
+    <b-button v-b-modal.modal-create-yarn>Add New Yarn</b-button>
       <b-modal
       id="modal-create-yarn"
       ref="modal"
@@ -44,7 +44,7 @@
               rows="3"
               max-rows="6"
           ></b-form-textarea>
-          <p class="required">* - required information</p>
+          <p class="required">* Required information</p>
         <b-button v-on:click="$bvModal.hide('modal-create-yarn');$emit('create-yarn', input)">Add New Yarn</b-button>
       </form>
     </b-modal>
@@ -103,6 +103,6 @@ export default {
 
 .required {
   color: red;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
 }
 </style>

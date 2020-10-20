@@ -25,6 +25,10 @@ export default {
     UserItem
   },
   mounted() {
+    if (localStorage.userID === '') {
+      alert('You are not logged in.\nYou are being diverted to the login page!')
+      document.location.href = '/'
+    }
     console.log('PAGE is loaded')
     // Load the real users from the server
     this.loadAllUsers()
@@ -46,22 +50,6 @@ export default {
           console.error(error)
         })
     },
-    /* loadAllUsers() {
-      Api.get('/users')
-        .then(response => {
-          this.users = response.data.users
-          console.log('loaded user', this.users)
-        })
-        .catch(error => {
-          this.message = error.message
-          console.error(error)
-          this.users = []
-          // TODO: display error message
-        })
-        .then(() => {
-          //   This code is always executed at the end. After success or failure.
-        })
-    } */
     loadAllUsers(sortAlpha) {
       console.log('sortAlpha is ' + this.sortAlpha)
       if (this.sortAlpha === false) {

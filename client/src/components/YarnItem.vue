@@ -1,8 +1,19 @@
 <template>
   <div class="card">
     <div class="title">
-      <p>{{ yarn.name }}
-        <b-button-close v-on:click="$emit('delete-yarn', yarn._id)" >&times;</b-button-close></p>
+      <div class="title-body">
+        <div>
+          <p>{{ yarn.name }}</p>
+        </div>
+        <div class="title-col2">
+          <b-icon
+            icon="pencil"
+            id="edit-button"
+            v-on:click="$emit('load-yarn', yarn._id)">
+          </b-icon><span>     </span>
+          <b-button-close v-on:click="$emit('delete-yarn', yarn._id)">&times;</b-button-close>
+        </div>
+      </div>
     </div>
     <div class="card-body">
       <div>
@@ -40,6 +51,10 @@ export default {
 
 <style scoped>
 
+#edit-button {
+  cursor: pointer;
+}
+
 p {
   padding-top: 5px;
   padding-right: 5px;
@@ -68,6 +83,16 @@ p {
   background-color: #f6be7b;
   padding-left: 5px;
   border-bottom: 2px solid #000000;
+}
+
+.title-body {
+  display: grid;
+  grid-template-columns: 200px 35px;
+  grid-column-gap: 0px;
+}
+
+.title-col2 {
+  align-content: right;
 }
 
 .attribute {

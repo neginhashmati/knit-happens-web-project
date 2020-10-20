@@ -10,7 +10,7 @@
           <form class="form-inline">
           <input v-model="passwordNew" type="password" class="form-control" placeholder="New Password" required>
           <input v-model="confirmNew" type="password" class="form-control" placeholder="Confirm Password" required>
-          <input type="submit" class="btn btn-info" :disabled='isDisabled' @click="changePass">
+          <input type="submit" class="btn btn-info" @click="changePass">
           </form>
         </b-col>
       </b-row>
@@ -72,17 +72,17 @@ export default {
 
   h3 {
     color: #2D3E4E;
-    padding: 40rem 10rem 40rem 10rem;
+    padding: 20px 10px 20px 10px;
   }
 
   .inner-box {
     background: white;
     justify-content: center;
     align-items: center;
-    border-radius: 2rem;
-    padding: 15rem 5rem 15rem 5rem;
-    margin-left: 10rem;
-    margin-right: 10rem;
+    border-radius: 20px;
+    padding: 20px 10px 20px 10px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   @media (max-width: 600px) {

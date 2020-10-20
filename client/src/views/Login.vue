@@ -12,25 +12,25 @@
           </div>
             <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
                <div v-if="!registerActive" class="card login" v-bind:class="{ error: emptyFields }">
-                  <h1>Sign In</h1>
+                  <h1>Log In</h1>
                   <form v-on:submit.prevent class="form-group">
                      <input v-model="emailLogin" type="email" class="form-control" placeholder="Email" required>
                      <input v-model="passwordLogin" type="password" class="form-control" placeholder="Password" required>
                      <input type="submit" class="btn btn-primary" @click="doLogin">
-                     <p>Don't have an account? <a href="#" @click="registerActive = !registerActive, emptyFields = false">Sign up here</a>
+                     <p>Don't have an account? <a href="#" @click="registerActive = !registerActive, emptyFields = false">Create account here</a>
                      </p>
                   </form>
                </div>
 
                <div v-else class="card register" v-bind:class="{ error: emptyFields }">
-                  <h1>Sign Up</h1>
+                  <h1>Create Account</h1>
                   <form class="form-group">
                      <input v-model="nameReg" type="name" class="form-control" placeholder="Name" required>
                      <input v-model="emailReg" type="email" class="form-control" placeholder="Email" required>
                      <input v-model="passwordReg" type="password" class="form-control" placeholder="Password" required>
                      <input v-model="confirmReg" type="password" class="form-control" placeholder="Confirm Password" required>
                      <input type="submit" class="btn btn-primary" @click="doRegister">
-                     <p>Already have an account? <a href="#" @click="registerActive = !registerActive, emptyFields = false">Sign in here</a>
+                     <p>Already have an account? <a href="#" @click="registerActive = !registerActive, emptyFields = false">Log in here</a>
                      </p>
                   </form>
                </div>
@@ -61,6 +61,11 @@ export default {
     }
   },
 
+  mounted() {
+    if (!localStorage.userID) {
+      localStorage.userID = ''
+    }
+  },
   methods: {
     doLogin() {
       if (this.emailLogin === '' || this.passwordLogin === '') {
@@ -76,7 +81,6 @@ export default {
               console.log('AND THEN')
               localStorage.userName = this.user.name
               localStorage.userID = this.user._id
-              alert('Welcome ' + localStorage.userName + '. It\'s time to make knit happen!')
               document.location.href = '/home'
             }
           })
@@ -100,8 +104,7 @@ export default {
             .then((response) => {
               localStorage.userName = response.data.name
               localStorage.userID = response.data._id
-              alert('You are now registered ' + localStorage.userName + '. It\'s time to make knit happen!')
-              document.location.href = '/projects'
+              document.location.href = '/home'
             }, (error) => {
               console.log(error)
             })

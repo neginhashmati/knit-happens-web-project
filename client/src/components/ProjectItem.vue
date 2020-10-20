@@ -92,12 +92,12 @@ p {
   font-size: 1rem;
 }
 
-.icons {
-  float: right;
+p.attributenotes {
+  font-weight: bold;
 }
 
-.attributenotes {
-  font-weight: bold;
+.icons {
+  float: right;
 }
 
 @media (max-width: 600px) {
