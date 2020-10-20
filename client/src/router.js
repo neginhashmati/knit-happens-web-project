@@ -5,6 +5,8 @@ import Account from './views/Account.vue'
 import Login from './views/Login.vue'
 import Projects from './views/Projects.vue'
 import SpecificProject from './views/SpecificProject.vue'
+import SpecificNeedle from './views/SpecificNeedle.vue'
+import SpecificYarn from './views/SpecificYarn.vue'
 import Explore from './views/Explore.vue'
 import About from './views/About'
 import Logout from './views/Logout'
@@ -40,6 +42,16 @@ export default new Router({
       path: '/specificproject/:id',
       name: 'specificproject',
       component: SpecificProject
+    },
+    {
+      path: '/specificneedle/:id',
+      name: 'specificneedle',
+      component: SpecificNeedle
+    },
+    {
+      path: '/specificyarn/:id',
+      name: 'specificyarn',
+      component: SpecificYarn
     },
     {
       path: '/explore',
