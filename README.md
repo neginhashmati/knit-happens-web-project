@@ -1,3 +1,7 @@
+This project was created in the Fall of 2020 as a part of the Web and Mobile development course at the Software Engineering and Management bachelor's program at the University of Gothenburg. 
+
+The project was created with the help of this template: https://github.com/dit341/group-00-web, created by the teacher's of the course.
+
 # Backend and Frontend Template
 
 Latest version: https://git.ita.chalmers.se/courses/dit341/group-00-web (public Github [mirror](https://github.com/dit341/group-00-web))
